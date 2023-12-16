@@ -1,0 +1,905 @@
+year,country,PIB_pc,iso_2_code
+2000,Albania,1700,AL
+2000,Austria,31710,AT
+2000,Belgium,29890,BE
+2000,Bulgaria,2990,BG
+2000,Switzerland,51950,CH
+2000,Cyprus,20130,CY
+2000,Czechia,11230,CZ
+2000,Germany,28910,DE
+2000,Denmark,42190,DK
+2000,Euro area - 19 countries  (2015-2022),26490,EA19
+2000,Euro area – 20 countries (from 2023),26240,EA20
+2000,Estonia,7540,EE
+2000,Greece,17430,GR
+2000,Spain,21460,ES
+2000,European Union - 27 countries (from 2020),22450,EU27_2020
+2000,European Union - 28 countries (2013-2020),22990,EU28
+2000,Finland,30510,FI
+2000,France,28930,FR
+2000,Croatia,7940,HR
+2000,Hungary,7910,HU
+2000,Ireland,33280,IE
+2000,Iceland,28570,IS
+2000,Italy,27430,IT
+2000,Lithuania,5230,LT
+2000,Luxembourg,72640,LU
+2000,Latvia,5250,LV
+2000,North Macedonia,2620,MK
+2000,Malta,13750,MT
+2000,Netherlands,35060,NL
+2000,Norway,62040,NO
+2000,Poland,6450,PL
+2000,Portugal,16230,PT
+2000,Romania,3780,RO
+2000,Serbia,2650,RS
+2000,Sweden,33960,SE
+2000,Slovenia,13980,SI
+2000,Slovakia,7780,SK
+2000,Türkiye,6130,TR
+2000,United Kingdom,27130,GB
+2001,Albania,1850,AL
+2001,Austria,31990,AT
+2001,Belgium,30120,BE
+2001,Bulgaria,3210,BG
+2001,Switzerland,52510,CH
+2001,Cyprus,20700,CY
+2001,Czechia,11620,CZ
+2001,Germany,29370,DE
+2001,Denmark,42390,DK
+2001,Euro area - 19 countries  (2015-2022),26980,EA19
+2001,Euro area – 20 countries (from 2023),26740,EA20
+2001,Estonia,8040,EE
+2001,Greece,18050,GR
+2001,Spain,22190,ES
+2001,European Union - 27 countries (from 2020),22900,EU27_2020
+2001,European Union - 28 countries (2013-2020),23470,EU28
+2001,Finland,31230,FI
+2001,France,29290,FR
+2001,Croatia,8510,HR
+2001,Hungary,8250,HU
+2001,Ireland,34510,IE
+2001,Iceland,29310,IS
+2001,Italy,27950,IT
+2001,Lithuania,5620,LT
+2001,Luxembourg,73990,LU
+2001,Latvia,5650,LV
+2001,North Macedonia,2530,MK
+2001,Malta,13480,MT
+2001,Netherlands,35610,NL
+2001,Norway,63000,NO
+2001,Poland,6530,PL
+2001,Portugal,16430,PT
+2001,Romania,3980,RO
+2001,Serbia,2840,RS
+2001,Sweden,34360,SE
+2001,Slovenia,14410,SI
+2001,Slovakia,8060,SK
+2001,Türkiye,5700,TR
+2001,United Kingdom,27770,GB
+2002,Albania,1940,AL
+2002,Austria,32360,AT
+2002,Belgium,30490,BE
+2002,Bulgaria,3420,BG
+2002,Switzerland,52100,CH
+2002,Cyprus,21230,CY
+2002,Czechia,11830,CZ
+2002,Germany,29290,DE
+2002,Denmark,42430,DK
+2002,Euro area - 19 countries  (2015-2022),27090,EA19
+2002,Euro area – 20 countries (from 2023),26850,EA20
+2002,Estonia,8640,EE
+2002,Greece,18690,GR
+2002,Spain,22430,ES
+2002,European Union - 27 countries (from 2020),23100,EU27_2020
+2002,European Union - 28 countries (2013-2020),23710,EU28
+2002,Finland,31690,FI
+2002,France,29410,FR
+2002,Croatia,8990,HR
+2002,Hungary,8670,HU
+2002,Ireland,35910,IE
+2002,Iceland,29220,IS
+2002,Italy,27960,IT
+2002,Lithuania,6050,LT
+2002,Luxembourg,75580,LU
+2002,Latvia,6120,LV
+2002,North Macedonia,2580,MK
+2002,Malta,13730,MT
+2002,Netherlands,35460,NL
+2002,Norway,63530,NO
+2002,Poland,6660,PL
+2002,Portugal,16470,PT
+2002,Romania,4350,RO
+2002,Serbia,3020,RS
+2002,Sweden,35000,SE
+2002,Slovenia,14900,SI
+2002,Slovakia,8430,SK
+2002,Türkiye,5990,TR
+2002,United Kingdom,28250,GB
+2003,Albania,2060,AL
+2003,Austria,32520,AT
+2003,Belgium,30680,BE
+2003,Bulgaria,3620,BG
+2003,Switzerland,51700,CH
+2003,Cyprus,21520,CY
+2003,Czechia,12260,CZ
+2003,Germany,29100,DE
+2003,Denmark,42490,DK
+2003,Euro area - 19 countries  (2015-2022),27120,EA19
+2003,Euro area – 20 countries (from 2023),26890,EA20
+2003,Estonia,9350,EE
+2003,Greece,19730,GR
+2003,Spain,22680,ES
+2003,European Union - 27 countries (from 2020),23210,EU27_2020
+2003,European Union - 28 countries (2013-2020),23930,EU28
+2003,Finland,32250,FI
+2003,France,29440,FR
+2003,Croatia,9500,HR
+2003,Hungary,9050,HU
+2003,Ireland,36390,IE
+2003,Iceland,29670,IS
+2003,Italy,27850,IT
+2003,Lithuania,6740,LT
+2003,Luxembourg,76620,LU
+2003,Latvia,6700,LV
+2003,North Macedonia,2630,MK
+2003,Malta,14200,MT
+2003,Netherlands,35350,NL
+2003,Norway,63750,NO
+2003,Poland,6900,PL
+2003,Portugal,16250,PT
+2003,Romania,4470,RO
+2003,Serbia,3160,RS
+2003,Sweden,35680,SE
+2003,Slovenia,15330,SI
+2003,Slovakia,8890,SK
+2003,Türkiye,6260,TR
+2003,United Kingdom,29060,GB
+2004,Albania,2180,AL
+2004,Austria,33200,AT
+2004,Belgium,31640,BE
+2004,Bulgaria,3870,BG
+2004,Switzerland,52750,CH
+2004,Cyprus,22300,CY
+2004,Czechia,12840,CZ
+2004,Germany,29470,DE
+2004,Denmark,43520,DK
+2004,Euro area - 19 countries  (2015-2022),27590,EA19
+2004,Euro area – 20 countries (from 2023),27360,EA20
+2004,Estonia,10050,EE
+2004,Greece,20670,GR
+2004,Spain,23020,ES
+2004,European Union - 27 countries (from 2020),23710,EU27_2020
+2004,European Union - 28 countries (2013-2020),24430,EU28
+2004,Finland,33440,FI
+2004,France,30050,FR
+2004,Croatia,9890,HR
+2004,Hungary,9520,HU
+2004,Ireland,38190,IE
+2004,Iceland,31620,IS
+2004,Italy,28040,IT
+2004,Lithuania,7270,LT
+2004,Luxembourg,78730,LU
+2004,Latvia,7340,LV
+2004,North Macedonia,2750,MK
+2004,Malta,14120,MT
+2004,Netherlands,35920,NL
+2004,Norway,65920,NO
+2004,Poland,7250,PL
+2004,Portugal,16500,PT
+2004,Romania,4970,RO
+2004,Serbia,3460,RS
+2004,Sweden,37080,SE
+2004,Slovenia,15990,SI
+2004,Slovakia,9360,SK
+2004,Türkiye,6790,TR
+2004,United Kingdom,29560,GB
+2005,Albania,2310,AL
+2005,Austria,33710,AT
+2005,Belgium,32200,BE
+2005,Bulgaria,4170,BG
+2005,Switzerland,53880,CH
+2005,Cyprus,23050,CY
+2005,Czechia,13650,CZ
+2005,Germany,29730,DE
+2005,Denmark,44400,DK
+2005,Euro area - 19 countries  (2015-2022),27900,EA19
+2005,Euro area – 20 countries (from 2023),27670,EA20
+2005,Estonia,11070,EE
+2005,Greece,20740,GR
+2005,Spain,23420,ES
+2005,European Union - 27 countries (from 2020),24070,EU27_2020
+2005,European Union - 28 countries (2013-2020),24830,EU28
+2005,Finland,34250,FI
+2005,France,30320,FR
+2005,Croatia,10310,HR
+2005,Hungary,9950,HU
+2005,Ireland,39480,IE
+2005,Iceland,33190,IS
+2005,Italy,28100,IT
+2005,Lithuania,7960,LT
+2005,Luxembourg,79460,LU
+2005,Latvia,8210,LV
+2005,North Macedonia,2870,MK
+2005,Malta,14510,MT
+2005,Netherlands,36570,NL
+2005,Norway,67240,NO
+2005,Poland,7510,PL
+2005,Portugal,16600,PT
+2005,Romania,5230,RO
+2005,Serbia,3660,RS
+2005,Sweden,37990,SE
+2005,Slovenia,16570,SI
+2005,Slovakia,9970,SK
+2005,Türkiye,7310,TR
+2005,United Kingdom,30210,GB
+2006,Albania,2460,AL
+2006,Austria,34700,AT
+2006,Belgium,32800,BE
+2006,Bulgaria,4480,BG
+2006,Switzerland,55730,CH
+2006,Cyprus,23740,CY
+2006,Czechia,14530,CZ
+2006,Germany,30930,DE
+2006,Denmark,45990,DK
+2006,Euro area - 19 countries  (2015-2022),28670,EA19
+2006,Euro area – 20 countries (from 2023),28440,EA20
+2006,Estonia,12230,EE
+2006,Greece,21840,GR
+2006,Spain,24000,ES
+2006,European Union - 27 countries (from 2020),24820,EU27_2020
+2006,European Union - 28 countries (2013-2020),25570,EU28
+2006,Finland,35490,FI
+2006,France,30850,FR
+2006,Croatia,10830,HR
+2006,Hungary,10360,HU
+2006,Ireland,40390,IE
+2006,Iceland,34310,IS
+2006,Italy,28490,IT
+2006,Lithuania,8690,LT
+2006,Luxembourg,82910,LU
+2006,Latvia,9280,LV
+2006,Montenegro,4580,ME
+2006,North Macedonia,3010,MK
+2006,Malta,14820,MT
+2006,Netherlands,37780,NL
+2006,Norway,68330,NO
+2006,Poland,7970,PL
+2006,Portugal,16840,PT
+2006,Romania,5690,RO
+2006,Serbia,3860,RS
+2006,Sweden,39540,SE
+2006,Slovenia,17460,SI
+2006,Slovakia,10800,SK
+2006,Türkiye,7720,TR
+2006,United Kingdom,30810,GB
+2007,Albania,2630,AL
+2007,Austria,35870,AT
+2007,Belgium,33760,BE
+2007,Bulgaria,4800,BG
+2007,Switzerland,57400,CH
+2007,Cyprus,24420,CY
+2007,Czechia,15250,CZ
+2007,Germany,31920,DE
+2007,Denmark,46210,DK
+2007,Euro area - 19 countries  (2015-2022),29370,EA19
+2007,Euro area – 20 countries (from 2023),29140,EA20
+2007,Estonia,13230,EE
+2007,Greece,22500,GR
+2007,Spain,24380,ES
+2007,European Union - 27 countries (from 2020),25510,EU27_2020
+2007,European Union - 28 countries (2013-2020),26230,EU28
+2007,Finland,37210,FI
+2007,France,31400,FR
+2007,Croatia,11380,HR
+2007,Hungary,10410,HU
+2007,Ireland,41270,IE
+2007,Iceland,36360,IS
+2007,Italy,28740,IT
+2007,Lithuania,9770,LT
+2007,Luxembourg,88250,LU
+2007,Latvia,10280,LV
+2007,Montenegro,4890,ME
+2007,North Macedonia,3200,MK
+2007,Malta,15470,MT
+2007,Netherlands,39120,NL
+2007,Norway,69600,NO
+2007,Poland,8540,PL
+2007,Portugal,17230,PT
+2007,Romania,6190,RO
+2007,Serbia,4130,RS
+2007,Sweden,40590,SE
+2007,Slovenia,18570,SI
+2007,Slovakia,11960,SK
+2007,Türkiye,8010,TR
+2007,United Kingdom,31280,GB
+2008,Albania,2850,AL
+2008,Austria,36280,AT
+2008,Belgium,33640,BE
+2008,Bulgaria,5120,BG
+2008,Switzerland,58310,CH
+2008,Cyprus,24680,CY
+2008,Czechia,15500,CZ
+2008,Germany,32320,DE
+2008,Denmark,45700,DK
+2008,Euro area - 19 countries  (2015-2022),29340,EA19
+2008,Euro area – 20 countries (from 2023),29120,EA20
+2008,Estonia,12590,EE
+2008,Greece,22370,GR
+2008,Spain,24200,ES
+2008,European Union - 27 countries (from 2020),25590,EU27_2020
+2008,European Union - 28 countries (2013-2020),26250,EU28
+2008,Finland,37330,FI
+2008,France,31310,FR
+2008,Croatia,11610,HR
+2008,Hungary,10530,HU
+2008,Ireland,38580,IE
+2008,Iceland,36230,IS
+2008,Italy,28250,IT
+2008,Lithuania,10130,LT
+2008,Luxembourg,86430,LU
+2008,Latvia,10050,LV
+2008,Montenegro,5230,ME
+2008,North Macedonia,3370,MK
+2008,Malta,15960,MT
+2008,Netherlands,39810,NL
+2008,Norway,69070,NO
+2008,Poland,8900,PL
+2008,Portugal,17260,PT
+2008,Romania,6880,RO
+2008,Serbia,4380,RS
+2008,Sweden,40100,SE
+2008,Slovenia,19190,SI
+2008,Slovakia,12610,SK
+2008,Türkiye,7980,TR
+2008,United Kingdom,30940,GB
+2009,Albania,2960,AL
+2009,Austria,34830,AT
+2009,Belgium,32700,BE
+2009,Bulgaria,4970,BG
+2009,Switzerland,56340,CH
+2009,Cyprus,23550,CY
+2009,Czechia,14690,CZ
+2009,Germany,30580,DE
+2009,Denmark,43220,DK
+2009,Euro area - 19 countries  (2015-2022),27930,EA19
+2009,Euro area – 20 countries (from 2023),27720,EA20
+2009,Estonia,10770,EE
+2009,Greece,21350,GR
+2009,Spain,23100,ES
+2009,European Union - 27 countries (from 2020),24410,EU27_2020
+2009,European Union - 28 countries (2013-2020),25040,EU28
+2009,Finland,34150,FI
+2009,France,30250,FR
+2009,Croatia,10780,HR
+2009,Hungary,9850,HU
+2009,Ireland,36270,IE
+2009,Iceland,33480,IS
+2009,Italy,26600,IT
+2009,Lithuania,8720,LT
+2009,Luxembourg,82100,LU
+2009,Latvia,8760,LV
+2009,Montenegro,4920,ME
+2009,North Macedonia,3350,MK
+2009,Malta,15660,MT
+2009,Netherlands,38160,NL
+2009,Norway,66880,NO
+2009,Poland,9060,PL
+2009,Portugal,16710,PT
+2009,Romania,6550,RO
+2009,Serbia,4280,RS
+2009,Sweden,38030,SE
+2009,Slovenia,17570,SI
+2009,Slovakia,11890,SK
+2009,Türkiye,7490,TR
+2009,United Kingdom,29460,GB
+2010,Albania,3090,AL
+2010,Austria,35390,AT
+2010,Belgium,33330,BE
+2010,Bulgaria,5080,BG
+2010,Switzerland,57730,CH
+2010,Cyprus,23460,CY
+2010,Czechia,15020,CZ
+2010,Germany,31940,DE
+2010,Denmark,43840,DK
+2010,Euro area - 19 countries  (2015-2022),28460,EA19
+2010,Euro area – 20 countries (from 2023),28240,EA20
+2010,Estonia,11060,EE
+2010,Greece,20150,GR
+2010,Spain,23040,ES
+2010,European Union - 27 countries (from 2020),24900,EU27_2020
+2010,European Union - 28 countries (2013-2020),25520,EU28
+2010,Finland,35080,FI
+2010,France,30690,FR
+2010,Croatia,10670,HR
+2010,Hungary,9980,HU
+2010,Ireland,36710,IE
+2010,Iceland,32650,IS
+2010,Italy,26940,IT
+2010,Lithuania,9050,LT
+2010,Luxembourg,83650,LU
+2010,Latvia,8550,LV
+2010,Montenegro,5050,ME
+2010,North Macedonia,3460,MK
+2010,Malta,16440,MT
+2010,Netherlands,38470,NL
+2010,Norway,66580,NO
+2010,Poland,9320,PL
+2010,Portugal,16990,PT
+2010,Romania,6340,RO
+2010,Serbia,4330,RS
+2010,Sweden,39950,SE
+2010,Slovenia,17750,SI
+2010,Slovakia,12660,SK
+2010,Türkiye,8000,TR
+2010,United Kingdom,29830,GB
+2011,Albania,3180,AL
+2011,Austria,36300,AT
+2011,Belgium,33460,BE
+2011,Bulgaria,5320,BG
+2011,Switzerland,58220,CH
+2011,Cyprus,22970,CY
+2011,Czechia,15310,CZ
+2011,Germany,33200,DE
+2011,Denmark,44240,DK
+2011,Euro area - 19 countries  (2015-2022),28870,EA19
+2011,Euro area – 20 countries (from 2023),28640,EA20
+2011,Estonia,11890,EE
+2011,Greece,18130,GR
+2011,Spain,22770,ES
+2011,European Union - 27 countries (from 2020),25330,EU27_2020
+2011,European Union - 28 countries (2013-2020),25910,EU28
+2011,Finland,35810,FI
+2011,France,31210,FR
+2011,Croatia,10700,HR
+2011,Hungary,10190,HU
+2011,Ireland,37030,IE
+2011,Iceland,33150,IS
+2011,Italy,27030,IT
+2011,Lithuania,9820,LT
+2011,Luxembourg,82660,LU
+2011,Latvia,8940,LV
+2011,Montenegro,5200,ME
+2011,North Macedonia,3530,MK
+2011,Malta,16450,MT
+2011,Netherlands,38880,NL
+2011,Norway,66440,NO
+2011,Poland,9790,PL
+2011,Portugal,16720,PT
+2011,Romania,6650,RO
+2011,Serbia,4450,RS
+2011,Sweden,40920,SE
+2011,Slovenia,17870,SI
+2011,Slovakia,13080,SK
+2011,Türkiye,8760,TR
+2011,United Kingdom,29960,GB
+2012,Albania,3230,AL
+2012,Austria,36390,AT
+2012,Belgium,33490,BE
+2012,Bulgaria,5390,BG
+2012,Switzerland,58290,CH
+2012,Cyprus,21840,CY
+2012,Czechia,15170,CZ
+2012,Germany,33280,DE
+2012,Denmark,44170,DK
+2012,Euro area - 19 countries  (2015-2022),28560,EA19
+2012,Euro area – 20 countries (from 2023),28330,EA20
+2012,Estonia,12320,EE
+2012,Greece,16940,GR
+2012,Spain,22080,ES
+2012,European Union - 27 countries (from 2020),25110,EU27_2020
+2012,European Union - 28 countries (2013-2020),25750,EU28
+2012,Finland,35140,FI
+2012,France,31160,FR
+2012,Croatia,10480,HR
+2012,Hungary,10120,HU
+2012,Ireland,36830,IE
+2012,Iceland,33330,IS
+2012,Italy,26160,IT
+2012,Lithuania,10330,LT
+2012,Luxembourg,82030,LU
+2012,Latvia,9680,LV
+2012,Montenegro,5060,ME
+2012,North Macedonia,3510,MK
+2012,Malta,16970,MT
+2012,Netherlands,38340,NL
+2012,Norway,67350,NO
+2012,Poland,9940,PL
+2012,Portugal,16110,PT
+2012,Romania,6810,RO
+2012,Serbia,4440,RS
+2012,Sweden,40380,SE
+2012,Slovenia,17360,SI
+2012,Slovakia,13230,SK
+2012,Türkiye,9070,TR
+2012,United Kingdom,30190,GB
+2013,Albania,3260,AL
+2013,Austria,36180,AT
+2013,Belgium,33490,BE
+2013,Bulgaria,5390,BG
+2013,Switzerland,58650,CH
+2013,Cyprus,20450,CY
+2013,Czechia,15160,CZ
+2013,Germany,33330,DE
+2013,Denmark,44410,DK
+2013,Euro area - 19 countries  (2015-2022),28450,EA19
+2013,Euro area – 20 countries (from 2023),28220,EA20
+2013,Estonia,12540,EE
+2013,Greece,16630,GR
+2013,Spain,21850,ES
+2013,European Union - 27 countries (from 2020),25060,EU27_2020
+2013,European Union - 28 countries (2013-2020),25780,EU28
+2013,Finland,34660,FI
+2013,France,31170,FR
+2013,Croatia,10480,HR
+2013,Hungary,10330,HU
+2013,Ireland,37080,IE
+2013,Iceland,34510,IS
+2013,Italy,25620,IT
+2013,Lithuania,10810,LT
+2013,Luxembourg,82700,LU
+2013,Latvia,9980,LV
+2013,Montenegro,5230,ME
+2013,North Macedonia,3610,MK
+2013,Malta,17650,MT
+2013,Netherlands,38180,NL
+2013,Norway,67220,NO
+2013,Poland,10030,PL
+2013,Portugal,16050,PT
+2013,Romania,6860,RO
+2013,Serbia,4590,RS
+2013,Sweden,40510,SE
+2013,Slovenia,17160,SI
+2013,Slovakia,13300,SK
+2013,Türkiye,9710,TR
+2013,United Kingdom,30660,GB
+2014,Albania,3330,AL
+2014,Austria,36130,AT
+2014,Belgium,33870,BE
+2014,Bulgaria,5470,BG
+2014,Switzerland,59300,CH
+2014,Cyprus,20310,CY
+2014,Czechia,15480,CZ
+2014,Germany,33920,DE
+2014,Denmark,44890,DK
+2014,Euro area - 19 countries  (2015-2022),28790,EA19
+2014,Euro area – 20 countries (from 2023),28560,EA20
+2014,Estonia,12960,EE
+2014,Greece,16830,GR
+2014,Spain,22220,ES
+2014,European Union - 27 countries (from 2020),25430,EU27_2020
+2014,European Union - 28 countries (2013-2020),26180,EU28
+2014,Finland,34390,FI
+2014,France,31320,FR
+2014,Croatia,10480,HR
+2014,Hungary,10790,HU
+2014,Ireland,40070,IE
+2014,Iceland,34710,IS
+2014,Italy,25620,IT
+2014,Lithuania,11290,LT
+2014,Luxembourg,82880,LU
+2014,Latvia,10270,LV
+2014,Montenegro,5320,ME
+2014,North Macedonia,3740,MK
+2014,Malta,18610,MT
+2014,Netherlands,38580,NL
+2014,Norway,67830,NO
+2014,Poland,10420,PL
+2014,Portugal,16260,PT
+2014,Romania,7160,RO
+2014,Serbia,4540,RS
+2014,Sweden,41180,SE
+2014,Slovenia,17620,SI
+2014,Slovakia,13640,SK
+2014,Türkiye,10050,TR
+2014,United Kingdom,31290,GB
+2015,Albania,3410,AL
+2015,Austria,36140,AT
+2015,Belgium,34360,BE
+2015,Bulgaria,5700,BG
+2015,Switzerland,59600,CH
+2015,Cyprus,21120,CY
+2015,Czechia,16290,CZ
+2015,Germany,34130,DE
+2015,Denmark,45630,DK
+2015,Euro area - 19 countries  (2015-2022),29290,EA19
+2015,Euro area – 20 countries (from 2023),29060,EA20
+2015,Estonia,13230,EE
+2015,Greece,16900,GR
+2015,Spain,23090,ES
+2015,European Union - 27 countries (from 2020),25960,EU27_2020
+2015,European Union - 28 countries (2013-2020),26710,EU28
+2015,Finland,34460,FI
+2015,France,31540,FR
+2015,Croatia,10810,HR
+2015,Hungary,11220,HU
+2015,Ireland,49420,IE
+2015,Iceland,35870,IS
+2015,Italy,25860,IT
+2015,Lithuania,11620,LT
+2015,Luxembourg,82810,LU
+2015,Latvia,10760,LV
+2015,Montenegro,5500,ME
+2015,North Macedonia,3870,MK
+2015,Malta,19920,MT
+2015,Netherlands,39170,NL
+2015,Norway,68390,NO
+2015,Poland,10890,PL
+2015,Portugal,16620,PT
+2015,Romania,7420,RO
+2015,Serbia,4640,RS
+2015,Sweden,42580,SE
+2015,Slovenia,17990,SI
+2015,Slovakia,14340,SK
+2015,Türkiye,10520,TR
+2015,United Kingdom,31780,GB
+2016,Albania,3530,AL
+2016,Austria,36390,AT
+2016,Belgium,34620,BE
+2016,Bulgaria,5910,BG
+2016,Switzerland,60170,CH
+2016,Cyprus,22410,CY
+2016,Czechia,16670,CZ
+2016,Germany,34610,DE
+2016,Denmark,46720,DK
+2016,Euro area - 19 countries  (2015-2022),29740,EA19
+2016,Euro area – 20 countries (from 2023),29510,EA20
+2016,Estonia,13620,EE
+2016,Greece,16890,GR
+2016,Spain,23780,ES
+2016,European Union - 27 countries (from 2020),26410,EU27_2020
+2016,European Union - 28 countries (2013-2020),27140,EU28
+2016,Finland,35330,FI
+2016,France,31770,FR
+2016,Croatia,11290,HR
+2016,Hungary,11500,HU
+2016,Ireland,49730,IE
+2016,Iceland,37610,IS
+2016,Italy,26240,IT
+2016,Lithuania,12070,LT
+2016,Luxembourg,84840,LU
+2016,Latvia,11110,LV
+2016,Montenegro,5660,ME
+2016,North Macedonia,3980,MK
+2016,Malta,20130,MT
+2016,Netherlands,39810,NL
+2016,Norway,68580,NO
+2016,Poland,11220,PL
+2016,Portugal,17010,PT
+2016,Romania,7680,RO
+2016,Serbia,4820,RS
+2016,Sweden,42920,SE
+2016,Slovenia,18550,SI
+2016,Slovakia,14590,SK
+2016,Türkiye,10730,TR
+2016,United Kingdom,32060,GB
+2017,Albania,3670,AL
+2017,Austria,36980,AT
+2017,Belgium,35040,BE
+2017,Bulgaria,6120,BG
+2017,Switzerland,60420,CH
+2017,Cyprus,23470,CY
+2017,Czechia,17490,CZ
+2017,Germany,35410,DE
+2017,Denmark,47740,DK
+2017,Euro area - 19 countries  (2015-2022),30450,EA19
+2017,Euro area – 20 countries (from 2023),30220,EA20
+2017,Estonia,14410,EE
+2017,Greece,17110,GR
+2017,Spain,24440,ES
+2017,European Union - 27 countries (from 2020),27110,EU27_2020
+2017,European Union - 28 countries (2013-2020),27800,EU28
+2017,Finland,36380,FI
+2017,France,32360,FR
+2017,Croatia,11800,HR
+2017,Hungary,12020,HU
+2017,Ireland,53750,IE
+2017,Iceland,38280,IS
+2017,Italy,26730,IT
+2017,Lithuania,12760,LT
+2017,Luxembourg,84090,LU
+2017,Latvia,11590,LV
+2017,Montenegro,5920,ME
+2017,North Macedonia,4020,MK
+2017,Malta,21700,MT
+2017,Netherlands,40730,NL
+2017,Norway,69720,NO
+2017,Poland,11800,PL
+2017,Portugal,17650,PT
+2017,Romania,8360,RO
+2017,Serbia,4950,RS
+2017,Sweden,43430,SE
+2017,Slovenia,19440,SI
+2017,Slovakia,15000,SK
+2017,Türkiye,11380,TR
+2017,United Kingdom,32430,GB
+2018,Albania,3830,AL
+2018,Austria,37690,AT
+2018,Belgium,35510,BE
+2018,Bulgaria,6330,BG
+2018,Switzerland,61690,CH
+2018,Cyprus,24500,CY
+2018,Czechia,17990,CZ
+2018,Germany,35650,DE
+2018,Denmark,48450,DK
+2018,Euro area - 19 countries  (2015-2022),30910,EA19
+2018,Euro area – 20 countries (from 2023),30690,EA20
+2018,Estonia,14920,EE
+2018,Greece,17430,GR
+2018,Spain,24890,ES
+2018,European Union - 27 countries (from 2020),27620,EU27_2020
+2018,European Union - 28 countries (2013-2020),28270,EU28
+2018,Finland,36740,FI
+2018,France,32800,FR
+2018,Croatia,12250,HR
+2018,Hungary,12690,HU
+2018,Ireland,57610,IE
+2018,Iceland,39090,IS
+2018,Italy,27030,IT
+2018,Lithuania,13400,LT
+2018,Luxembourg,83510,LU
+2018,Latvia,12140,LV
+2018,Montenegro,6230,ME
+2018,North Macedonia,4130,MK
+2018,Malta,22510,MT
+2018,Netherlands,41450,NL
+2018,Norway,69840,NO
+2018,Poland,12500,PL
+2018,Portugal,18190,PT
+2018,Romania,8910,RO
+2018,Serbia,5200,RS
+2018,Sweden,43760,SE
+2018,Slovenia,20240,SI
+2018,Slovakia,15580,SK
+2018,Türkiye,11570,TR
+2018,United Kingdom,32640,GB
+2019,Albania,3920,AL
+2019,Austria,38070,AT
+2019,Belgium,36110,BE
+2019,Bulgaria,6630,BG
+2019,Switzerland,61950,CH
+2019,Cyprus,25510,CY
+2019,Czechia,18460,CZ
+2019,Germany,35950,DE
+2019,Denmark,48970,DK
+2019,Euro area - 19 countries  (2015-2022),31300,EA19
+2019,Euro area – 20 countries (from 2023),31080,EA20
+2019,Estonia,15450,EE
+2019,Greece,17780,GR
+2019,Spain,25180,ES
+2019,European Union - 27 countries (from 2020),28060,EU27_2020
+2019,European Union - 28 countries (2013-2020),28690,EU28
+2019,Finland,37150,FI
+2019,France,33250,FR
+2019,Croatia,12740,HR
+2019,Hungary,13310,HU
+2019,Ireland,59840,IE
+2019,Iceland,38940,IS
+2019,Italy,27230,IT
+2019,Lithuania,14060,LT
+2019,Luxembourg,84280,LU
+2019,Latvia,12300,LV
+2019,Montenegro,6480,ME
+2019,North Macedonia,4290,MK
+2019,Malta,23180,MT
+2019,Netherlands,41980,NL
+2019,Norway,70150,NO
+2019,Poland,13070,PL
+2019,Portugal,18670,PT
+2019,Romania,9300,RO
+2019,Serbia,5460,RS
+2019,Sweden,44180,SE
+2019,Slovenia,20780,SI
+2019,Slovakia,15960,SK
+2019,Türkiye,11500,TR
+2019,United Kingdom,32910,GB
+2020,Albania,3810,AL
+2020,Austria,35390,AT
+2020,Belgium,34050,BE
+2020,Bulgaria,6400,BG
+2020,Switzerland,60190,CH
+2020,Cyprus,24360,CY
+2020,Czechia,17400,CZ
+2020,Germany,34550,DE
+2020,Denmark,47680,DK
+2020,Euro area - 19 countries  (2015-2022),29360,EA19
+2020,Euro area – 20 countries (from 2023),29150,EA20
+2020,Estonia,15260,EE
+2020,Greece,16150,GR
+2020,Spain,22250,ES
+2020,European Union - 27 countries (from 2020),26450,EU27_2020
+2020,Finland,36220,FI
+2020,France,30630,FR
+2020,Croatia,11700,HR
+2020,Hungary,12730,HU
+2020,Ireland,63120,IE
+2020,Iceland,35550,IS
+2020,Italy,24910,IT
+2020,Lithuania,14060,LT
+2020,Luxembourg,82130,LU
+2020,Latvia,11940,LV
+2020,Montenegro,5490,ME
+2020,North Macedonia,4100,MK
+2020,Malta,20830,MT
+2020,Netherlands,40130,NL
+2020,Norway,68850,NO
+2020,Poland,12810,PL
+2020,Portugal,17100,PT
+2020,Romania,9000,RO
+2020,Serbia,5440,RS
+2020,Sweden,42910,SE
+2020,Slovenia,19770,SI
+2020,Slovakia,15400,SK
+2020,Türkiye,11600,TR
+2021,Austria,36740,AT
+2021,Belgium,36230,BE
+2021,Bulgaria,6950,BG
+2021,Switzerland,62950,CH
+2021,Cyprus,26530,CY
+2021,Czechia,18020,CZ
+2021,Germany,35630,DE
+2021,Denmark,50740,DK
+2021,Euro area - 19 countries  (2015-2022),31080,EA19
+2021,Euro area – 20 countries (from 2023),30880,EA20
+2021,Estonia,16350,EE
+2021,Greece,17600,GR
+2021,Spain,23690,ES
+2021,European Union - 27 countries (from 2020),28050,EU27_2020
+2021,Finland,37290,FI
+2021,France,32490,FR
+2021,Croatia,13610,HR
+2021,Hungary,13690,HU
+2021,Ireland,72110,IE
+2021,Iceland,36560,IS
+2021,Italy,27120,IT
+2021,Lithuania,14870,LT
+2021,Luxembourg,86690,LU
+2021,Latvia,12870,LV
+2021,Montenegro,6230,ME
+2021,Malta,23320,MT
+2021,Netherlands,42390,NL
+2021,Norway,71150,NO
+2021,Poland,13770,PL
+2021,Portugal,18090,PT
+2021,Romania,9600,RO
+2021,Serbia,5920,RS
+2021,Sweden,45280,SE
+2021,Slovenia,21350,SI
+2021,Slovakia,16200,SK
+2021,Türkiye,12810,TR
+2022,Austria,38080,AT
+2022,Belgium,37040,BE
+2022,Bulgaria,7680,BG
+2022,Switzerland,64000,CH
+2022,Cyprus,27490,CY
+2022,Czechia,18460,CZ
+2022,Germany,36010,DE
+2022,Denmark,51660,DK
+2022,Euro area - 19 countries  (2015-2022),31990,EA19
+2022,Euro area – 20 countries (from 2023),31800,EA20
+2022,Estonia,16250,EE
+2022,Greece,18710,GR
+2022,Spain,24910,ES
+2022,European Union - 27 countries (from 2020),28950,EU27_2020
+2022,Finland,37780,FI
+2022,France,33180,FR
+2022,Croatia,14660,HR
+2022,Hungary,14350,HU
+2022,Ireland,77430,IE
+2022,Iceland,38230,IS
+2022,Italy,28220,IT
+2022,Lithuania,15100,LT
+2022,Luxembourg,86130,LU
+2022,Latvia,13280,LV
+2022,Montenegro,6650,ME
+2022,Malta,24650,MT
+2022,Netherlands,43800,NL
+2022,Norway,72820,NO
+2022,Poland,14620,PL
+2022,Portugal,19310,PT
+2022,Romania,10080,RO
+2022,Serbia,6230,RS
+2022,Sweden,46280,SE
+2022,Slovenia,21860,SI
+2022,Slovakia,16340,SK
+2022,Türkiye,13380,TR
