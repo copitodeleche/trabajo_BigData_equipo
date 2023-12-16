@@ -129,7 +129,7 @@ file.remove("2004,2005,2006,2007,2008.csv", "2009,2010,2011,2012,2013.csv",
             "./docs/datos/34010110.XLS")
 
 
-#----------------------Porcedemos a limpiar los datos---------------------------
+#----------------------Procedemos a limpiar los datos---------------------------
 
 #-------------Creamos una carpeta para guardar los datos pulidos----------------
 
