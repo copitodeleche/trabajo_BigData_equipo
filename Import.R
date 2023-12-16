@@ -133,7 +133,7 @@ file.remove("2004,2005,2006,2007,2008.csv", "2009,2010,2011,2012,2013.csv",
 
 #-------------Creamos una carpeta para guardar los datos pulidos----------------
 
-dir_create("./docs/datos_pulidos")
+dir_create("./datos_pulidos")
 library(zoo)
 
 ###AHORA LIMPIAMOS LOS DATOS PARA TRABAJAR MEJOR CON ELLOS###
@@ -204,7 +204,7 @@ Transacciones_por_provincia <- cv %>% pivot_longer(cols = starts_with("Año"),
 #Guardamos en la carpeta(en formato .csv) de datos pulidos y seguimos
 
 write.csv(Transacciones_por_provincia, 
-          file = "./docs/datos_pulidos/Transacciones_por_povincia.csv")
+          file = "datos_pulidos/Transacciones_por_povincia.csv")
 
 
 #----------------Índice de precios de la vivienda-------------------------------
@@ -215,7 +215,7 @@ ipv <- import(file = "./docs/datos/ipv.csv")
 #Estos datos están bien, quitamos las dos columnas que no aportan y los guardamos
 ipv <- ipv[,-(1:2)]
 
-write.csv(ipv, file = "./docs/datos_pulidos/indice_precio_vivienda.csv")
+write.csv(ipv, file = "./datos_pulidos/indice_precio_vivienda.csv")
 
 #rm(list = ls())
 
@@ -230,7 +230,7 @@ re <- re %>%
   rename(renta = "value") %>%
   select(!c("V1", "X"))
 
-write.csv(re, file = "./docs/datos_pulidos/renta_por_edad.csv")
+write.csv(re, file = "./datos_pulidos/renta_por_edad.csv")
 
 
 
@@ -245,7 +245,7 @@ vd<- vd %>%
   rename(Porcentaje = "value") %>%
   select(!c("V1", "X"))
 
-write.csv(vd, file = "./docs/datos_pulidos/tenencia_de_vivienda.csv")
+write.csv(vd, file = "./datos_pulidos/tenencia_de_vivienda.csv")
 rm(list = ls())
 
 
