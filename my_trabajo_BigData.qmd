@@ -1,0 +1,142 @@
+---
+title: "Los pingüinos molan"
+description: |
+  Viendo si con los datos de pingüinos se aprecia la paradoja de Simpson
+author:   
+  - Pepe Botika (pepe@gmail.com)\n   
+  - Bufalo Bill\n
+  - Sitting Bull
+date: 2023-11-01                           #--
+categories: [trabajo BigData, pinguinos]      #--
+image: "./imagenes/imagen_01.png"
+title-block-banner: true #- {true, false, "green","#AA0000"}
+title-block-banner-color: "red"    #-"#FFFFFF" 
+toc-depth: 3
+smooth-scroll: true
+format: 
+  html:
+    #backgroundcolor: "#F1F3F4"
+    #embed-resources: true
+    link-external-newwindow: true
+    #css: ./assets/my_css_file.css   #- CUIDADO!!!!
+code-tools: true
+code-link: true
+---
+
+
+## Intro 
+
+Vamos a utilizar datos del paquete `palmerpenguins`. El repo del paquete en CRAN está [aquí](https://cran.r-project.org/web/packages/palmerpenguins/index.html), el repo de Github está [aquí](https://github.com/allisonhorst/palmerpenguins) y la página web del paquete está [aquí](https://allisonhorst.github.io/palmerpenguins/).
+
+Los datos se pueden cargar en la memoria de de R/RStudio de esta forma:
+
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+df <- palmerpenguins::penguins
+```
+
+
+El dataset contiene observaciones sobre un conjunto de `r nrow(df)` pingüinos de 3 especies. Hay  `r ncol(df)` variables.
+
+---
+
+## Los pingüinos molan
+
+Vamos a ver una foto de un pingüinos
+
+```{r}
+#| echo: false
+my_url <- "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143"
+```
+
+
+![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)
+
+---
+
+Sí, lo pingüinos molan, así que vamos a poner otra foto de pingüinos que tenemos en nuestro PC pero la vamos a poner en el margen:
+
+::: {.column-margin}
+
+![](./imagenes/imagen_01.png){fig-align="center"}
+
+:::
+
+---
+
+## Algunos gráficos
+
+
+Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes
+
+```{r}
+#| eval: true
+library(tidyverse)
+```
+
+
+Arreglo los datos
+
+```{r}
+#- cojos datos de pingüinos y arreglo un poco 
+df <- palmerpenguins::penguins %>% 
+  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
+  tidyr::drop_na()
+```
+
+---
+
+### Primer gráfico
+
+
+```{r}
+#- primer gráfico
+p <- ggplot(data = df, 
+       mapping = aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+     geom_point()
+p
+```
+
+---
+
+### Segundo
+
+```{r}
+#- segundo gráfico
+p <- p + geom_smooth(method = "lm", se = FALSE) 
+
+p
+```
+
+---
+
+### El último
+
+```{r}
+#- tercer gráfico
+p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```
+
+<br>
+
+Con esto acabo mi trabajo para BigData!!
+
+<br>
+
+----------------------
+
+<br>
+
+### Información sobre la sesión
+
+Abajo muestro mi entorno de trabajo y paquetes utilizados
+
+```{r}
+#| echo: false
+sessioninfo::session_info() %>% 
+  details::details(summary = 'current session info') 
+```
+
+
+

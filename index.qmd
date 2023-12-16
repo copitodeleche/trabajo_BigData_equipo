@@ -1,0 +1,25 @@
+---
+title: Presentación del trabajo    
+image: imagenes/icono_uv.png      
+about:
+  template: trestles        #- {jolla, solana, marquee, broadside ...}
+  image-width: 16em         #- https://cybmeta.com/em-y-rem
+  image-shape: rectangle    #- {rectangle, round, rounded}
+  links:
+    - icon: envelope
+      text: e-mail
+      url: "mailto:joelsf43@gmail.com"            #- pon tu e-mail
+    - icon: github
+      text: Github
+      href: https://github.com/Joel1091         #- Github
+---
+        
+Hola, somos Saúl Gil, Pedro Peñalver y Joel Seguí
+      
+Este blog es para presentar la para la asignatura "Programación y manejo de datos en la era Del Big Data", optativa de GECO en la Facultad de Economía de la Universitat de València.
+
+El objetivo es hacer un análisis sobre la disponibilidad y la accesibilidad de los jóvenes a la vivienda en España, a lo largo de los años, y relacionarlo con la entrada en el mundo laboral.
+
+La web de la asignatura está [aquí](https://perezp44.github.io/intro-ds-23-24-web/){target="_blank"} y los trabajos de mis compañeros de curso puedes verlos [aquí](https://perezp44.github.io/intro-ds-23-24-web/05-trabajos-estudiantes.html){target="_blank"}.
+
+El trabajo puede verse [aquí](my_trabajo_BigData.html), y las slides [aquí](my_slides_BigData.html){target="_blank"}.

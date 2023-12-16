@@ -1,0 +1,81 @@
+project:                
+  type: website          
+  output-dir: docs       
+  
+website:
+  title: "Título de mi website"            #- hay q cambiarlo
+  favicon: imagenes/my_favicon_uv.jpeg     #- 
+  search:   
+    location: navbar
+    type: overlay   
+    copy-button: true
+  navbar:
+    logo: "my_favicon.png"           #---
+    #background: "#444444"    #- color de la navbar
+    #foreground: "#FF0000"    #- color navigation elements, text and links that appear in the navbar.
+    left: 
+      - icon: house-door
+        href: index.html
+    right:
+      - text: "Trabajo en equipo"   #---
+        href: my_trabajo_BigData.qmd   
+      - text: "Slides"
+        href: my_slides_BigData.qmd
+        target: _blank
+      - icon: github
+        href: https://github.com/<tu-usuario-github>    #- pon tu usuario Github
+      - icon: envelope
+        url: "mailto:<tu-mail@alumni.uv.es>"            #- pon tu e-mail
+  page-footer:
+    border: true
+    background: "#e66b63"         #--
+    left: "© 2022 Pedro Navaja"   #--
+    center: "Hecho con [Quarto](https://quarto.org)"
+    right:
+      - icon: github
+        href: https://github.com/<tu-usuario-github>     #- pon tu usuario Github
+      - icon: envelope
+        url: "mailto:<tu-mail>@alumni.uv.es"            #- pon tu e-mail
+    
+format:
+  html:
+    theme: flatly           #- https://quarto.org/docs/output-formats/html-themes.html
+    mainfont: Lato
+    highlight-style: a11y   #-
+    css: my_styles.css      #- si queréis añadir cosas
+    page-layout: full
+    toc: true
+    toc-location: right
+    toc-title: "Índice"
+    code-copy: true
+    code-overflow: wrap    
+    code-fold: show
+    code-line-numbers: true
+
+# Enable CC licence appendix
+#license: "CC BY"
+
+lang: es  
+
+# Default execute options
+execute:
+  echo: true
+  message: false
+  warning: false
+  eval: true
+  #fig-align: center
+  #freeze: true  #- des-comentar cuando estéis tuneando el blog
+                 #- https://quarto.org/docs/projects/code-execution.html#freeze
+    
+
+#- Default knitr options
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+    fig.asp:  7/9
+    out.width: "95%"
+    fig.align: "center"
+    fig.show: "hold"
+    R.options:
+      options(scipen = 999) #- para quitar la notación científica  

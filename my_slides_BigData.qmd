@@ -1,0 +1,116 @@
+---
+title: "Los pingüinos molan"  #- título
+date: 2022-11-24              #- ISO8601 YYYY-MM-DD format 
+date-format: short
+format: 
+  revealjs:
+    scrollable: true
+    slide-level: 2
+    height: 900
+    width: 1600
+    toc: false
+    center-title-slide: true
+    title-slide-attributes: #- atributos para la slide de titulo
+      data-background-color: "#562457"   #- color de R-ladies
+    preview-links: auto  #- true: abre un iframe en lugar de abrir ventana
+    link-external-newwindow: true
+    transition: fade
+    fontcolor: "#262d36"
+    highlight-style: a11y
+    code-line-numbers: true
+    number-sections: false
+    slide-number: c/t  
+    incremental: false   
+footer: |
+  Slides hechas con [Quarto](https://quarto.org/) 
+#theme: moon
+---
+
+
+
+## Intro 
+
+Vamos a utilizar datos del paquete `palmerpenguins`. El repo del paquete en CRAN está [aquí](https://cran.r-project.org/web/packages/palmerpenguins/index.html), el repo de Github está [aquí](https://github.com/allisonhorst/palmerpenguins) y la página web del paquete está [aquí](https://allisonhorst.github.io/palmerpenguins/).
+
+Los datos se pueden cargar en la memoria de de R/RStudio de esta forma:
+
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+df <- palmerpenguins::penguins
+```
+
+
+El dataset contiene observaciones sobre un conjunto de `r nrow(df)` pingüinos de 3 especies. Hay  `r ncol(df)` variables.
+
+---
+
+## Los pingüinos molan
+
+Vamos a ver una foto de un pingüinos
+
+```{r}
+#| echo: false
+my_url <- "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143"
+```
+
+
+![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)
+
+
+
+---
+
+## Algunos gráficos
+
+
+Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes
+
+```{r}
+#| eval: true
+library(tidyverse)
+```
+
+
+Arreglo los datos
+
+```{r}
+#- cojos datos de pingüinos y arreglo un poco 
+df <- palmerpenguins::penguins %>% 
+  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
+  tidyr::drop_na()
+```
+
+---
+
+### Primer gráfico
+
+
+```{r}
+#- primer gráfico
+p <- ggplot(data = df, 
+       mapping = aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+     geom_point()
+p
+```
+
+---
+
+### Segundo
+
+```{r}
+#- segundo gráfico
+p <- p + geom_smooth(method = "lm", se = FALSE) 
+
+p
+```
+
+---
+
+### El último
+
+```{r}
+#- tercer gráfico
+p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```
+

@@ -1,0 +1,20 @@
+/* css styles */
+
+
+/* justificar el texto */ 
+p, ul, ol {
+  text-align: justify; }    
+  
+  
+.rojo {
+  color: red;
+}
+
+.pink-background {
+  background-color: pink;
+}
+
+.importante {
+  color: red;
+  background-color: yellow;
+}
