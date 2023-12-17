@@ -1,6 +1,6 @@
 ---
 title: Presentación del trabajo    
-image: imagenes/icono_uv.png      
+image: imagenes/cabecera_logoUV.png      
 about:
   template: trestles        #- {jolla, solana, marquee, broadside ...}
   image-width: 16em         #- https://cybmeta.com/em-y-rem
@@ -20,6 +20,6 @@ Este blog es para presentar la para la asignatura "Programación y manejo de dat
 
 El objetivo es hacer un análisis sobre la disponibilidad y la accesibilidad de los jóvenes a la vivienda en España, a lo largo de los años, y relacionarlo con la entrada en el mundo laboral.
 
-La web de la asignatura está [aquí](https://perezp44.github.io/intro-ds-23-24-web/){target="_blank"} y los trabajos de mis compañeros de curso puedes verlos [aquí](https://perezp44.github.io/intro-ds-23-24-web/05-trabajos-estudiantes.html){target="_blank"}.
+<i>La web de la asignatura está [aquí](https://perezp44.github.io/intro-ds-23-24-web/){target="_blank"} y los trabajos de mis compañeros de curso puedes verlos [aquí](https://perezp44.github.io/intro-ds-23-24-web/05-trabajos-estudiantes.html){target="_blank"}.
 
-El trabajo puede verse [aquí](my_trabajo_BigData.html), y las slides [aquí](my_slides_BigData.html){target="_blank"}.
+El trabajo puede verse [aquí](my_trabajo_BigData.html), y las slides [aquí](my_slides_BigData.html){target="_blank"}.</i>

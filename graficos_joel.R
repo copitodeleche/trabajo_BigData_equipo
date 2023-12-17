@@ -68,6 +68,7 @@ p5
 #GRÁFICO LOLLIPOP MEDIA IPV VIVIENDA ESPAÑA
 df_IPV <- import("./datos_pulidos/indice_precio_vivienda.csv")
 
+df <- import("./datos_pulidos/tenencia_de_vivienda.csv")
 
 df_IPV_01 <- df_IPV |>
   filter(Índices.y.tasas == "Variación anual") |> 
@@ -90,4 +91,5 @@ ggplot(df_media_anual, aes(x=year, y=media_salario)) +
   ) +
   xlab("") +
   ylab("Índice del Precio de la Vivienda")
+
 
