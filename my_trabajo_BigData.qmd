@@ -1,16 +1,16 @@
 ---
-title: "Los pingüinos molan"
+title: "VIVIENDA EN ESPAÑA"
 description: |
-  Viendo si con los datos de pingüinos se aprecia la paradoja de Simpson
+  Vamos a analizar el mercado de la vivienda y comprarlo con su accesibilidad de los jóvenes 
 author:   
-  - Pepe Botika (pepe@gmail.com)\n   
-  - Bufalo Bill\n
-  - Sitting Bull
+  - Saúl Gil\n   
+  - Pedro Peñalver\n
+  - Joel Seguí
 date: 2023-11-01                           #--
-categories: [trabajo BigData, pinguinos]      #--
+categories: [Trabajo BigData, Vivienda]      #--
 image: "./imagenes/imagen_01.png"
 title-block-banner: true #- {true, false, "green","#AA0000"}
-title-block-banner-color: "red"    #-"#FFFFFF" 
+title-block-banner-color: "lightgrey"    #-"#FFFFFF" 
 toc-depth: 3
 smooth-scroll: true
 format: 
@@ -24,18 +24,25 @@ code-link: true
 ---
 
 
-## Intro 
+# Introducción 
 
-Vamos a utilizar datos del paquete `palmerpenguins`. El repo del paquete en CRAN está [aquí](https://cran.r-project.org/web/packages/palmerpenguins/index.html), el repo de Github está [aquí](https://github.com/allisonhorst/palmerpenguins) y la página web del paquete está [aquí](https://allisonhorst.github.io/palmerpenguins/).
+El objetivo de este trabajo es analizar la situación en la que se encuentran los jóvenes a la hora de acceder al mercado laboral. Para ello analizaremos diferentes métricas entre las que se encuentran: Evolución de los niveles de precios de la vivienda a nivel nacional y autonómico, comparación de esta con la de los salarios reales…
 
-Los datos se pueden cargar en la memoria de de R/RStudio de esta forma:
+De esta manera constataremos las dificultades a alas que se enfrentan los jóvenes españoles para emanciparse. También extraeremos conclusiones sobre si es así en todo el país o si por el contrario hay diferencias según el área geográfica. 
 
+
+#Datos del trabajo
+
+::: panel-tabset
+##Datos usados
+Vamos a utilizar datos de los paquetes `pxR` <i>(ine)</I>, `eurostat` además de proveedores de datos externos.
+
+##Códigos
 ```{r}
-# install.packages("palmerpenguins")
-library(palmerpenguins)
-df <- palmerpenguins::penguins
-```
 
+#AQUI TENDREMOS QUE PEGAR TODO CÓDIGO
+```
+:::
 
 El dataset contiene observaciones sobre un conjunto de `r nrow(df)` pingüinos de 3 especies. Hay  `r ncol(df)` variables.
 
