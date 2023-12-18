@@ -409,20 +409,71 @@ export(df_ipc_01, "./datos_pulidos/IPC_mas_vivienda.csv", type = "csv")
 
 Iniciaremos analizando los datos de renta según la edad (como pueden imaginar, los jóvenes constituyen el grupo poblacional que dispone de menos renta), para, a continuación, adentrarnos en datos que muestran la evolución de los precios de la vivienda.
 
+
+#Gráfico en movimiento
+
 ```{R}
-df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
-df_edad_01 <- df_edad |> 
-  filter(grupo_edad != "Total") |> 
-  filter(year == 2022)
+#Cargamos datos
+library(rio)
+library(tidyverse)
+library(gganimate)
+library(ggthemes)
+library(hrbrthemes)
 
-df_edad_01$year <- factor(df_edad_01$year)
+#-
+renta_edad <- read.csv("./datos_pulidos/renta_por_edad.csv")
 
-p2 <- ggplot(df_edad_01, aes(fill = grupo_edad, y = salario, x = year))+
-  geom_bar(position = "dodge", stat = "identity")+
-  labs(title = "Salario por grupo de edad")
-p2
+dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo) %>% filter(tipo == "Renta neta media por persona", Sexo == "Ambos sexos", !(Edad %in% c("De 18 a 64 años", "Menos de 18 años", "Total")))
+
+
+p <- ggplot(dff, aes(x = Periodo, y = renta, color = Edad)) +
+  geom_line(size = 1) +
+  labs(title = "Evolución de la renta neta media por edad", subtitle = "(Euros corrientes)",
+       x = "Año", y = "Renta neta") +
+  theme_ipsum() + 
+  theme(legend.position = "bottom",
+        panel.grid.major = element_line(colour = "gray87", linetype = "dashed"),
+        panel.background = element_rect(fill = "aliceblue"),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(family = "serif", size = 9, colour = "gray17")) + scale_color_manual(values = c("green4", "black", "blue", "red", "orange")) +
+  geom_text(aes(label = Edad), nudge_x = 0.5, nudge_y = 0.5, hjust = 0)
+
+p_animated <- p + transition_reveal(Periodo) +
+  enter_fade() + 
+  exit_fade()
+
+animate(p_animated, nframes = 200, fps = 20)
 
 ```
+
+#Gráfico fijo interactivo
+
+```{R}
+library(rio)
+library(tidyverse)
+library(gganimate)
+library(ggthemes)
+library(hrbrthemes)
+
+renta_edad <- read.csv("./datos_pulidos/renta_por_edad.csv")
+
+dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo) %>% filter(tipo == "Renta neta media por persona", Sexo == "Ambos sexos", !(Edad %in% c("De 18 a 64 años", "Menos de 18 años", "Total")))
+
+p6 <- ggplot(data=dff) +
+  geom_line(aes(x = Periodo, y = renta, color = Edad, group = Edad)) +labs (title = "Evolución de la renta neta media por edad", subtitle = "(En euros corrientes)", y = "Renta", x = "Año") + theme_ipsum()
+
+plotly::ggplotly(p6)
+```
+
+En este gráfico, cuyos datos están extraídos del INE podemos observar, como ya anticipábamos, que los jóvenes (16-29 años de edad) son el rango de edad que dispone de menos renta. Más notorio es, claro está, con los menores de 16 años. Los jóvenes de 16 a 29 años contaban con una renta media neta o disponible (después de impuestos) de 11.660€.
+ 
+La diferencia en 2022 con el grupo con la renta media es de un 21% con el grupo de mayor renta neta media (los mayores de 65).Esto es especialmente llamativo, ya que la diferencia con el grupo de mayor renta neta media en 2008 era de un 16’86%. También llama la atención cómo la renta de los jóvenes no sólo queda muy lejos de la del resto de grupos de edad, sino que además esta diferencia no disminuye a lo largo del tiempo: 
+La diferencia con el grupo de 30 a 44 años ha pasado de un 6’38% en 2008 a 10’13% en 2022. Un incremento de un 58’78%.
+Con el grupo de 45 a 64 años del 16’86% mencionado arriba a un 18’03%. Un incremento de un 6’94%.
+La mayor divergencia se da con el grupo de los mayores de 65 años. De una diferencia del 6’03% en 2008 a una del 21% en 2022. Un espectacular incremento del 248’23%.
+Como podemos observar, no sólo es que los jóvenes tengan una renta disponible menor, si no que cada vez se queda más atrás.
+Una vez comprobado que los jóvenes son cada vez relativamente más pobres, vamos ahora a comprobar si al menos los jóvenes ganan poder adquisitivo a lo largo del tiempo, pues los anteriores datos eran nominales. Para ello, vamos a contrastar la anterior evolución de los salarios de los jóvenes con la inflación.
+
 
 # Variación del Indice de Precios de la Vivienda
 
