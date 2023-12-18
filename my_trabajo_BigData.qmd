@@ -32,7 +32,12 @@ De esta manera constataremos las dificultades a alas que se enfrentan los jóven
 
 #Datos del trabajo
 
+##Datos
+
 Vamos a utilizar datos de los paquetes `pxR` <i>(ine)</I>, `eurostat` además de proveedores de datos externos.
+
+
+###CÓDIGOS
 
 ```{R}
 #Paquetes Preliminares
@@ -397,17 +402,61 @@ df_ipc_01 <- df_ipc_01 |>
 export(df_ipc_01, "./datos_pulidos/IPC_mas_vivienda.csv", type = "csv")
 
 ```
+
 ---
 
-## Evolución de la renta neta por edad
+# Evolución de la renta neta por edad
 
 Iniciaremos analizando los datos de renta según la edad (como pueden imaginar, los jóvenes constituyen el grupo poblacional que dispone de menos renta), para, a continuación, adentrarnos en datos que muestran la evolución de los precios de la vivienda.
 
+```{R}
+df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
+df_edad_01 <- df_edad |> 
+  filter(grupo_edad != "Total") |> 
+  filter(year == 2022)
 
-```{r}
-#| echo: false
+df_edad_01$year <- factor(df_edad_01$year)
+
+p2 <- ggplot(df_edad_01, aes(fill = grupo_edad, y = salario, x = year))+
+  geom_bar(position = "dodge", stat = "identity")+
+  labs(title = "Salario por grupo de edad")
+p2
 
 ```
+
+# Variación del Indice de Precios de la Vivienda
+
+Vamos a analizar la variación del IPV
+
+```{r}
+df_IPV <- import("./datos_pulidos/indice_precio_vivienda.csv")
+
+df <- import("./datos_pulidos/tenencia_de_vivienda.csv")
+
+df_IPV_01 <- df_IPV |>
+  filter(Índices.y.tasas == "Variación anual") |> 
+  filter(Comunidades.y.Ciudades.Autónomas == "Nacional") |> 
+  filter(General..vivienda.nueva.y.de.segunda.mano == "General")
+
+df_media_anual <- df_IPV_01 |> 
+  mutate(year = substr(Periodo, 1, 4)) |> 
+  group_by(year) |> 
+  summarise(media_salario = mean(value))
+
+ggplot(df_media_anual, aes(x=year, y=media_salario)) +
+  geom_segment( aes(x=year, xend= year, y=0, yend=media_salario), color="grey") +
+  geom_point( color="orange", size=4) +
+  theme_light() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  xlab("") +
+  ylab("Índice del Precio de la Vivienda")
+```
+
+
 
 
 ![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)
