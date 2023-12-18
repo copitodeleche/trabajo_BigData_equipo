@@ -3,8 +3,8 @@ project:
   output-dir: docs       
   
 website:
-  title: "Título de mi website"            #- hay q cambiarlo
-  favicon: imagenes/my_favicon_uv.jpeg     #- 
+  title: "Vivienda en España"            #- hay q cambiarlo
+  favicon: imagenes/my_favicon.png     #- 
   search:   
     location: navbar
     type: overlay   

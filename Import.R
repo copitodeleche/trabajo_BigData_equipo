@@ -1,8 +1,4 @@
-#Paquetes preliminares
-
-install.packages("downloader")
-install.packages("readxl")
-install.packages("pxR")
+#Paquetes Preliminares
 library(pxR)
 library(tidyverse)
 library(data.table)
@@ -256,8 +252,6 @@ rm(list = ls())
 #--------------------IMPORTAR DATOS CE / EUROSTAT-------------------------------
 options(scipen = 999) #- para quitar la notación científica
 
-install.packages("eurostat")
-install.packages("DT")
 library(eurostat) 
 library(DT) 
 library(tidyverse)
@@ -374,8 +368,6 @@ df_ipc_01 <- df_ipc |>
 #PASAMOS A NUMERIC
 df_ipc_01 <- df_ipc_01 |> 
   mutate(Total = as.numeric(gsub(",", ".", gsub("\\.", "", Total))))
-
-
 
 #PARA SEPARAR EN LA VARIABLE YEAR LOS DATOS POR AÑOS Y MESES
 #df_sep <- df_ipc_01 |> 

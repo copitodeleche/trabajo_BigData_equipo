@@ -11,7 +11,7 @@
 <meta name="author" content="Joel Seguí">
 <meta name="description" content="Vamos a analizar el mercado de la vivienda y comprarlo con su accesibilidad de los jóvenes">
 
-<title>Título de mi website - VIVIENDA EN ESPAÑA</title>
+<title>Vivienda en España - VIVIENDA EN ESPAÑA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./imagenes/my_favicon_uv.jpeg" rel="icon" type="image/jpeg">
+<link href="./imagenes/my_favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <img src="./my_favicon.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Título de mi website</span>
+    <span class="navbar-title">Vivienda en España</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
   <ul class="collapse">
-  <li><a href="#los-pingüinos-molan" id="toc-los-pingüinos-molan" class="nav-link" data-scroll-target="#los-pingüinos-molan">Los pingüinos molan</a></li>
+  <li><a href="#evolución-de-la-renta-neta-por-edad" id="toc-evolución-de-la-renta-neta-por-edad" class="nav-link" data-scroll-target="#evolución-de-la-renta-neta-por-edad">Evolución de la renta neta por edad</a></li>
   <li><a href="#algunos-gráficos" id="toc-algunos-gráficos" class="nav-link" data-scroll-target="#algunos-gráficos">Algunos gráficos</a>
   <ul class="collapse">
   <li><a href="#primer-gráfico" id="toc-primer-gráfico" class="nav-link" data-scroll-target="#primer-gráfico">Primer gráfico</a></li>
@@ -245,17 +245,416 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El objetivo de este trabajo es analizar la situación en la que se encuentran los jóvenes a la hora de acceder al mercado laboral. Para ello analizaremos diferentes métricas entre las que se encuentran: Evolución de los niveles de precios de la vivienda a nivel nacional y autonómico, comparación de esta con la de los salarios reales…</p>
 <p>De esta manera constataremos las dificultades a alas que se enfrentan los jóvenes españoles para emanciparse. También extraeremos conclusiones sobre si es así en todo el país o si por el contrario hay diferencias según el área geográfica.</p>
 <p>#Datos del trabajo</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"></ul>
-<div class="tab-content">
-
+<p>Vamos a utilizar datos de los paquetes <code>pxR</code> <i>(ine)</i>, <code>eurostat</code> además de proveedores de datos externos.</p>
+<div class="cell" data-layout-align="center">
+<details open="">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#Paquetes Preliminares</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(pxR)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(rlist)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(fs)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(curl)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(downloader)</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#-------------------Creamos una carpeta para guardar los datos------------------</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">dir_create</span>(<span class="st">"./docs/datos"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#Descargamos los datos y los exportamos sin pulir: </span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#---------------------Índice de Precios de Vivienda-----------------------------</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url)</span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a>IPV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()[<span class="sc">!</span><span class="fu">ls</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IPV"</span>)])</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="fu">write.csv</span>(IPV,  <span class="at">file =</span> <span class="st">"./docs/datos/ipv.csv"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#-------------------------Compra-venta de vivienda------------------------------</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a>ruta_xls <span class="ot">&lt;-</span> <span class="st">"https://apps.fomento.gob.es/BoletinOnline2/sedal/34010110.XLS"</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="fu">download.file</span>(ruta_xls, <span class="st">"datos.xls"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>nombres_hojas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2004,2005,2006,2007,2008"</span>, <span class="st">"2009,2010,2011,2012,2013"</span>, </span>
+<span id="cb1-39"><a href="#cb1-39"></a>                   <span class="st">"2014,2015,2016,2017,2018"</span>, <span class="st">"2019,2020,2021,2022,2023"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="co"># Leer todas las hojas en una lista</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(nombres_hojas)) {</span>
+<span id="cb1-42"><a href="#cb1-42"></a>  hoja <span class="ot">&lt;-</span> nombres_hojas[i]</span>
+<span id="cb1-43"><a href="#cb1-43"></a>  df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"datos.xls"</span>, <span class="at">sheet =</span> i) </span>
+<span id="cb1-44"><a href="#cb1-44"></a>  <span class="fu">write.csv</span>(df, <span class="at">file =</span> <span class="fu">paste0</span>(hoja, <span class="st">".csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)}</span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="co">#Juntamos las cuatro sheets en una y después arreglaremos el desastre</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>compraventa_2004 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2004,2005,2006,2007,2008.csv"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48"></a>compraventa_2009 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2009,2010,2011,2012,2013.csv"</span>)</span>
+<span id="cb1-49"><a href="#cb1-49"></a>compraventa_2014 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2014,2015,2016,2017,2018.csv"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50"></a>compraventa_2019 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2019,2020,2021,2022,2023.csv"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(compraventa_2009,compraventa_2014)</span>
+<span id="cb1-53"><a href="#cb1-53"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(cv,compraventa_2019)</span>
+<span id="cb1-54"><a href="#cb1-54"></a>compraventa_2004 <span class="ot">&lt;-</span> compraventa_2004[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cv), ]</span>
+<span id="cb1-55"><a href="#cb1-55"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(cv,compraventa_2004)</span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a>cv <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">72</span>)</span>
+<span id="cb1-60"><a href="#cb1-60"></a>cv <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb1-61"><a href="#cb1-61"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="dv">2</span>)</span>
+<span id="cb1-62"><a href="#cb1-62"></a></span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb1-64"><a href="#cb1-64"></a><span class="fu">write.csv</span>(cv,  <span class="at">file =</span> <span class="st">"./docs/datos/cv.csv"</span>)</span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-66"><a href="#cb1-66"></a></span>
+<span id="cb1-67"><a href="#cb1-67"></a></span>
+<span id="cb1-68"><a href="#cb1-68"></a><span class="co">#--------------------------Renta por edad y sexo--------------------------------</span></span>
+<span id="cb1-69"><a href="#cb1-69"></a></span>
+<span id="cb1-70"><a href="#cb1-70"></a>url3 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9942.px?nocab=1"</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url3)</span>
+<span id="cb1-72"><a href="#cb1-72"></a></span>
+<span id="cb1-73"><a href="#cb1-73"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb1-74"><a href="#cb1-74"></a></span>
+<span id="cb1-75"><a href="#cb1-75"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb1-76"><a href="#cb1-76"></a>renta_edad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb1-77"><a href="#cb1-77"></a></span>
+<span id="cb1-78"><a href="#cb1-78"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb1-79"><a href="#cb1-79"></a><span class="fu">write.csv</span>(renta_edad, <span class="at">file =</span> <span class="st">"./docs/datos/renta_edad.csv"</span>)</span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-82"><a href="#cb1-82"></a><span class="co">#---------------------------Renta por nacionalidad------------------------------</span></span>
+<span id="cb1-83"><a href="#cb1-83"></a></span>
+<span id="cb1-84"><a href="#cb1-84"></a>url4 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9945.px?nocab=1"</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url4)</span>
+<span id="cb1-86"><a href="#cb1-86"></a></span>
+<span id="cb1-87"><a href="#cb1-87"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb1-88"><a href="#cb1-88"></a></span>
+<span id="cb1-89"><a href="#cb1-89"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb1-90"><a href="#cb1-90"></a>renta_nacionalidad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb1-91"><a href="#cb1-91"></a></span>
+<span id="cb1-92"><a href="#cb1-92"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb1-93"><a href="#cb1-93"></a><span class="fu">write.csv</span>(renta_nacionalidad, <span class="at">file =</span> <span class="st">"./docs/datos/renta_nacionalidad.csv"</span>)</span>
+<span id="cb1-94"><a href="#cb1-94"></a></span>
+<span id="cb1-95"><a href="#cb1-95"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-96"><a href="#cb1-96"></a></span>
+<span id="cb1-97"><a href="#cb1-97"></a></span>
+<span id="cb1-98"><a href="#cb1-98"></a><span class="co">#---------------------Hogares por regimen de tenencia edad----------------------</span></span>
+<span id="cb1-99"><a href="#cb1-99"></a></span>
+<span id="cb1-100"><a href="#cb1-100"></a>url4 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9994.px?nocab=1"</span></span>
+<span id="cb1-101"><a href="#cb1-101"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url4)</span>
+<span id="cb1-102"><a href="#cb1-102"></a></span>
+<span id="cb1-103"><a href="#cb1-103"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb1-104"><a href="#cb1-104"></a></span>
+<span id="cb1-105"><a href="#cb1-105"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb1-106"><a href="#cb1-106"></a>vivienda_edad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb1-107"><a href="#cb1-107"></a></span>
+<span id="cb1-108"><a href="#cb1-108"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb1-109"><a href="#cb1-109"></a><span class="fu">write.csv</span>(vivienda_edad, <span class="at">file =</span> <span class="st">"./docs/datos/vivienda_datos.csv"</span>)</span>
+<span id="cb1-110"><a href="#cb1-110"></a></span>
+<span id="cb1-111"><a href="#cb1-111"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-112"><a href="#cb1-112"></a></span>
+<span id="cb1-113"><a href="#cb1-113"></a><span class="co">#Borramos archivos como las sheets separadas y otros datos</span></span>
+<span id="cb1-114"><a href="#cb1-114"></a><span class="fu">file.remove</span>(<span class="st">"2004,2005,2006,2007,2008.csv"</span>, <span class="st">"2009,2010,2011,2012,2013.csv"</span>,</span>
+<span id="cb1-115"><a href="#cb1-115"></a>            <span class="st">"2014,2015,2016,2017,2018.csv"</span>, <span class="st">"2019,2020,2021,2022,2023.csv"</span>, </span>
+<span id="cb1-116"><a href="#cb1-116"></a>            <span class="st">"compraventa.csv"</span>, <span class="st">"data.csv"</span>, <span class="st">"datos.xls"</span>, <span class="st">"./docs/datos/25171.px"</span>,</span>
+<span id="cb1-117"><a href="#cb1-117"></a>            <span class="st">"./docs/datos/34010110.XLS"</span>)</span>
+<span id="cb1-118"><a href="#cb1-118"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE</span></span>
+<span id="cb1-119"><a href="#cb1-119"></a></span>
+<span id="cb1-120"><a href="#cb1-120"></a><span class="co">#----------------------Procedemos a limpiar los datos---------------------------</span></span>
+<span id="cb1-121"><a href="#cb1-121"></a></span>
+<span id="cb1-122"><a href="#cb1-122"></a><span class="co">#-------------Creamos una carpeta para guardar los datos pulidos----------------</span></span>
+<span id="cb1-123"><a href="#cb1-123"></a></span>
+<span id="cb1-124"><a href="#cb1-124"></a><span class="fu">dir_create</span>(<span class="st">"./datos_pulidos"</span>)</span>
+<span id="cb1-125"><a href="#cb1-125"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb1-126"><a href="#cb1-126"></a></span>
+<span id="cb1-127"><a href="#cb1-127"></a><span class="do">###AHORA LIMPIAMOS LOS DATOS PARA TRABAJAR MEJOR CON ELLOS###</span></span>
+<span id="cb1-128"><a href="#cb1-128"></a></span>
+<span id="cb1-129"><a href="#cb1-129"></a><span class="co">#-------------------Indice de precios de la Vivienda----------------------------</span></span>
+<span id="cb1-130"><a href="#cb1-130"></a></span>
+<span id="cb1-131"><a href="#cb1-131"></a>cv <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file =</span> <span class="st">"./docs/datos/cv.csv"</span>)</span>
+<span id="cb1-132"><a href="#cb1-132"></a></span>
+<span id="cb1-133"><a href="#cb1-133"></a><span class="co">#Elimino las columnas duplicadas indicando el nombre de la provincia </span></span>
+<span id="cb1-134"><a href="#cb1-134"></a><span class="co">#para dejar solo una columna de provincias</span></span>
+<span id="cb1-135"><a href="#cb1-135"></a></span>
+<span id="cb1-136"><a href="#cb1-136"></a>cv <span class="ot">&lt;-</span> cv[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb1-137"><a href="#cb1-137"></a><span class="fu">colnames</span>(cv) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-138"><a href="#cb1-138"></a>columnas_duplicadas <span class="ot">&lt;-</span> <span class="fu">duplicated</span>(<span class="fu">t</span>(cv))</span>
+<span id="cb1-139"><a href="#cb1-139"></a><span class="fu">print</span>(columnas_duplicadas)</span>
+<span id="cb1-140"><a href="#cb1-140"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-141"><a href="#cb1-141"></a><span class="co">#&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</span></span>
+<span id="cb1-142"><a href="#cb1-142"></a><span class="co">#&gt; [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-143"><a href="#cb1-143"></a><span class="co">#&gt; [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-144"><a href="#cb1-144"></a><span class="co">#&gt; [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-145"><a href="#cb1-145"></a><span class="co">#&gt; [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-146"><a href="#cb1-146"></a><span class="co">#&gt; [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb1-147"><a href="#cb1-147"></a></span>
+<span id="cb1-148"><a href="#cb1-148"></a>cv <span class="ot">&lt;-</span> cv[, <span class="sc">!</span>columnas_duplicadas]</span>
+<span id="cb1-149"><a href="#cb1-149"></a><span class="fu">colnames</span>(cv) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"col_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cv))</span>
+<span id="cb1-150"><a href="#cb1-150"></a><span class="co">#Elimino otra columnaa duplicadaa que el argumento no encuenrtra </span></span>
+<span id="cb1-151"><a href="#cb1-151"></a></span>
+<span id="cb1-152"><a href="#cb1-152"></a>cv <span class="ot">&lt;-</span> cv[, <span class="sc">-</span><span class="dv">62</span>]</span>
+<span id="cb1-153"><a href="#cb1-153"></a></span>
+<span id="cb1-154"><a href="#cb1-154"></a><span class="co">#Doy nombre a la posición [1,2] de provincias para después poder trabajar mejor</span></span>
+<span id="cb1-155"><a href="#cb1-155"></a><span class="co">#Ya que convertiremos la primera fila en colnames</span></span>
+<span id="cb1-156"><a href="#cb1-156"></a></span>
+<span id="cb1-157"><a href="#cb1-157"></a>cv[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"Provincia"</span></span>
+<span id="cb1-158"><a href="#cb1-158"></a><span class="fu">colnames</span>(cv)</span>
+<span id="cb1-159"><a href="#cb1-159"></a><span class="co">#&gt;  [1] "col_1"  "col_2"  "col_3"  "col_4"  "col_5"  "col_6"  "col_7"  "col_8" </span></span>
+<span id="cb1-160"><a href="#cb1-160"></a><span class="co">#&gt;  [9] "col_9"  "col_10" "col_11" "col_12" "col_13" "col_14" "col_15" "col_16"</span></span>
+<span id="cb1-161"><a href="#cb1-161"></a><span class="co">#&gt; [17] "col_17" "col_18" "col_19" "col_20" "col_21" "col_22" "col_23" "col_24"</span></span>
+<span id="cb1-162"><a href="#cb1-162"></a><span class="co">#&gt; [25] "col_25" "col_26" "col_27" "col_28" "col_29" "col_30" "col_31" "col_32"</span></span>
+<span id="cb1-163"><a href="#cb1-163"></a><span class="co">#&gt; [33] "col_33" "col_34" "col_35" "col_36" "col_37" "col_38" "col_39" "col_40"</span></span>
+<span id="cb1-164"><a href="#cb1-164"></a><span class="co">#&gt; [41] "col_41" "col_42" "col_43" "col_44" "col_45" "col_46" "col_47" "col_48"</span></span>
+<span id="cb1-165"><a href="#cb1-165"></a><span class="co">#&gt; [49] "col_49" "col_50" "col_51" "col_52" "col_53" "col_54" "col_55" "col_56"</span></span>
+<span id="cb1-166"><a href="#cb1-166"></a><span class="co">#&gt; [57] "col_57" "col_58" "col_59" "col_60" "col_61" "col_63" "col_64" "col_65"</span></span>
+<span id="cb1-167"><a href="#cb1-167"></a><span class="co">#&gt; [65] "col_66" "col_67" "col_68" "col_69" "col_70" "col_71" "col_72" "col_73"</span></span>
+<span id="cb1-168"><a href="#cb1-168"></a><span class="co">#&gt; [73] "col_74" "col_75" "col_76" "col_77" "col_78" "col_79" "col_80" "col_81"</span></span>
+<span id="cb1-169"><a href="#cb1-169"></a><span class="co">#&gt; [81] "col_82"</span></span>
+<span id="cb1-170"><a href="#cb1-170"></a></span>
+<span id="cb1-171"><a href="#cb1-171"></a><span class="co">#Seleccionamos la primera fila del df y lo convertimos en un vector. Después, </span></span>
+<span id="cb1-172"><a href="#cb1-172"></a><span class="co">#Hacemos que los NA se sustituyan por el texto de su izquierda (Remplazamos NA`s</span></span>
+<span id="cb1-173"><a href="#cb1-173"></a><span class="co">#por el año al que corresponde esa columnas)</span></span>
+<span id="cb1-174"><a href="#cb1-174"></a></span>
+<span id="cb1-175"><a href="#cb1-175"></a>df <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb1-176"><a href="#cb1-176"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-177"><a href="#cb1-177"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb1-178"><a href="#cb1-178"></a></span>
+<span id="cb1-179"><a href="#cb1-179"></a>df <span class="ot">&lt;-</span> <span class="fu">na.locf</span>(df)</span>
+<span id="cb1-180"><a href="#cb1-180"></a></span>
+<span id="cb1-181"><a href="#cb1-181"></a><span class="co">#Ahora convertimos el vector en la fila 1 que después convrtiremos en colnames</span></span>
+<span id="cb1-182"><a href="#cb1-182"></a><span class="co">#para trabajar mejor.</span></span>
+<span id="cb1-183"><a href="#cb1-183"></a></span>
+<span id="cb1-184"><a href="#cb1-184"></a>cv[<span class="dv">1</span>,] <span class="ot">&lt;-</span> df </span>
+<span id="cb1-185"><a href="#cb1-185"></a></span>
+<span id="cb1-186"><a href="#cb1-186"></a><span class="co">#Juntamos la fila 1 y 2 a partir de la tercer columna separando el texto con "_" </span></span>
+<span id="cb1-187"><a href="#cb1-187"></a><span class="co">#y le rellenamos las dos columnas restantes con los nombres que nos vengan mejor </span></span>
+<span id="cb1-188"><a href="#cb1-188"></a><span class="co">#para trabajar</span></span>
+<span id="cb1-189"><a href="#cb1-189"></a>aa <span class="ot">&lt;-</span> cv[<span class="dv">1</span>,]</span>
+<span id="cb1-190"><a href="#cb1-190"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"Provincia"</span>,<span class="fu">paste</span>(cv[<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(cv)],cv[<span class="dv">2</span>,<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(cv)], <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb1-191"><a href="#cb1-191"></a></span>
+<span id="cb1-192"><a href="#cb1-192"></a><span class="co">#Convertimos el vector aa en colnames</span></span>
+<span id="cb1-193"><a href="#cb1-193"></a></span>
+<span id="cb1-194"><a href="#cb1-194"></a><span class="fu">colnames</span>(cv) <span class="ot">=</span> aa</span>
+<span id="cb1-195"><a href="#cb1-195"></a></span>
+<span id="cb1-196"><a href="#cb1-196"></a><span class="co">#Quitamos la primera y la segunda fila, es información que ya indica colnames</span></span>
+<span id="cb1-197"><a href="#cb1-197"></a></span>
+<span id="cb1-198"><a href="#cb1-198"></a>cv <span class="ot">&lt;-</span> cv[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="sc">-</span>(<span class="dv">1</span>)]</span>
+<span id="cb1-199"><a href="#cb1-199"></a><span class="fu">colnames</span>(cv)</span>
+<span id="cb1-200"><a href="#cb1-200"></a><span class="co">#&gt;  [1] "Provincia"        "Año 2009_1º"      "Año 2009_2º"      "Año 2009_3º"     </span></span>
+<span id="cb1-201"><a href="#cb1-201"></a><span class="co">#&gt;  [5] "Año 2009_4º"      "Año 2010_1º"      "Año 2010_2º"      "Año 2010_3º"     </span></span>
+<span id="cb1-202"><a href="#cb1-202"></a><span class="co">#&gt;  [9] "Año 2010_4º"      "Año 2011_1º"      "Año 2011_2º"      "Año 2011_3º"     </span></span>
+<span id="cb1-203"><a href="#cb1-203"></a><span class="co">#&gt; [13] "Año 2011_4º"      "Año 2012_1º"      "Año 2012_2º"      "Año 2012_3º"     </span></span>
+<span id="cb1-204"><a href="#cb1-204"></a><span class="co">#&gt; [17] "Año 2012_4º"      "Año 2013_1º"      "Año 2013_2º"      "Año 2013_3º"     </span></span>
+<span id="cb1-205"><a href="#cb1-205"></a><span class="co">#&gt; [21] "Año 2013_4º"      "Año 2014_1º"      "Año 2014_2º"      "Año 2014_3º"     </span></span>
+<span id="cb1-206"><a href="#cb1-206"></a><span class="co">#&gt; [25] "Año 2014_4º"      "Año 2015_1º"      "Año 2015_2º"      "Año 2015_3º"     </span></span>
+<span id="cb1-207"><a href="#cb1-207"></a><span class="co">#&gt; [29] "Año 2015_4º"      "Año 2016_1º"      "Año 2016_2º"      "Año 2016_3º"     </span></span>
+<span id="cb1-208"><a href="#cb1-208"></a><span class="co">#&gt; [33] "Año 2016_4º"      "Año 2017_1º"      "Año 2017_2º"      "Año 2017_3º"     </span></span>
+<span id="cb1-209"><a href="#cb1-209"></a><span class="co">#&gt; [37] "Año 2017_4º"      "Año 2018_1º"      "Año 2018_2º"      "Año 2018_3º"     </span></span>
+<span id="cb1-210"><a href="#cb1-210"></a><span class="co">#&gt; [41] "Año 2018_4º"      "Año 2019_1º"      "Año 2019_2º"      "Año 2019_3º"     </span></span>
+<span id="cb1-211"><a href="#cb1-211"></a><span class="co">#&gt; [45] "Año 2019_4º"      "Año 2020_1º"      "Año 2020_2º"      "Año 2020_3º"     </span></span>
+<span id="cb1-212"><a href="#cb1-212"></a><span class="co">#&gt; [49] "Año 2020_4º"      "Año 2021_1º"      "Año 2021_2º"      "Año 2021_3º"     </span></span>
+<span id="cb1-213"><a href="#cb1-213"></a><span class="co">#&gt; [53] "Año 2021_4º"      "Año 2022_1º"      "Año 2022_2º"      "Año 2022_3º"     </span></span>
+<span id="cb1-214"><a href="#cb1-214"></a><span class="co">#&gt; [57] "Año 2022_4º"      "Año 2023_1º"      "Año 2023_2º"      "Año 2023_3º (**)"</span></span>
+<span id="cb1-215"><a href="#cb1-215"></a><span class="co">#&gt; [61] "Año 2004_1º"      "Año 2004_2º"      "Año 2004_3º"      "Año 2004_4º"     </span></span>
+<span id="cb1-216"><a href="#cb1-216"></a><span class="co">#&gt; [65] "Año 2005_1º"      "Año 2005_2º"      "Año 2005_3º"      "Año 2005_4º"     </span></span>
+<span id="cb1-217"><a href="#cb1-217"></a><span class="co">#&gt; [69] "Año 2006_1º"      "Año 2006_2º"      "Año 2006_3º"      "Año 2006_4º"     </span></span>
+<span id="cb1-218"><a href="#cb1-218"></a><span class="co">#&gt; [73] "Año 2007_1º"      "Año 2007_2º"      "Año 2007_3º"      "Año 2007_4º"     </span></span>
+<span id="cb1-219"><a href="#cb1-219"></a><span class="co">#&gt; [77] "Año 2008_1º"      "Año 2008_2º"      "Año 2008_3º"      "Año 2008_4º"</span></span>
+<span id="cb1-220"><a href="#cb1-220"></a></span>
+<span id="cb1-221"><a href="#cb1-221"></a><span class="co">#Hacemos que todas las columnas que indican año_trimestre pivoten y dejen los</span></span>
+<span id="cb1-222"><a href="#cb1-222"></a><span class="co">#valores que contenían las transacciones por un lado y el año_trimestre por otro</span></span>
+<span id="cb1-223"><a href="#cb1-223"></a></span>
+<span id="cb1-224"><a href="#cb1-224"></a>Transacciones_por_provincia <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Año"</span>), </span>
+<span id="cb1-225"><a href="#cb1-225"></a>                                                   <span class="at">names_to =</span> <span class="st">"Año_Trimestre"</span>, </span>
+<span id="cb1-226"><a href="#cb1-226"></a>                                                   <span class="at">names_prefix =</span> <span class="st">"Año"</span>, </span>
+<span id="cb1-227"><a href="#cb1-227"></a>                                                   <span class="at">values_to =</span> <span class="st">"Transacciones"</span>,</span>
+<span id="cb1-228"><a href="#cb1-228"></a>                                                   <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-229"><a href="#cb1-229"></a></span>
+<span id="cb1-230"><a href="#cb1-230"></a><span class="co">#Guardamos en la carpeta(en formato .csv) de datos pulidos y seguimos</span></span>
+<span id="cb1-231"><a href="#cb1-231"></a></span>
+<span id="cb1-232"><a href="#cb1-232"></a><span class="fu">write.csv</span>(Transacciones_por_provincia, </span>
+<span id="cb1-233"><a href="#cb1-233"></a>          <span class="at">file =</span> <span class="st">"datos_pulidos/Transacciones_por_povincia.csv"</span>)</span>
+<span id="cb1-234"><a href="#cb1-234"></a></span>
+<span id="cb1-235"><a href="#cb1-235"></a><span class="co">#----------------Índice de precios de la vivienda-------------------------------</span></span>
+<span id="cb1-236"><a href="#cb1-236"></a></span>
+<span id="cb1-237"><a href="#cb1-237"></a></span>
+<span id="cb1-238"><a href="#cb1-238"></a>ipv <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file =</span> <span class="st">"./docs/datos/ipv.csv"</span>)</span>
+<span id="cb1-239"><a href="#cb1-239"></a></span>
+<span id="cb1-240"><a href="#cb1-240"></a><span class="co">#Estos datos están bien, quitamos las dos columnas que no aportan y los guardamos</span></span>
+<span id="cb1-241"><a href="#cb1-241"></a>ipv <span class="ot">&lt;-</span> ipv[,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span>
+<span id="cb1-242"><a href="#cb1-242"></a></span>
+<span id="cb1-243"><a href="#cb1-243"></a><span class="fu">write.csv</span>(ipv, <span class="at">file =</span> <span class="st">"./datos_pulidos/indice_precio_vivienda.csv"</span>)</span>
+<span id="cb1-244"><a href="#cb1-244"></a></span>
+<span id="cb1-245"><a href="#cb1-245"></a><span class="co">#rm(list = ls())</span></span>
+<span id="cb1-246"><a href="#cb1-246"></a></span>
+<span id="cb1-247"><a href="#cb1-247"></a></span>
+<span id="cb1-248"><a href="#cb1-248"></a><span class="co">#----------------Renta por edad-------------------------------------------------</span></span>
+<span id="cb1-249"><a href="#cb1-249"></a></span>
+<span id="cb1-250"><a href="#cb1-250"></a>re <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file  =</span> <span class="st">"./docs/datos/renta_edad.csv"</span>)</span>
+<span id="cb1-251"><a href="#cb1-251"></a></span>
+<span id="cb1-252"><a href="#cb1-252"></a><span class="co">#Renombramos las columnas, seleccionamos lo que nos interesa y borramos el restante</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a><span class="co">#Exportamos</span></span>
+<span id="cb1-254"><a href="#cb1-254"></a>re <span class="ot">&lt;-</span> re <span class="sc">%&gt;%</span></span>
+<span id="cb1-255"><a href="#cb1-255"></a>  <span class="fu">rename</span>(<span class="at">renta =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-256"><a href="#cb1-256"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"X"</span>))</span>
+<span id="cb1-257"><a href="#cb1-257"></a></span>
+<span id="cb1-258"><a href="#cb1-258"></a><span class="fu">write.csv</span>(re, <span class="at">file =</span> <span class="st">"./datos_pulidos/renta_por_edad.csv"</span>)</span>
+<span id="cb1-259"><a href="#cb1-259"></a></span>
+<span id="cb1-260"><a href="#cb1-260"></a></span>
+<span id="cb1-261"><a href="#cb1-261"></a></span>
+<span id="cb1-262"><a href="#cb1-262"></a></span>
+<span id="cb1-263"><a href="#cb1-263"></a><span class="co">#----------------Régimen tenencia de vivienda por edad--------------------------</span></span>
+<span id="cb1-264"><a href="#cb1-264"></a></span>
+<span id="cb1-265"><a href="#cb1-265"></a>vd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file  =</span> <span class="st">"./docs/datos/vivienda_datos.csv"</span>)</span>
+<span id="cb1-266"><a href="#cb1-266"></a></span>
+<span id="cb1-267"><a href="#cb1-267"></a><span class="co">#Renombramos las columnas, seleccionamos lo que nos interesa y borramos el restante</span></span>
+<span id="cb1-268"><a href="#cb1-268"></a><span class="co">#Exportamos</span></span>
+<span id="cb1-269"><a href="#cb1-269"></a>vd<span class="ot">&lt;-</span> vd <span class="sc">%&gt;%</span></span>
+<span id="cb1-270"><a href="#cb1-270"></a>  <span class="fu">rename</span>(<span class="at">Porcentaje =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-271"><a href="#cb1-271"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"X"</span>))</span>
+<span id="cb1-272"><a href="#cb1-272"></a></span>
+<span id="cb1-273"><a href="#cb1-273"></a><span class="fu">write.csv</span>(vd, <span class="at">file =</span> <span class="st">"./datos_pulidos/tenencia_de_vivienda.csv"</span>)</span>
+<span id="cb1-274"><a href="#cb1-274"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-275"><a href="#cb1-275"></a></span>
+<span id="cb1-276"><a href="#cb1-276"></a><span class="co">#--------------------IMPORTAR DATOS CE / EUROSTAT-------------------------------</span></span>
+<span id="cb1-277"><a href="#cb1-277"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co">#- para quitar la notación científica</span></span>
+<span id="cb1-278"><a href="#cb1-278"></a></span>
+<span id="cb1-279"><a href="#cb1-279"></a><span class="fu">library</span>(eurostat) </span>
+<span id="cb1-280"><a href="#cb1-280"></a><span class="fu">library</span>(DT) </span>
+<span id="cb1-281"><a href="#cb1-281"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-282"><a href="#cb1-282"></a></span>
+<span id="cb1-283"><a href="#cb1-283"></a>info <span class="ot">&lt;-</span> <span class="fu">search_eurostat</span>(<span class="st">"GDP"</span>, <span class="at">type =</span> <span class="st">"all"</span>)</span>
+<span id="cb1-284"><a href="#cb1-284"></a>my_table <span class="ot">&lt;-</span><span class="st">"sdg_08_10"</span></span>
+<span id="cb1-285"><a href="#cb1-285"></a></span>
+<span id="cb1-286"><a href="#cb1-286"></a><span class="co">#Comprobamos que es el PIB pc</span></span>
+<span id="cb1-287"><a href="#cb1-287"></a><span class="fu">label_eurostat_tables</span>(my_table)</span>
+<span id="cb1-288"><a href="#cb1-288"></a><span class="co">#&gt; [1] "Real GDP per capita"</span></span>
+<span id="cb1-289"><a href="#cb1-289"></a></span>
+<span id="cb1-290"><a href="#cb1-290"></a>df_original <span class="ot">&lt;-</span> <span class="fu">get_eurostat</span>(my_table, <span class="at">time_format =</span> <span class="st">'raw'</span>, <span class="at">keepFlags =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-291"><a href="#cb1-291"></a>df_names <span class="ot">&lt;-</span> <span class="fu">names</span>(df_original)</span>
+<span id="cb1-292"><a href="#cb1-292"></a>df_original <span class="ot">&lt;-</span> <span class="fu">label_eurostat</span>(df_original, <span class="at">code =</span> df_names, <span class="at">fix_duplicated =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-293"><a href="#cb1-293"></a></span>
+<span id="cb1-294"><a href="#cb1-294"></a><span class="co">#Creamos otro df para trabajor con él </span></span>
+<span id="cb1-295"><a href="#cb1-295"></a></span>
+<span id="cb1-296"><a href="#cb1-296"></a>df <span class="ot">&lt;-</span> df_original</span>
+<span id="cb1-297"><a href="#cb1-297"></a></span>
+<span id="cb1-298"><a href="#cb1-298"></a><span class="co">#Ver que hay en el df</span></span>
+<span id="cb1-299"><a href="#cb1-299"></a>df_aa <span class="ot">&lt;-</span> pjpv.curso.R<span class="fl">.2022</span><span class="sc">::</span><span class="fu">pjp_dicc</span>(df)</span>
+<span id="cb1-300"><a href="#cb1-300"></a>df_bb <span class="ot">&lt;-</span> pjpv.curso.R<span class="fl">.2022</span><span class="sc">::</span><span class="fu">pjp_valores_unicos</span>(df, <span class="at">nn =</span> <span class="dv">400</span>)</span>
+<span id="cb1-301"><a href="#cb1-301"></a></span>
+<span id="cb1-302"><a href="#cb1-302"></a><span class="co">#Vamos a hacer un poco de limpieza</span></span>
+<span id="cb1-303"><a href="#cb1-303"></a>obj_buenos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"df"</span>, <span class="st">"df_original"</span>, <span class="st">"df_bb"</span>)</span>
+<span id="cb1-304"><a href="#cb1-304"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), obj_buenos))</span>
+<span id="cb1-305"><a href="#cb1-305"></a></span>
+<span id="cb1-306"><a href="#cb1-306"></a><span class="co">#Vamos a seguir arreglando el df</span></span>
+<span id="cb1-307"><a href="#cb1-307"></a></span>
+<span id="cb1-308"><a href="#cb1-308"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb1-309"><a href="#cb1-309"></a>  <span class="fu">rename</span>(<span class="at">year =</span> time_code) <span class="sc">|&gt;</span> </span>
+<span id="cb1-310"><a href="#cb1-310"></a>  <span class="fu">rename</span>(<span class="at">PIB_pc =</span> values) <span class="sc">|&gt;</span> </span>
+<span id="cb1-311"><a href="#cb1-311"></a>  <span class="fu">rename</span>(<span class="at">country =</span> geo)</span>
+<span id="cb1-312"><a href="#cb1-312"></a></span>
+<span id="cb1-313"><a href="#cb1-313"></a><span class="co">#Chain linked volumes (2010), euro per capita</span></span>
+<span id="cb1-314"><a href="#cb1-314"></a><span class="co">#Solo queremos el PIB_pc</span></span>
+<span id="cb1-315"><a href="#cb1-315"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb1-316"><a href="#cb1-316"></a>  <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Chain linked volumes (2010), euro per capita"</span>)</span>
+<span id="cb1-317"><a href="#cb1-317"></a></span>
+<span id="cb1-318"><a href="#cb1-318"></a><span class="co">#Eliminamos todo lo que nos molesta a la vista </span></span>
+<span id="cb1-319"><a href="#cb1-319"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb1-320"><a href="#cb1-320"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(unit_code, values_code, unit, time, na_item_code, na_item, flags))</span>
+<span id="cb1-321"><a href="#cb1-321"></a></span>
+<span id="cb1-322"><a href="#cb1-322"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">year =</span>  <span class="fu">as.numeric</span>(year))</span>
+<span id="cb1-323"><a href="#cb1-323"></a></span>
+<span id="cb1-324"><a href="#cb1-324"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">iso_2_code =</span>  eurostat<span class="sc">::</span><span class="fu">harmonize_country_code</span>(geo_code))</span>
+<span id="cb1-325"><a href="#cb1-325"></a></span>
+<span id="cb1-326"><a href="#cb1-326"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb1-327"><a href="#cb1-327"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(geo_code, flags_code))</span>
+<span id="cb1-328"><a href="#cb1-328"></a></span>
+<span id="cb1-329"><a href="#cb1-329"></a></span>
+<span id="cb1-330"><a href="#cb1-330"></a><span class="fu">library</span>(fs)</span>
+<span id="cb1-331"><a href="#cb1-331"></a><span class="fu">dir_create</span>(<span class="st">"datos_pulidos"</span>)</span>
+<span id="cb1-332"><a href="#cb1-332"></a></span>
+<span id="cb1-333"><a href="#cb1-333"></a><span class="co">#A continuación vamos a exportar los datos para luego importarlas más fácilmente #library(rio)</span></span>
+<span id="cb1-334"><a href="#cb1-334"></a></span>
+<span id="cb1-335"><a href="#cb1-335"></a><span class="fu">export</span>(df, <span class="st">"./datos_pulidos/PIB_pc.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb1-336"><a href="#cb1-336"></a><span class="co">#---------------DATOS SOBRE EL SALARIO POR NIVEL DE FORMACIÓN-------------------</span></span>
+<span id="cb1-337"><a href="#cb1-337"></a></span>
+<span id="cb1-338"><a href="#cb1-338"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-339"><a href="#cb1-339"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-340"><a href="#cb1-340"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/13931.csv?nocab=1"</span></span>
+<span id="cb1-341"><a href="#cb1-341"></a>df_ine <span class="ot">&lt;-</span> <span class="fu">import</span>(url)</span>
+<span id="cb1-342"><a href="#cb1-342"></a>df_ine_01 <span class="ot">&lt;-</span> df_ine <span class="sc">|&gt;</span> </span>
+<span id="cb1-343"><a href="#cb1-343"></a>  <span class="fu">filter</span>(Decil <span class="sc">%in%</span> (<span class="st">"Total decil"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-344"><a href="#cb1-344"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Tipo de jornada"</span>, <span class="st">"NIVELES DE FORMACION"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-345"><a href="#cb1-345"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span> </span>
+<span id="cb1-346"><a href="#cb1-346"></a>  <span class="fu">rename</span>(<span class="at">jornada =</span> <span class="st">'Tipo de jornada'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-347"><a href="#cb1-347"></a>  <span class="fu">rename</span>(<span class="at">formacion =</span> <span class="st">'NIVELES DE FORMACION'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-348"><a href="#cb1-348"></a>  <span class="fu">rename</span>(<span class="at">salario =</span> Total)</span>
+<span id="cb1-349"><a href="#cb1-349"></a></span>
+<span id="cb1-350"><a href="#cb1-350"></a><span class="co">#VAMOS A CONVERTIR LA VARIABLE salario A NUMERIC</span></span>
+<span id="cb1-351"><a href="#cb1-351"></a></span>
+<span id="cb1-352"><a href="#cb1-352"></a><span class="co">#R y el INE me han jodiedo la vida para pasar esto a numeric (antes no funcionaba)</span></span>
+<span id="cb1-353"><a href="#cb1-353"></a>df_ine_01 <span class="ot">&lt;-</span> df_ine_01 <span class="sc">|&gt;</span> </span>
+<span id="cb1-354"><a href="#cb1-354"></a>  <span class="fu">mutate</span>(<span class="at">salario =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, salario))))</span>
+<span id="cb1-355"><a href="#cb1-355"></a></span>
+<span id="cb1-356"><a href="#cb1-356"></a><span class="fu">export</span>(df_ine_01,<span class="st">"./datos_pulidos/salario_formacion.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb1-357"><a href="#cb1-357"></a></span>
+<span id="cb1-358"><a href="#cb1-358"></a></span>
+<span id="cb1-359"><a href="#cb1-359"></a><span class="co">#-----------------------DATOS SOBRE EL SALARIO POR EDADES-----------------------</span></span>
+<span id="cb1-360"><a href="#cb1-360"></a></span>
+<span id="cb1-361"><a href="#cb1-361"></a>url_1 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/13928.csv?nocab=1"</span></span>
+<span id="cb1-362"><a href="#cb1-362"></a>df_ine_x1 <span class="ot">&lt;-</span> <span class="fu">import</span>(url_1)</span>
+<span id="cb1-363"><a href="#cb1-363"></a></span>
+<span id="cb1-364"><a href="#cb1-364"></a>df_ine_02 <span class="ot">&lt;-</span> df_ine_x1 <span class="sc">|&gt;</span> </span>
+<span id="cb1-365"><a href="#cb1-365"></a>  <span class="fu">filter</span>(Decil <span class="sc">%in%</span> (<span class="st">"Total decil"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-366"><a href="#cb1-366"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Tipo de jornada"</span>, <span class="st">"Grupo de edad"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-367"><a href="#cb1-367"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span> </span>
+<span id="cb1-368"><a href="#cb1-368"></a>  <span class="fu">rename</span>(<span class="at">jornada =</span> <span class="st">'Tipo de jornada'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-369"><a href="#cb1-369"></a>  <span class="fu">rename</span>(<span class="at">grupo_edad =</span> <span class="st">'Grupo de edad'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-370"><a href="#cb1-370"></a>  <span class="fu">rename</span>(<span class="at">salario =</span> Total)</span>
+<span id="cb1-371"><a href="#cb1-371"></a></span>
+<span id="cb1-372"><a href="#cb1-372"></a><span class="co">#PASAMOS A NUMERIC</span></span>
+<span id="cb1-373"><a href="#cb1-373"></a>df_ine_02 <span class="ot">&lt;-</span> df_ine_02 <span class="sc">|&gt;</span> </span>
+<span id="cb1-374"><a href="#cb1-374"></a>  <span class="fu">mutate</span>(<span class="at">salario =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, salario))))</span>
+<span id="cb1-375"><a href="#cb1-375"></a></span>
+<span id="cb1-376"><a href="#cb1-376"></a><span class="fu">export</span>(df_ine_02,<span class="st">"./datos_pulidos/salario_grupo_edad.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb1-377"><a href="#cb1-377"></a><span class="co">#------------------------------DATOS SOBRE EL IPC-------------------------------</span></span>
+<span id="cb1-378"><a href="#cb1-378"></a></span>
+<span id="cb1-379"><a href="#cb1-379"></a>url_2 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/50908.csv?nocab=1"</span></span>
+<span id="cb1-380"><a href="#cb1-380"></a>df_ipc <span class="ot">&lt;-</span> <span class="fu">import</span>(url_2)</span>
+<span id="cb1-381"><a href="#cb1-381"></a></span>
+<span id="cb1-382"><a href="#cb1-382"></a>df_ipc_01 <span class="ot">&lt;-</span> df_ipc <span class="sc">|&gt;</span> </span>
+<span id="cb1-383"><a href="#cb1-383"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Grupos ECOICOP</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Índice general"</span>, <span class="st">"04 Vivienda, agua, electricidad, gas y otros combustibles"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-384"><a href="#cb1-384"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Grupos ECOICOP"</span>, <span class="st">"Tipo de dato"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-385"><a href="#cb1-385"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span></span>
+<span id="cb1-386"><a href="#cb1-386"></a>  <span class="fu">rename</span>(<span class="at">grupo =</span> <span class="st">'Grupos ECOICOP'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-387"><a href="#cb1-387"></a>  <span class="fu">rename</span>(<span class="at">tipo_dato =</span> <span class="st">`</span><span class="at">Tipo de dato</span><span class="st">`</span> ) </span>
+<span id="cb1-388"><a href="#cb1-388"></a></span>
+<span id="cb1-389"><a href="#cb1-389"></a><span class="co">#PASAMOS A NUMERIC</span></span>
+<span id="cb1-390"><a href="#cb1-390"></a>df_ipc_01 <span class="ot">&lt;-</span> df_ipc_01 <span class="sc">|&gt;</span> </span>
+<span id="cb1-391"><a href="#cb1-391"></a>  <span class="fu">mutate</span>(<span class="at">Total =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, Total))))</span>
+<span id="cb1-392"><a href="#cb1-392"></a></span>
+<span id="cb1-393"><a href="#cb1-393"></a><span class="co">#PARA SEPARAR EN LA VARIABLE YEAR LOS DATOS POR AÑOS Y MESES</span></span>
+<span id="cb1-394"><a href="#cb1-394"></a><span class="co">#df_sep &lt;- df_ipc_01 |&gt; </span></span>
+<span id="cb1-395"><a href="#cb1-395"></a><span class="co">#  separate(col = year, into = c("year", "month"), sep = "M")</span></span>
+<span id="cb1-396"><a href="#cb1-396"></a></span>
+<span id="cb1-397"><a href="#cb1-397"></a><span class="co">#df_sep &lt;- df_sep |&gt; </span></span>
+<span id="cb1-398"><a href="#cb1-398"></a><span class="co">#  mutate(month = paste0("M", month))</span></span>
+<span id="cb1-399"><a href="#cb1-399"></a></span>
+<span id="cb1-400"><a href="#cb1-400"></a><span class="fu">export</span>(df_ipc_01, <span class="st">"./datos_pulidos/IPC_mas_vivienda.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-</div>
-<p>El dataset contiene observaciones sobre un conjunto de pingüinos de 3 especies. Hay variables.</p>
 <hr>
-<section id="los-pingüinos-molan" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="los-pingüinos-molan">Los pingüinos molan</h2>
-<p>Vamos a ver una foto de un pingüinos</p>
+<section id="evolución-de-la-renta-neta-por-edad" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="evolución-de-la-renta-neta-por-edad">Evolución de la renta neta por edad</h2>
+<p>Iniciaremos analizando los datos de renta según la edad (como pueden imaginar, los jóvenes constituyen el grupo poblacional que dispone de menos renta), para, a continuación, adentrarnos en datos que muestran la evolución de los precios de la vivienda.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143" class="img-fluid figure-img"></p>
@@ -279,17 +678,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details open="">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Arreglo los datos</p>
 <div class="cell" data-layout-align="center">
 <details open="">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#- cojos datos de pingüinos y arreglo un poco </span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, bill_depth_mm, body_mass_g) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#- cojos datos de pingüinos y arreglo un poco </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, bill_depth_mm, body_mass_g) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
@@ -298,11 +697,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details open="">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#- primer gráfico</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
-<span id="cb3-3"><a href="#cb3-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>     <span class="fu">geom_point</span>()</span>
-<span id="cb3-5"><a href="#cb3-5"></a>p</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#- primer gráfico</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
+<span id="cb4-3"><a href="#cb4-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>     <span class="fu">geom_point</span>()</span>
+<span id="cb4-5"><a href="#cb4-5"></a>p</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -319,10 +718,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details open="">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#- segundo gráfico</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>p</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#- segundo gráfico</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>p</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -339,8 +738,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details open="">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#- tercer gráfico</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#- tercer gráfico</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -365,85 +764,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>
 <span title="Click to Expand"> current session info </span>
 </summary>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
-<span id="cb6-3"><a href="#cb6-3"></a> setting  value</span>
-<span id="cb6-4"><a href="#cb6-4"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span> ucrt)</span>
-<span id="cb6-5"><a href="#cb6-5"></a> os       Windows <span class="dv">11</span> <span class="fu">x64</span> (build <span class="dv">22631</span>)</span>
-<span id="cb6-6"><a href="#cb6-6"></a> system   x86_64, mingw32</span>
-<span id="cb6-7"><a href="#cb6-7"></a> ui       RTerm</span>
-<span id="cb6-8"><a href="#cb6-8"></a> <span class="fu">language</span> (EN)</span>
-<span id="cb6-9"><a href="#cb6-9"></a> collate  Spanish_Spain.utf8</span>
-<span id="cb6-10"><a href="#cb6-10"></a> ctype    Spanish_Spain.utf8</span>
-<span id="cb6-11"><a href="#cb6-11"></a> tz       Europe<span class="sc">/</span>Madrid</span>
-<span id="cb6-12"><a href="#cb6-12"></a> date     <span class="dv">2023-12-17</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>RStudio<span class="sc">/</span>resources<span class="sc">/</span>app<span class="sc">/</span>bin<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
-<span id="cb6-14"><a href="#cb6-14"></a></span>
-<span id="cb6-15"><a href="#cb6-15"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
-<span id="cb6-16"><a href="#cb6-16"></a> package        <span class="sc">*</span> version <span class="fu">date</span> (UTC) lib source</span>
-<span id="cb6-17"><a href="#cb6-17"></a> cli              <span class="dv">3</span>.<span class="fl">6.1</span>   <span class="dv">2023-03-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-18"><a href="#cb6-18"></a> clipr            <span class="dv">0</span>.<span class="fl">8.0</span>   <span class="dv">2022-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a> colorspace       <span class="fl">2.1</span><span class="dv">-0</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a> desc             <span class="dv">1</span>.<span class="fl">4.2</span>   <span class="dv">2022-09-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-21"><a href="#cb6-21"></a> details          <span class="dv">0</span>.<span class="fl">3.0</span>   <span class="dv">2022-03-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
-<span id="cb6-22"><a href="#cb6-22"></a> digest           <span class="dv">0</span>.<span class="fl">6.33</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-23"><a href="#cb6-23"></a> dplyr          <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">1.3</span>   <span class="dv">2023-09-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-24"><a href="#cb6-24"></a> evaluate         <span class="fl">0.21</span>    <span class="dv">2023-05-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-25"><a href="#cb6-25"></a> fansi            <span class="dv">1</span>.<span class="fl">0.4</span>   <span class="dv">2023-01-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-26"><a href="#cb6-26"></a> farver           <span class="dv">2</span>.<span class="fl">1.1</span>   <span class="dv">2022-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-27"><a href="#cb6-27"></a> fastmap          <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-28"><a href="#cb6-28"></a> forcats        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.0</span>   <span class="dv">2023-01-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-29"><a href="#cb6-29"></a> generics         <span class="dv">0</span>.<span class="fl">1.3</span>   <span class="dv">2022-07-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-30"><a href="#cb6-30"></a> ggplot2        <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">4.4</span>   <span class="dv">2023-10-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
-<span id="cb6-31"><a href="#cb6-31"></a> glue             <span class="dv">1</span>.<span class="fl">6.2</span>   <span class="dv">2022-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-32"><a href="#cb6-32"></a> gtable           <span class="dv">0</span>.<span class="fl">3.4</span>   <span class="dv">2023-08-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-33"><a href="#cb6-33"></a> hms              <span class="dv">1</span>.<span class="fl">1.3</span>   <span class="dv">2023-03-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-34"><a href="#cb6-34"></a> htmltools        <span class="dv">0</span>.<span class="fl">5.6</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-35"><a href="#cb6-35"></a> htmlwidgets      <span class="dv">1</span>.<span class="fl">6.2</span>   <span class="dv">2023-03-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-36"><a href="#cb6-36"></a> httr             <span class="dv">1</span>.<span class="fl">4.7</span>   <span class="dv">2023-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-37"><a href="#cb6-37"></a> jsonlite         <span class="dv">1</span>.<span class="fl">8.7</span>   <span class="dv">2023-06-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-38"><a href="#cb6-38"></a> knitr            <span class="fl">1.45</span>    <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
-<span id="cb6-39"><a href="#cb6-39"></a> labeling         <span class="dv">0</span>.<span class="fl">4.3</span>   <span class="dv">2023-08-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-40"><a href="#cb6-40"></a> lattice          <span class="fl">0.21</span><span class="dv">-8</span>  <span class="dv">2023-04-05</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-41"><a href="#cb6-41"></a> lifecycle        <span class="dv">1</span>.<span class="fl">0.3</span>   <span class="dv">2022-10-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-42"><a href="#cb6-42"></a> lubridate      <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">9.2</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-43"><a href="#cb6-43"></a> magrittr         <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-03-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-44"><a href="#cb6-44"></a> Matrix           <span class="fl">1.6-1.1</span> <span class="dv">2023-09-18</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-45"><a href="#cb6-45"></a> mgcv             <span class="fl">1.8</span><span class="dv">-42</span>  <span class="dv">2023-03-02</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-46"><a href="#cb6-46"></a> munsell          <span class="dv">0</span>.<span class="fl">5.0</span>   <span class="dv">2018-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-47"><a href="#cb6-47"></a> nlme             <span class="fl">3.1</span><span class="dv">-162</span> <span class="dv">2023-01-31</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-48"><a href="#cb6-48"></a> palmerpenguins   <span class="dv">0</span>.<span class="fl">1.1</span>   <span class="dv">2022-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-49"><a href="#cb6-49"></a> pillar           <span class="dv">1</span>.<span class="fl">9.0</span>   <span class="dv">2023-03-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-50"><a href="#cb6-50"></a> pkgconfig        <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2019-09-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-51"><a href="#cb6-51"></a> png              <span class="fl">0.1</span><span class="dv">-8</span>   <span class="dv">2022-11-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb6-52"><a href="#cb6-52"></a> purrr          <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.2</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-53"><a href="#cb6-53"></a> R6               <span class="dv">2</span>.<span class="fl">5.1</span>   <span class="dv">2021-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-54"><a href="#cb6-54"></a> readr          <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">1.4</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-55"><a href="#cb6-55"></a> rlang            <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-56"><a href="#cb6-56"></a> rmarkdown        <span class="fl">2.24</span>    <span class="dv">2023-08-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-57"><a href="#cb6-57"></a> rprojroot        <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-04-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-58"><a href="#cb6-58"></a> rstudioapi       <span class="dv">0</span>.<span class="fl">15.0</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-59"><a href="#cb6-59"></a> scales           <span class="dv">1</span>.<span class="fl">2.1</span>   <span class="dv">2022-08-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-60"><a href="#cb6-60"></a> sessioninfo      <span class="dv">1</span>.<span class="fl">2.2</span>   <span class="dv">2021-12-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
-<span id="cb6-61"><a href="#cb6-61"></a> stringi          <span class="dv">1</span>.<span class="fl">7.12</span>  <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb6-62"><a href="#cb6-62"></a> stringr        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">5.1</span>   <span class="dv">2023-11-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
-<span id="cb6-63"><a href="#cb6-63"></a> tibble         <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">2.1</span>   <span class="dv">2023-03-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-64"><a href="#cb6-64"></a> tidyr          <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">3.0</span>   <span class="dv">2023-01-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-65"><a href="#cb6-65"></a> tidyselect       <span class="dv">1</span>.<span class="fl">2.0</span>   <span class="dv">2022-10-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-66"><a href="#cb6-66"></a> tidyverse      <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">0.0</span>   <span class="dv">2023-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-67"><a href="#cb6-67"></a> timechange       <span class="dv">0</span>.<span class="fl">2.0</span>   <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-68"><a href="#cb6-68"></a> tzdb             <span class="dv">0</span>.<span class="fl">4.0</span>   <span class="dv">2023-05-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-69"><a href="#cb6-69"></a> utf8             <span class="dv">1</span>.<span class="fl">2.3</span>   <span class="dv">2023-01-31</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-70"><a href="#cb6-70"></a> vctrs            <span class="dv">0</span>.<span class="fl">6.3</span>   <span class="dv">2023-06-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-71"><a href="#cb6-71"></a> withr            <span class="dv">2</span>.<span class="fl">5.0</span>   <span class="dv">2022-03-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-72"><a href="#cb6-72"></a> xfun             <span class="fl">0.40</span>    <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-73"><a href="#cb6-73"></a> xml2             <span class="dv">1</span>.<span class="fl">3.5</span>   <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb6-74"><a href="#cb6-74"></a> yaml             <span class="dv">2</span>.<span class="fl">3.7</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb6-75"><a href="#cb6-75"></a></span>
-<span id="cb6-76"><a href="#cb6-76"></a> [<span class="dv">1</span>] C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>Joel Seguí Far<span class="sc">/</span>AppData<span class="sc">/</span>Local<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.3</span></span>
-<span id="cb6-77"><a href="#cb6-77"></a> [<span class="dv">2</span>] C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>R<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">3.1</span><span class="sc">/</span>library</span>
-<span id="cb6-78"><a href="#cb6-78"></a></span>
-<span id="cb6-79"><a href="#cb6-79"></a>──────────────────────────────────────────────────────────────────────────────</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
+<span id="cb7-3"><a href="#cb7-3"></a> setting  value</span>
+<span id="cb7-4"><a href="#cb7-4"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span> ucrt)</span>
+<span id="cb7-5"><a href="#cb7-5"></a> os       Windows <span class="dv">11</span> <span class="fu">x64</span> (build <span class="dv">22631</span>)</span>
+<span id="cb7-6"><a href="#cb7-6"></a> system   x86_64, mingw32</span>
+<span id="cb7-7"><a href="#cb7-7"></a> ui       RTerm</span>
+<span id="cb7-8"><a href="#cb7-8"></a> <span class="fu">language</span> (EN)</span>
+<span id="cb7-9"><a href="#cb7-9"></a> collate  Spanish_Spain.utf8</span>
+<span id="cb7-10"><a href="#cb7-10"></a> ctype    Spanish_Spain.utf8</span>
+<span id="cb7-11"><a href="#cb7-11"></a> tz       Europe<span class="sc">/</span>Madrid</span>
+<span id="cb7-12"><a href="#cb7-12"></a> date     <span class="dv">2023-12-18</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>RStudio<span class="sc">/</span>resources<span class="sc">/</span>app<span class="sc">/</span>bin<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
+<span id="cb7-14"><a href="#cb7-14"></a></span>
+<span id="cb7-15"><a href="#cb7-15"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
+<span id="cb7-16"><a href="#cb7-16"></a> package           <span class="sc">*</span> version    <span class="fu">date</span> (UTC) lib source</span>
+<span id="cb7-17"><a href="#cb7-17"></a> assertthat          <span class="dv">0</span>.<span class="fl">2.1</span>      <span class="dv">2019-03-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-18"><a href="#cb7-18"></a> backports           <span class="dv">1</span>.<span class="fl">4.1</span>      <span class="dv">2021-12-13</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-19"><a href="#cb7-19"></a> bibtex              <span class="dv">0</span>.<span class="fl">5.1</span>      <span class="dv">2023-01-26</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-20"><a href="#cb7-20"></a> bit                 <span class="dv">4</span>.<span class="fl">0.5</span>      <span class="dv">2022-11-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-21"><a href="#cb7-21"></a> bit64               <span class="dv">4</span>.<span class="fl">0.5</span>      <span class="dv">2020-08-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-22"><a href="#cb7-22"></a> broom               <span class="dv">1</span>.<span class="fl">0.5</span>      <span class="dv">2023-06-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-23"><a href="#cb7-23"></a> cellranger          <span class="dv">1</span>.<span class="fl">1.0</span>      <span class="dv">2016-07-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-24"><a href="#cb7-24"></a> class               <span class="fl">7.3</span><span class="dv">-22</span>     <span class="dv">2023-05-03</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-25"><a href="#cb7-25"></a> classInt            <span class="fl">0.4</span><span class="dv">-10</span>     <span class="dv">2023-09-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-26"><a href="#cb7-26"></a> cli                 <span class="dv">3</span>.<span class="fl">6.1</span>      <span class="dv">2023-03-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-27"><a href="#cb7-27"></a> clipr               <span class="dv">0</span>.<span class="fl">8.0</span>      <span class="dv">2022-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-28"><a href="#cb7-28"></a> colorspace          <span class="fl">2.1</span><span class="dv">-0</span>      <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-29"><a href="#cb7-29"></a> countrycode         <span class="dv">1</span>.<span class="fl">5.0</span>      <span class="dv">2023-05-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-30"><a href="#cb7-30"></a> crayon              <span class="dv">1</span>.<span class="fl">5.2</span>      <span class="dv">2022-09-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-31"><a href="#cb7-31"></a> curl              <span class="sc">*</span> <span class="dv">5</span>.<span class="fl">2.0</span>      <span class="dv">2023-12-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-32"><a href="#cb7-32"></a> data.table        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">14.8</span>     <span class="dv">2023-02-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-33"><a href="#cb7-33"></a> desc                <span class="dv">1</span>.<span class="fl">4.2</span>      <span class="dv">2022-09-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-34"><a href="#cb7-34"></a> details             <span class="dv">0</span>.<span class="fl">3.0</span>      <span class="dv">2022-03-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-35"><a href="#cb7-35"></a> digest              <span class="dv">0</span>.<span class="fl">6.33</span>     <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-36"><a href="#cb7-36"></a> downloader        <span class="sc">*</span> <span class="fl">0.4</span>        <span class="dv">2015-07-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-37"><a href="#cb7-37"></a> dplyr             <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">1.3</span>      <span class="dv">2023-09-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-38"><a href="#cb7-38"></a> DT                <span class="sc">*</span> <span class="fl">0.31</span>       <span class="dv">2023-12-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-39"><a href="#cb7-39"></a> e1071               <span class="fl">1.7</span><span class="dv">-13</span>     <span class="dv">2023-02-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-40"><a href="#cb7-40"></a> eurostat          <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">8.2</span>      <span class="dv">2023-03-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-41"><a href="#cb7-41"></a> evaluate            <span class="fl">0.21</span>       <span class="dv">2023-05-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-42"><a href="#cb7-42"></a> fansi               <span class="dv">1</span>.<span class="fl">0.4</span>      <span class="dv">2023-01-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-43"><a href="#cb7-43"></a> farver              <span class="dv">2</span>.<span class="fl">1.1</span>      <span class="dv">2022-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-44"><a href="#cb7-44"></a> fastmap             <span class="dv">1</span>.<span class="fl">1.1</span>      <span class="dv">2023-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-45"><a href="#cb7-45"></a> forcats           <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.0</span>      <span class="dv">2023-01-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-46"><a href="#cb7-46"></a> fs                <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">6.3</span>      <span class="dv">2023-07-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-47"><a href="#cb7-47"></a> generics            <span class="dv">0</span>.<span class="fl">1.3</span>      <span class="dv">2022-07-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-48"><a href="#cb7-48"></a> ggplot2           <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">4.4</span>      <span class="dv">2023-10-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-49"><a href="#cb7-49"></a> glue                <span class="dv">1</span>.<span class="fl">6.2</span>      <span class="dv">2022-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-50"><a href="#cb7-50"></a> gtable              <span class="dv">0</span>.<span class="fl">3.4</span>      <span class="dv">2023-08-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-51"><a href="#cb7-51"></a> here                <span class="dv">1</span>.<span class="fl">0.1</span>      <span class="dv">2020-12-13</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-52"><a href="#cb7-52"></a> hms                 <span class="dv">1</span>.<span class="fl">1.3</span>      <span class="dv">2023-03-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-53"><a href="#cb7-53"></a> htmltools           <span class="dv">0</span>.<span class="fl">5.6</span>      <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-54"><a href="#cb7-54"></a> htmlwidgets         <span class="dv">1</span>.<span class="fl">6.2</span>      <span class="dv">2023-03-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-55"><a href="#cb7-55"></a> httr                <span class="dv">1</span>.<span class="fl">4.7</span>      <span class="dv">2023-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-56"><a href="#cb7-56"></a> ISOweek             <span class="fl">0.6</span><span class="dv">-2</span>      <span class="dv">2011-09-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-57"><a href="#cb7-57"></a> jsonlite            <span class="dv">1</span>.<span class="fl">8.7</span>      <span class="dv">2023-06-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-58"><a href="#cb7-58"></a> KernSmooth          <span class="fl">2.23</span><span class="dv">-21</span>    <span class="dv">2023-05-03</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-59"><a href="#cb7-59"></a> knitr               <span class="fl">1.45</span>       <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-60"><a href="#cb7-60"></a> labeling            <span class="dv">0</span>.<span class="fl">4.3</span>      <span class="dv">2023-08-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-61"><a href="#cb7-61"></a> lattice             <span class="fl">0.21</span><span class="dv">-8</span>     <span class="dv">2023-04-05</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-62"><a href="#cb7-62"></a> lifecycle           <span class="dv">1</span>.<span class="fl">0.3</span>      <span class="dv">2022-10-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-63"><a href="#cb7-63"></a> lubridate         <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">9.2</span>      <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-64"><a href="#cb7-64"></a> magrittr            <span class="dv">2</span>.<span class="fl">0.3</span>      <span class="dv">2022-03-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-65"><a href="#cb7-65"></a> Matrix              <span class="fl">1.6-1.1</span>    <span class="dv">2023-09-18</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-66"><a href="#cb7-66"></a> mgcv                <span class="fl">1.8</span><span class="dv">-42</span>     <span class="dv">2023-03-02</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-67"><a href="#cb7-67"></a> munsell             <span class="dv">0</span>.<span class="fl">5.0</span>      <span class="dv">2018-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-68"><a href="#cb7-68"></a> nlme                <span class="fl">3.1</span><span class="dv">-162</span>    <span class="dv">2023-01-31</span> [<span class="dv">2</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-69"><a href="#cb7-69"></a> palmerpenguins      <span class="dv">0</span>.<span class="fl">1.1</span>      <span class="dv">2022-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-70"><a href="#cb7-70"></a> pillar              <span class="dv">1</span>.<span class="fl">9.0</span>      <span class="dv">2023-03-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-71"><a href="#cb7-71"></a> pjpv.curso.R<span class="fl">.2022</span>   <span class="dv">0</span>.<span class="dv">0</span>.<span class="fl">0.9000</span> <span class="dv">2023-09-20</span> [<span class="dv">1</span>] <span class="fu">Github</span> (perezp44<span class="sc">/</span>pjpv.curso.R<span class="fl">.2022</span><span class="sc">@</span>bd4dd73)</span>
+<span id="cb7-72"><a href="#cb7-72"></a> pkgconfig           <span class="dv">2</span>.<span class="fl">0.3</span>      <span class="dv">2019-09-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-73"><a href="#cb7-73"></a> plyr              <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">8.8</span>      <span class="dv">2022-11-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-74"><a href="#cb7-74"></a> png                 <span class="fl">0.1</span><span class="dv">-8</span>      <span class="dv">2022-11-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-75"><a href="#cb7-75"></a> proxy               <span class="fl">0.4</span><span class="dv">-27</span>     <span class="dv">2022-06-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-76"><a href="#cb7-76"></a> purrr             <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.2</span>      <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-77"><a href="#cb7-77"></a> pxR               <span class="sc">*</span> <span class="dv">0</span>.<span class="fl">42.7</span>     <span class="dv">2022-11-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-78"><a href="#cb7-78"></a> R.methodsS3         <span class="dv">1</span>.<span class="fl">8.2</span>      <span class="dv">2022-06-13</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-79"><a href="#cb7-79"></a> R.oo                <span class="dv">1</span>.<span class="fl">25.0</span>     <span class="dv">2022-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-80"><a href="#cb7-80"></a> R.utils             <span class="dv">2</span>.<span class="fl">12.2</span>     <span class="dv">2022-11-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-81"><a href="#cb7-81"></a> R6                  <span class="dv">2</span>.<span class="fl">5.1</span>      <span class="dv">2021-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-82"><a href="#cb7-82"></a> Rcpp                <span class="dv">1</span>.<span class="fl">0.11</span>     <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-83"><a href="#cb7-83"></a> readr             <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">1.4</span>      <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-84"><a href="#cb7-84"></a> readxl            <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">4.3</span>      <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-85"><a href="#cb7-85"></a> RefManageR          <span class="dv">1</span>.<span class="fl">4.0</span>      <span class="dv">2022-09-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-86"><a href="#cb7-86"></a> regions             <span class="dv">0</span>.<span class="fl">1.8</span>      <span class="dv">2021-06-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-87"><a href="#cb7-87"></a> reshape2          <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">4.4</span>      <span class="dv">2020-04-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-88"><a href="#cb7-88"></a> rio               <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.1</span>      <span class="dv">2023-09-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-89"><a href="#cb7-89"></a> RJSONIO           <span class="sc">*</span> <span class="fl">1.3-1.9</span>    <span class="dv">2023-11-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-90"><a href="#cb7-90"></a> rlang               <span class="dv">1</span>.<span class="fl">1.1</span>      <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-91"><a href="#cb7-91"></a> rlist             <span class="sc">*</span> <span class="dv">0</span>.<span class="dv">4</span>.<span class="fl">6.2</span>    <span class="dv">2021-09-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-92"><a href="#cb7-92"></a> rmarkdown           <span class="fl">2.24</span>       <span class="dv">2023-08-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-93"><a href="#cb7-93"></a> rprojroot           <span class="dv">2</span>.<span class="fl">0.3</span>      <span class="dv">2022-04-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-94"><a href="#cb7-94"></a> rstudioapi          <span class="dv">0</span>.<span class="fl">15.0</span>     <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-95"><a href="#cb7-95"></a> scales              <span class="dv">1</span>.<span class="fl">2.1</span>      <span class="dv">2022-08-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-96"><a href="#cb7-96"></a> sessioninfo         <span class="dv">1</span>.<span class="fl">2.2</span>      <span class="dv">2021-12-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-97"><a href="#cb7-97"></a> stringi             <span class="dv">1</span>.<span class="fl">7.12</span>     <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-98"><a href="#cb7-98"></a> stringr           <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">5.1</span>      <span class="dv">2023-11-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb7-99"><a href="#cb7-99"></a> tibble            <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">2.1</span>      <span class="dv">2023-03-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-100"><a href="#cb7-100"></a> tidyr             <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">3.0</span>      <span class="dv">2023-01-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-101"><a href="#cb7-101"></a> tidyselect          <span class="dv">1</span>.<span class="fl">2.0</span>      <span class="dv">2022-10-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-102"><a href="#cb7-102"></a> tidyverse         <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">0.0</span>      <span class="dv">2023-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-103"><a href="#cb7-103"></a> timechange          <span class="dv">0</span>.<span class="fl">2.0</span>      <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-104"><a href="#cb7-104"></a> tzdb                <span class="dv">0</span>.<span class="fl">4.0</span>      <span class="dv">2023-05-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-105"><a href="#cb7-105"></a> utf8                <span class="dv">1</span>.<span class="fl">2.3</span>      <span class="dv">2023-01-31</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-106"><a href="#cb7-106"></a> vctrs               <span class="dv">0</span>.<span class="fl">6.3</span>      <span class="dv">2023-06-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-107"><a href="#cb7-107"></a> vroom               <span class="dv">1</span>.<span class="fl">6.3</span>      <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-108"><a href="#cb7-108"></a> withr               <span class="dv">2</span>.<span class="fl">5.0</span>      <span class="dv">2022-03-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-109"><a href="#cb7-109"></a> writexl           <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">4.2</span>      <span class="dv">2023-01-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-110"><a href="#cb7-110"></a> xfun                <span class="fl">0.40</span>       <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-111"><a href="#cb7-111"></a> xml2                <span class="dv">1</span>.<span class="fl">3.5</span>      <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-112"><a href="#cb7-112"></a> yaml                <span class="dv">2</span>.<span class="fl">3.7</span>      <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb7-113"><a href="#cb7-113"></a> zoo               <span class="sc">*</span> <span class="fl">1.8</span><span class="dv">-12</span>     <span class="dv">2023-04-13</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb7-114"><a href="#cb7-114"></a></span>
+<span id="cb7-115"><a href="#cb7-115"></a> [<span class="dv">1</span>] C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>Joel Seguí Far<span class="sc">/</span>AppData<span class="sc">/</span>Local<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.3</span></span>
+<span id="cb7-116"><a href="#cb7-116"></a> [<span class="dv">2</span>] C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>R<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">3.1</span><span class="sc">/</span>library</span>
+<span id="cb7-117"><a href="#cb7-117"></a></span>
+<span id="cb7-118"><a href="#cb7-118"></a>──────────────────────────────────────────────────────────────────────────────</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <p><br></p>
 </div>
@@ -755,153 +1193,506 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> "VIVIENDA EN ESPAÑA"</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="an">description:</span><span class="co"> |</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">  Vamos a analizar el mercado de la vivienda y comprarlo con su accesibilidad de los jóvenes </span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="an">author:</span><span class="co">   </span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">  - Saúl Gil\n   </span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">  - Pedro Peñalver\n</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">  - Joel Seguí</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="an">date:</span><span class="co"> 2023-11-01                           #--</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="an">categories:</span><span class="co"> [Trabajo BigData, Vivienda]      #--</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="an">image:</span><span class="co"> "./imagenes/imagen_01.png"</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="an">title-block-banner:</span><span class="co"> true #- {true, false, "green","#AA0000"}</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="an">title-block-banner-color:</span><span class="co"> "lightgrey"    #-"#FFFFFF" </span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="an">toc-depth:</span><span class="co"> 3</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="an">smooth-scroll:</span><span class="co"> true</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">  html:</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">    #backgroundcolor: "#F1F3F4"</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">    #embed-resources: true</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">    link-external-newwindow: true</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">    #css: ./assets/my_css_file.css   #- CUIDADO!!!!</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="an">code-link:</span><span class="co"> true</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co">---</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="fu"># Introducción </span></span>
-<span id="cb7-28"><a href="#cb7-28"></a></span>
-<span id="cb7-29"><a href="#cb7-29"></a>El objetivo de este trabajo es analizar la situación en la que se encuentran los jóvenes a la hora de acceder al mercado laboral. Para ello analizaremos diferentes métricas entre las que se encuentran: Evolución de los niveles de precios de la vivienda a nivel nacional y autonómico, comparación de esta con la de los salarios reales…</span>
-<span id="cb7-30"><a href="#cb7-30"></a></span>
-<span id="cb7-31"><a href="#cb7-31"></a>De esta manera constataremos las dificultades a alas que se enfrentan los jóvenes españoles para emanciparse. También extraeremos conclusiones sobre si es así en todo el país o si por el contrario hay diferencias según el área geográfica. </span>
-<span id="cb7-32"><a href="#cb7-32"></a></span>
-<span id="cb7-33"><a href="#cb7-33"></a></span>
-<span id="cb7-34"><a href="#cb7-34"></a>#Datos del trabajo</span>
-<span id="cb7-35"><a href="#cb7-35"></a></span>
-<span id="cb7-36"><a href="#cb7-36"></a>::: panel-tabset</span>
-<span id="cb7-37"><a href="#cb7-37"></a>##Datos usados</span>
-<span id="cb7-38"><a href="#cb7-38"></a>Vamos a utilizar datos de los paquetes <span class="in">`pxR`</span> <span class="kw">&lt;i&gt;</span>(ine)<span class="kw">&lt;/I&gt;</span>, <span class="in">`eurostat`</span> además de proveedores de datos externos.</span>
-<span id="cb7-39"><a href="#cb7-39"></a></span>
-<span id="cb7-40"><a href="#cb7-40"></a>##Códigos</span>
-<span id="cb7-43"><a href="#cb7-43"></a><span class="in">```{r}</span></span>
-<span id="cb7-44"><a href="#cb7-44"></a><span class="co">#AQUI TENDREMOS QUE PEGAR </span><span class="al">TODO</span><span class="co"> CÓDIGO</span></span>
-<span id="cb7-45"><a href="#cb7-45"></a><span class="in">```</span></span>
-<span id="cb7-46"><a href="#cb7-46"></a>:::</span>
-<span id="cb7-47"><a href="#cb7-47"></a></span>
-<span id="cb7-48"><a href="#cb7-48"></a>El dataset contiene observaciones sobre un conjunto de <span class="in">`r nrow(df)`</span> pingüinos de 3 especies. Hay  <span class="in">`r ncol(df)`</span> variables.</span>
-<span id="cb7-49"><a href="#cb7-49"></a></span>
-<span id="cb7-50"><a href="#cb7-50"></a>---</span>
-<span id="cb7-51"><a href="#cb7-51"></a></span>
-<span id="cb7-52"><a href="#cb7-52"></a><span class="fu">## Los pingüinos molan</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a></span>
-<span id="cb7-54"><a href="#cb7-54"></a>Vamos a ver una foto de un pingüinos</span>
-<span id="cb7-55"><a href="#cb7-55"></a></span>
-<span id="cb7-58"><a href="#cb7-58"></a><span class="in">```{r}</span></span>
-<span id="cb7-59"><a href="#cb7-59"></a><span class="co">#| echo: false</span></span>
-<span id="cb7-60"><a href="#cb7-60"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143"</span></span>
-<span id="cb7-61"><a href="#cb7-61"></a><span class="in">```</span></span>
-<span id="cb7-62"><a href="#cb7-62"></a></span>
-<span id="cb7-63"><a href="#cb7-63"></a></span>
-<span id="cb7-64"><a href="#cb7-64"></a><span class="al">![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)</span></span>
-<span id="cb7-65"><a href="#cb7-65"></a></span>
-<span id="cb7-66"><a href="#cb7-66"></a>---</span>
-<span id="cb7-67"><a href="#cb7-67"></a></span>
-<span id="cb7-68"><a href="#cb7-68"></a>Sí, lo pingüinos molan, así que vamos a poner otra foto de pingüinos que tenemos en nuestro PC pero la vamos a poner en el margen:</span>
-<span id="cb7-69"><a href="#cb7-69"></a></span>
-<span id="cb7-70"><a href="#cb7-70"></a>::: {.column-margin}</span>
-<span id="cb7-71"><a href="#cb7-71"></a></span>
-<span id="cb7-72"><a href="#cb7-72"></a><span class="al">![](./imagenes/imagen_01.png)</span>{fig-align="center"}</span>
-<span id="cb7-73"><a href="#cb7-73"></a></span>
-<span id="cb7-74"><a href="#cb7-74"></a>:::</span>
-<span id="cb7-75"><a href="#cb7-75"></a></span>
-<span id="cb7-76"><a href="#cb7-76"></a>---</span>
-<span id="cb7-77"><a href="#cb7-77"></a></span>
-<span id="cb7-78"><a href="#cb7-78"></a><span class="fu">## Algunos gráficos</span></span>
-<span id="cb7-79"><a href="#cb7-79"></a></span>
-<span id="cb7-80"><a href="#cb7-80"></a></span>
-<span id="cb7-81"><a href="#cb7-81"></a>Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes</span>
-<span id="cb7-82"><a href="#cb7-82"></a></span>
-<span id="cb7-85"><a href="#cb7-85"></a><span class="in">```{r}</span></span>
-<span id="cb7-86"><a href="#cb7-86"></a><span class="co">#| eval: true</span></span>
-<span id="cb7-87"><a href="#cb7-87"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-88"><a href="#cb7-88"></a><span class="in">```</span></span>
-<span id="cb7-89"><a href="#cb7-89"></a></span>
-<span id="cb7-90"><a href="#cb7-90"></a></span>
-<span id="cb7-91"><a href="#cb7-91"></a>Arreglo los datos</span>
-<span id="cb7-92"><a href="#cb7-92"></a></span>
-<span id="cb7-95"><a href="#cb7-95"></a><span class="in">```{r}</span></span>
-<span id="cb7-96"><a href="#cb7-96"></a><span class="co">#- cojos datos de pingüinos y arreglo un poco </span></span>
-<span id="cb7-97"><a href="#cb7-97"></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb7-98"><a href="#cb7-98"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, bill_depth_mm, body_mass_g) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-99"><a href="#cb7-99"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
-<span id="cb7-100"><a href="#cb7-100"></a><span class="in">```</span></span>
-<span id="cb7-101"><a href="#cb7-101"></a></span>
-<span id="cb7-102"><a href="#cb7-102"></a>---</span>
-<span id="cb7-103"><a href="#cb7-103"></a></span>
-<span id="cb7-104"><a href="#cb7-104"></a><span class="fu">### Primer gráfico</span></span>
-<span id="cb7-105"><a href="#cb7-105"></a></span>
-<span id="cb7-106"><a href="#cb7-106"></a></span>
-<span id="cb7-109"><a href="#cb7-109"></a><span class="in">```{r}</span></span>
-<span id="cb7-110"><a href="#cb7-110"></a><span class="co">#- primer gráfico</span></span>
-<span id="cb7-111"><a href="#cb7-111"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
-<span id="cb7-112"><a href="#cb7-112"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb7-113"><a href="#cb7-113"></a>     <span class="fu">geom_point</span>()</span>
-<span id="cb7-114"><a href="#cb7-114"></a>p</span>
-<span id="cb7-115"><a href="#cb7-115"></a><span class="in">```</span></span>
-<span id="cb7-116"><a href="#cb7-116"></a></span>
-<span id="cb7-117"><a href="#cb7-117"></a>---</span>
-<span id="cb7-118"><a href="#cb7-118"></a></span>
-<span id="cb7-119"><a href="#cb7-119"></a><span class="fu">### Segundo</span></span>
-<span id="cb7-120"><a href="#cb7-120"></a></span>
-<span id="cb7-123"><a href="#cb7-123"></a><span class="in">```{r}</span></span>
-<span id="cb7-124"><a href="#cb7-124"></a><span class="co">#- segundo gráfico</span></span>
-<span id="cb7-125"><a href="#cb7-125"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb7-126"><a href="#cb7-126"></a></span>
-<span id="cb7-127"><a href="#cb7-127"></a>p</span>
-<span id="cb7-128"><a href="#cb7-128"></a><span class="in">```</span></span>
-<span id="cb7-129"><a href="#cb7-129"></a></span>
-<span id="cb7-130"><a href="#cb7-130"></a>---</span>
-<span id="cb7-131"><a href="#cb7-131"></a></span>
-<span id="cb7-132"><a href="#cb7-132"></a><span class="fu">### El último</span></span>
-<span id="cb7-133"><a href="#cb7-133"></a></span>
-<span id="cb7-136"><a href="#cb7-136"></a><span class="in">```{r}</span></span>
-<span id="cb7-137"><a href="#cb7-137"></a><span class="co">#- tercer gráfico</span></span>
-<span id="cb7-138"><a href="#cb7-138"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb7-139"><a href="#cb7-139"></a><span class="in">```</span></span>
-<span id="cb7-140"><a href="#cb7-140"></a></span>
-<span id="cb7-141"><a href="#cb7-141"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb7-142"><a href="#cb7-142"></a></span>
-<span id="cb7-143"><a href="#cb7-143"></a>Con esto acabo mi trabajo para BigData!!</span>
-<span id="cb7-144"><a href="#cb7-144"></a></span>
-<span id="cb7-145"><a href="#cb7-145"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb7-146"><a href="#cb7-146"></a></span>
-<span id="cb7-147"><a href="#cb7-147"></a>----------------------</span>
-<span id="cb7-148"><a href="#cb7-148"></a></span>
-<span id="cb7-149"><a href="#cb7-149"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb7-150"><a href="#cb7-150"></a></span>
-<span id="cb7-151"><a href="#cb7-151"></a><span class="fu">### Información sobre la sesión</span></span>
-<span id="cb7-152"><a href="#cb7-152"></a></span>
-<span id="cb7-153"><a href="#cb7-153"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
-<span id="cb7-154"><a href="#cb7-154"></a></span>
-<span id="cb7-157"><a href="#cb7-157"></a><span class="in">```{r}</span></span>
-<span id="cb7-158"><a href="#cb7-158"></a><span class="co">#| echo: false</span></span>
-<span id="cb7-159"><a href="#cb7-159"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-160"><a href="#cb7-160"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
-<span id="cb7-161"><a href="#cb7-161"></a><span class="in">```</span></span>
-<span id="cb7-162"><a href="#cb7-162"></a></span>
-<span id="cb7-163"><a href="#cb7-163"></a></span>
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="an">title:</span><span class="co"> "VIVIENDA EN ESPAÑA"</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">  Vamos a analizar el mercado de la vivienda y comprarlo con su accesibilidad de los jóvenes </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="an">author:</span><span class="co">   </span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">  - Saúl Gil\n   </span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">  - Pedro Peñalver\n</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">  - Joel Seguí</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="an">date:</span><span class="co"> 2023-11-01                           #--</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="an">categories:</span><span class="co"> [Trabajo BigData, Vivienda]      #--</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="an">image:</span><span class="co"> "./imagenes/my_favicon.png"</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="an">title-block-banner:</span><span class="co"> true #- {true, false, "green","#AA0000"}</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="an">title-block-banner-color:</span><span class="co"> "lightgrey"    #-"#FFFFFF" </span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="an">toc-depth:</span><span class="co"> 3</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="an">smooth-scroll:</span><span class="co"> true</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co">  html:</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="co">    #backgroundcolor: "#F1F3F4"</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="co">    #embed-resources: true</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="co">    #css: ./assets/my_css_file.css   #- CUIDADO!!!!</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a><span class="an">code-link:</span><span class="co"> true</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="co">---</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a></span>
+<span id="cb8-26"><a href="#cb8-26"></a></span>
+<span id="cb8-27"><a href="#cb8-27"></a><span class="fu"># Introducción </span></span>
+<span id="cb8-28"><a href="#cb8-28"></a></span>
+<span id="cb8-29"><a href="#cb8-29"></a>El objetivo de este trabajo es analizar la situación en la que se encuentran los jóvenes a la hora de acceder al mercado laboral. Para ello analizaremos diferentes métricas entre las que se encuentran: Evolución de los niveles de precios de la vivienda a nivel nacional y autonómico, comparación de esta con la de los salarios reales…</span>
+<span id="cb8-30"><a href="#cb8-30"></a></span>
+<span id="cb8-31"><a href="#cb8-31"></a>De esta manera constataremos las dificultades a alas que se enfrentan los jóvenes españoles para emanciparse. También extraeremos conclusiones sobre si es así en todo el país o si por el contrario hay diferencias según el área geográfica. </span>
+<span id="cb8-32"><a href="#cb8-32"></a></span>
+<span id="cb8-33"><a href="#cb8-33"></a>#Datos del trabajo</span>
+<span id="cb8-34"><a href="#cb8-34"></a></span>
+<span id="cb8-35"><a href="#cb8-35"></a>Vamos a utilizar datos de los paquetes <span class="in">`pxR`</span> <span class="kw">&lt;i&gt;</span>(ine)<span class="kw">&lt;/I&gt;</span>, <span class="in">`eurostat`</span> además de proveedores de datos externos.</span>
+<span id="cb8-36"><a href="#cb8-36"></a></span>
+<span id="cb8-39"><a href="#cb8-39"></a><span class="in">```{R}</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a><span class="co">#Paquetes Preliminares</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a><span class="fu">library</span>(pxR)</span>
+<span id="cb8-42"><a href="#cb8-42"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-43"><a href="#cb8-43"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb8-44"><a href="#cb8-44"></a><span class="fu">library</span>(rlist)</span>
+<span id="cb8-45"><a href="#cb8-45"></a><span class="fu">library</span>(fs)</span>
+<span id="cb8-46"><a href="#cb8-46"></a><span class="fu">library</span>(curl)</span>
+<span id="cb8-47"><a href="#cb8-47"></a><span class="fu">library</span>(rio)</span>
+<span id="cb8-48"><a href="#cb8-48"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb8-49"><a href="#cb8-49"></a><span class="fu">library</span>(downloader)</span>
+<span id="cb8-50"><a href="#cb8-50"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb8-51"><a href="#cb8-51"></a></span>
+<span id="cb8-52"><a href="#cb8-52"></a><span class="co">#-------------------Creamos una carpeta para guardar los datos------------------</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a></span>
+<span id="cb8-54"><a href="#cb8-54"></a><span class="fu">dir_create</span>(<span class="st">"./docs/datos"</span>)</span>
+<span id="cb8-55"><a href="#cb8-55"></a></span>
+<span id="cb8-56"><a href="#cb8-56"></a><span class="co">#Descargamos los datos y los exportamos sin pulir: </span></span>
+<span id="cb8-57"><a href="#cb8-57"></a></span>
+<span id="cb8-58"><a href="#cb8-58"></a><span class="co">#---------------------Índice de Precios de Vivienda-----------------------------</span></span>
+<span id="cb8-59"><a href="#cb8-59"></a></span>
+<span id="cb8-60"><a href="#cb8-60"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"</span></span>
+<span id="cb8-61"><a href="#cb8-61"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url)</span>
+<span id="cb8-62"><a href="#cb8-62"></a></span>
+<span id="cb8-63"><a href="#cb8-63"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb8-64"><a href="#cb8-64"></a></span>
+<span id="cb8-65"><a href="#cb8-65"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb8-66"><a href="#cb8-66"></a>IPV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb8-67"><a href="#cb8-67"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()[<span class="sc">!</span><span class="fu">ls</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IPV"</span>)])</span>
+<span id="cb8-68"><a href="#cb8-68"></a></span>
+<span id="cb8-69"><a href="#cb8-69"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb8-70"><a href="#cb8-70"></a><span class="fu">write.csv</span>(IPV,  <span class="at">file =</span> <span class="st">"./docs/datos/ipv.csv"</span>)</span>
+<span id="cb8-71"><a href="#cb8-71"></a><span class="co">#-------------------------Compra-venta de vivienda------------------------------</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a></span>
+<span id="cb8-73"><a href="#cb8-73"></a>ruta_xls <span class="ot">&lt;-</span> <span class="st">"https://apps.fomento.gob.es/BoletinOnline2/sedal/34010110.XLS"</span></span>
+<span id="cb8-74"><a href="#cb8-74"></a></span>
+<span id="cb8-75"><a href="#cb8-75"></a><span class="fu">download.file</span>(ruta_xls, <span class="st">"datos.xls"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb8-76"><a href="#cb8-76"></a></span>
+<span id="cb8-77"><a href="#cb8-77"></a>nombres_hojas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2004,2005,2006,2007,2008"</span>, <span class="st">"2009,2010,2011,2012,2013"</span>, </span>
+<span id="cb8-78"><a href="#cb8-78"></a>                   <span class="st">"2014,2015,2016,2017,2018"</span>, <span class="st">"2019,2020,2021,2022,2023"</span>)</span>
+<span id="cb8-79"><a href="#cb8-79"></a><span class="co"># Leer todas las hojas en una lista</span></span>
+<span id="cb8-80"><a href="#cb8-80"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(nombres_hojas)) {</span>
+<span id="cb8-81"><a href="#cb8-81"></a>  hoja <span class="ot">&lt;-</span> nombres_hojas[i]</span>
+<span id="cb8-82"><a href="#cb8-82"></a>  df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"datos.xls"</span>, <span class="at">sheet =</span> i) </span>
+<span id="cb8-83"><a href="#cb8-83"></a>  <span class="fu">write.csv</span>(df, <span class="at">file =</span> <span class="fu">paste0</span>(hoja, <span class="st">".csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)}</span>
+<span id="cb8-84"><a href="#cb8-84"></a></span>
+<span id="cb8-85"><a href="#cb8-85"></a><span class="co">#Juntamos las cuatro sheets en una y después arreglaremos el desastre</span></span>
+<span id="cb8-86"><a href="#cb8-86"></a>compraventa_2004 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2004,2005,2006,2007,2008.csv"</span>)</span>
+<span id="cb8-87"><a href="#cb8-87"></a>compraventa_2009 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2009,2010,2011,2012,2013.csv"</span>)</span>
+<span id="cb8-88"><a href="#cb8-88"></a>compraventa_2014 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2014,2015,2016,2017,2018.csv"</span>)</span>
+<span id="cb8-89"><a href="#cb8-89"></a>compraventa_2019 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"2019,2020,2021,2022,2023.csv"</span>)</span>
+<span id="cb8-90"><a href="#cb8-90"></a></span>
+<span id="cb8-91"><a href="#cb8-91"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(compraventa_2009,compraventa_2014)</span>
+<span id="cb8-92"><a href="#cb8-92"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(cv,compraventa_2019)</span>
+<span id="cb8-93"><a href="#cb8-93"></a>compraventa_2004 <span class="ot">&lt;-</span> compraventa_2004[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cv), ]</span>
+<span id="cb8-94"><a href="#cb8-94"></a>cv <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(cv,compraventa_2004)</span>
+<span id="cb8-95"><a href="#cb8-95"></a></span>
+<span id="cb8-96"><a href="#cb8-96"></a></span>
+<span id="cb8-97"><a href="#cb8-97"></a>cv <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb8-98"><a href="#cb8-98"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">72</span>)</span>
+<span id="cb8-99"><a href="#cb8-99"></a>cv <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb8-100"><a href="#cb8-100"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="dv">2</span>)</span>
+<span id="cb8-101"><a href="#cb8-101"></a></span>
+<span id="cb8-102"><a href="#cb8-102"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb8-103"><a href="#cb8-103"></a><span class="fu">write.csv</span>(cv,  <span class="at">file =</span> <span class="st">"./docs/datos/cv.csv"</span>)</span>
+<span id="cb8-104"><a href="#cb8-104"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb8-105"><a href="#cb8-105"></a></span>
+<span id="cb8-106"><a href="#cb8-106"></a></span>
+<span id="cb8-107"><a href="#cb8-107"></a><span class="co">#--------------------------Renta por edad y sexo--------------------------------</span></span>
+<span id="cb8-108"><a href="#cb8-108"></a></span>
+<span id="cb8-109"><a href="#cb8-109"></a>url3 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9942.px?nocab=1"</span></span>
+<span id="cb8-110"><a href="#cb8-110"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url3)</span>
+<span id="cb8-111"><a href="#cb8-111"></a></span>
+<span id="cb8-112"><a href="#cb8-112"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb8-113"><a href="#cb8-113"></a></span>
+<span id="cb8-114"><a href="#cb8-114"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb8-115"><a href="#cb8-115"></a>renta_edad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb8-116"><a href="#cb8-116"></a></span>
+<span id="cb8-117"><a href="#cb8-117"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb8-118"><a href="#cb8-118"></a><span class="fu">write.csv</span>(renta_edad, <span class="at">file =</span> <span class="st">"./docs/datos/renta_edad.csv"</span>)</span>
+<span id="cb8-119"><a href="#cb8-119"></a></span>
+<span id="cb8-120"><a href="#cb8-120"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb8-121"><a href="#cb8-121"></a><span class="co">#---------------------------Renta por nacionalidad------------------------------</span></span>
+<span id="cb8-122"><a href="#cb8-122"></a></span>
+<span id="cb8-123"><a href="#cb8-123"></a>url4 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9945.px?nocab=1"</span></span>
+<span id="cb8-124"><a href="#cb8-124"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url4)</span>
+<span id="cb8-125"><a href="#cb8-125"></a></span>
+<span id="cb8-126"><a href="#cb8-126"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb8-127"><a href="#cb8-127"></a></span>
+<span id="cb8-128"><a href="#cb8-128"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb8-129"><a href="#cb8-129"></a>renta_nacionalidad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb8-130"><a href="#cb8-130"></a></span>
+<span id="cb8-131"><a href="#cb8-131"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb8-132"><a href="#cb8-132"></a><span class="fu">write.csv</span>(renta_nacionalidad, <span class="at">file =</span> <span class="st">"./docs/datos/renta_nacionalidad.csv"</span>)</span>
+<span id="cb8-133"><a href="#cb8-133"></a></span>
+<span id="cb8-134"><a href="#cb8-134"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb8-135"><a href="#cb8-135"></a></span>
+<span id="cb8-136"><a href="#cb8-136"></a></span>
+<span id="cb8-137"><a href="#cb8-137"></a><span class="co">#---------------------Hogares por regimen de tenencia edad----------------------</span></span>
+<span id="cb8-138"><a href="#cb8-138"></a></span>
+<span id="cb8-139"><a href="#cb8-139"></a>url4 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/px/9994.px?nocab=1"</span></span>
+<span id="cb8-140"><a href="#cb8-140"></a>aa <span class="ot">&lt;-</span> <span class="fu">read.px</span>(url4)</span>
+<span id="cb8-141"><a href="#cb8-141"></a></span>
+<span id="cb8-142"><a href="#cb8-142"></a><span class="co">#Lo convertimos a CSV para simplificar y creamos un dataframe</span></span>
+<span id="cb8-143"><a href="#cb8-143"></a></span>
+<span id="cb8-144"><a href="#cb8-144"></a><span class="fu">write.csv</span>(aa, <span class="at">file =</span> <span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb8-145"><a href="#cb8-145"></a>vivienda_edad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
+<span id="cb8-146"><a href="#cb8-146"></a></span>
+<span id="cb8-147"><a href="#cb8-147"></a><span class="co">#Los guardamos sin arreglar</span></span>
+<span id="cb8-148"><a href="#cb8-148"></a><span class="fu">write.csv</span>(vivienda_edad, <span class="at">file =</span> <span class="st">"./docs/datos/vivienda_datos.csv"</span>)</span>
+<span id="cb8-149"><a href="#cb8-149"></a></span>
+<span id="cb8-150"><a href="#cb8-150"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb8-151"><a href="#cb8-151"></a></span>
+<span id="cb8-152"><a href="#cb8-152"></a><span class="co">#Borramos archivos como las sheets separadas y otros datos</span></span>
+<span id="cb8-153"><a href="#cb8-153"></a><span class="fu">file.remove</span>(<span class="st">"2004,2005,2006,2007,2008.csv"</span>, <span class="st">"2009,2010,2011,2012,2013.csv"</span>,</span>
+<span id="cb8-154"><a href="#cb8-154"></a>            <span class="st">"2014,2015,2016,2017,2018.csv"</span>, <span class="st">"2019,2020,2021,2022,2023.csv"</span>, </span>
+<span id="cb8-155"><a href="#cb8-155"></a>            <span class="st">"compraventa.csv"</span>, <span class="st">"data.csv"</span>, <span class="st">"datos.xls"</span>, <span class="st">"./docs/datos/25171.px"</span>,</span>
+<span id="cb8-156"><a href="#cb8-156"></a>            <span class="st">"./docs/datos/34010110.XLS"</span>)</span>
+<span id="cb8-157"><a href="#cb8-157"></a></span>
+<span id="cb8-158"><a href="#cb8-158"></a><span class="co">#----------------------Procedemos a limpiar los datos---------------------------</span></span>
+<span id="cb8-159"><a href="#cb8-159"></a></span>
+<span id="cb8-160"><a href="#cb8-160"></a><span class="co">#-------------Creamos una carpeta para guardar los datos pulidos----------------</span></span>
+<span id="cb8-161"><a href="#cb8-161"></a></span>
+<span id="cb8-162"><a href="#cb8-162"></a><span class="fu">dir_create</span>(<span class="st">"./datos_pulidos"</span>)</span>
+<span id="cb8-163"><a href="#cb8-163"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb8-164"><a href="#cb8-164"></a></span>
+<span id="cb8-165"><a href="#cb8-165"></a><span class="do">###AHORA LIMPIAMOS LOS DATOS PARA TRABAJAR MEJOR CON ELLOS###</span></span>
+<span id="cb8-166"><a href="#cb8-166"></a></span>
+<span id="cb8-167"><a href="#cb8-167"></a><span class="co">#-------------------Indice de precios de la Vivienda----------------------------</span></span>
+<span id="cb8-168"><a href="#cb8-168"></a></span>
+<span id="cb8-169"><a href="#cb8-169"></a>cv <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file =</span> <span class="st">"./docs/datos/cv.csv"</span>)</span>
+<span id="cb8-170"><a href="#cb8-170"></a></span>
+<span id="cb8-171"><a href="#cb8-171"></a><span class="co">#Elimino las columnas duplicadas indicando el nombre de la provincia </span></span>
+<span id="cb8-172"><a href="#cb8-172"></a><span class="co">#para dejar solo una columna de provincias</span></span>
+<span id="cb8-173"><a href="#cb8-173"></a></span>
+<span id="cb8-174"><a href="#cb8-174"></a>cv <span class="ot">&lt;-</span> cv[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb8-175"><a href="#cb8-175"></a><span class="fu">colnames</span>(cv) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb8-176"><a href="#cb8-176"></a>columnas_duplicadas <span class="ot">&lt;-</span> <span class="fu">duplicated</span>(<span class="fu">t</span>(cv))</span>
+<span id="cb8-177"><a href="#cb8-177"></a><span class="fu">print</span>(columnas_duplicadas)</span>
+<span id="cb8-178"><a href="#cb8-178"></a></span>
+<span id="cb8-179"><a href="#cb8-179"></a>cv <span class="ot">&lt;-</span> cv[, <span class="sc">!</span>columnas_duplicadas]</span>
+<span id="cb8-180"><a href="#cb8-180"></a><span class="fu">colnames</span>(cv) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"col_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cv))</span>
+<span id="cb8-181"><a href="#cb8-181"></a><span class="co">#Elimino otra columnaa duplicadaa que el argumento no encuenrtra </span></span>
+<span id="cb8-182"><a href="#cb8-182"></a></span>
+<span id="cb8-183"><a href="#cb8-183"></a>cv <span class="ot">&lt;-</span> cv[, <span class="sc">-</span><span class="dv">62</span>]</span>
+<span id="cb8-184"><a href="#cb8-184"></a></span>
+<span id="cb8-185"><a href="#cb8-185"></a><span class="co">#Doy nombre a la posición [1,2] de provincias para después poder trabajar mejor</span></span>
+<span id="cb8-186"><a href="#cb8-186"></a><span class="co">#Ya que convertiremos la primera fila en colnames</span></span>
+<span id="cb8-187"><a href="#cb8-187"></a></span>
+<span id="cb8-188"><a href="#cb8-188"></a>cv[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"Provincia"</span></span>
+<span id="cb8-189"><a href="#cb8-189"></a><span class="fu">colnames</span>(cv)</span>
+<span id="cb8-190"><a href="#cb8-190"></a></span>
+<span id="cb8-191"><a href="#cb8-191"></a><span class="co">#Seleccionamos la primera fila del df y lo convertimos en un vector. Después, </span></span>
+<span id="cb8-192"><a href="#cb8-192"></a><span class="co">#Hacemos que los NA se sustituyan por el texto de su izquierda (Remplazamos NA`s</span></span>
+<span id="cb8-193"><a href="#cb8-193"></a><span class="co">#por el año al que corresponde esa columnas)</span></span>
+<span id="cb8-194"><a href="#cb8-194"></a></span>
+<span id="cb8-195"><a href="#cb8-195"></a>df <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span></span>
+<span id="cb8-196"><a href="#cb8-196"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-197"><a href="#cb8-197"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb8-198"><a href="#cb8-198"></a></span>
+<span id="cb8-199"><a href="#cb8-199"></a>df <span class="ot">&lt;-</span> <span class="fu">na.locf</span>(df)</span>
+<span id="cb8-200"><a href="#cb8-200"></a></span>
+<span id="cb8-201"><a href="#cb8-201"></a><span class="co">#Ahora convertimos el vector en la fila 1 que después convrtiremos en colnames</span></span>
+<span id="cb8-202"><a href="#cb8-202"></a><span class="co">#para trabajar mejor.</span></span>
+<span id="cb8-203"><a href="#cb8-203"></a></span>
+<span id="cb8-204"><a href="#cb8-204"></a>cv[<span class="dv">1</span>,] <span class="ot">&lt;-</span> df </span>
+<span id="cb8-205"><a href="#cb8-205"></a></span>
+<span id="cb8-206"><a href="#cb8-206"></a><span class="co">#Juntamos la fila 1 y 2 a partir de la tercer columna separando el texto con "_" </span></span>
+<span id="cb8-207"><a href="#cb8-207"></a><span class="co">#y le rellenamos las dos columnas restantes con los nombres que nos vengan mejor </span></span>
+<span id="cb8-208"><a href="#cb8-208"></a><span class="co">#para trabajar</span></span>
+<span id="cb8-209"><a href="#cb8-209"></a>aa <span class="ot">&lt;-</span> cv[<span class="dv">1</span>,]</span>
+<span id="cb8-210"><a href="#cb8-210"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"Provincia"</span>,<span class="fu">paste</span>(cv[<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(cv)],cv[<span class="dv">2</span>,<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(cv)], <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb8-211"><a href="#cb8-211"></a></span>
+<span id="cb8-212"><a href="#cb8-212"></a><span class="co">#Convertimos el vector aa en colnames</span></span>
+<span id="cb8-213"><a href="#cb8-213"></a></span>
+<span id="cb8-214"><a href="#cb8-214"></a><span class="fu">colnames</span>(cv) <span class="ot">=</span> aa</span>
+<span id="cb8-215"><a href="#cb8-215"></a></span>
+<span id="cb8-216"><a href="#cb8-216"></a><span class="co">#Quitamos la primera y la segunda fila, es información que ya indica colnames</span></span>
+<span id="cb8-217"><a href="#cb8-217"></a></span>
+<span id="cb8-218"><a href="#cb8-218"></a>cv <span class="ot">&lt;-</span> cv[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="sc">-</span>(<span class="dv">1</span>)]</span>
+<span id="cb8-219"><a href="#cb8-219"></a><span class="fu">colnames</span>(cv)</span>
+<span id="cb8-220"><a href="#cb8-220"></a></span>
+<span id="cb8-221"><a href="#cb8-221"></a><span class="co">#Hacemos que todas las columnas que indican año_trimestre pivoten y dejen los</span></span>
+<span id="cb8-222"><a href="#cb8-222"></a><span class="co">#valores que contenían las transacciones por un lado y el año_trimestre por otro</span></span>
+<span id="cb8-223"><a href="#cb8-223"></a></span>
+<span id="cb8-224"><a href="#cb8-224"></a>Transacciones_por_provincia <span class="ot">&lt;-</span> cv <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Año"</span>), </span>
+<span id="cb8-225"><a href="#cb8-225"></a>                                                   <span class="at">names_to =</span> <span class="st">"Año_Trimestre"</span>, </span>
+<span id="cb8-226"><a href="#cb8-226"></a>                                                   <span class="at">names_prefix =</span> <span class="st">"Año"</span>, </span>
+<span id="cb8-227"><a href="#cb8-227"></a>                                                   <span class="at">values_to =</span> <span class="st">"Transacciones"</span>,</span>
+<span id="cb8-228"><a href="#cb8-228"></a>                                                   <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-229"><a href="#cb8-229"></a></span>
+<span id="cb8-230"><a href="#cb8-230"></a><span class="co">#Guardamos en la carpeta(en formato .csv) de datos pulidos y seguimos</span></span>
+<span id="cb8-231"><a href="#cb8-231"></a></span>
+<span id="cb8-232"><a href="#cb8-232"></a><span class="fu">write.csv</span>(Transacciones_por_provincia, </span>
+<span id="cb8-233"><a href="#cb8-233"></a>          <span class="at">file =</span> <span class="st">"datos_pulidos/Transacciones_por_povincia.csv"</span>)</span>
+<span id="cb8-234"><a href="#cb8-234"></a></span>
+<span id="cb8-235"><a href="#cb8-235"></a><span class="co">#----------------Índice de precios de la vivienda-------------------------------</span></span>
+<span id="cb8-236"><a href="#cb8-236"></a></span>
+<span id="cb8-237"><a href="#cb8-237"></a></span>
+<span id="cb8-238"><a href="#cb8-238"></a>ipv <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file =</span> <span class="st">"./docs/datos/ipv.csv"</span>)</span>
+<span id="cb8-239"><a href="#cb8-239"></a></span>
+<span id="cb8-240"><a href="#cb8-240"></a><span class="co">#Estos datos están bien, quitamos las dos columnas que no aportan y los guardamos</span></span>
+<span id="cb8-241"><a href="#cb8-241"></a>ipv <span class="ot">&lt;-</span> ipv[,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span>
+<span id="cb8-242"><a href="#cb8-242"></a></span>
+<span id="cb8-243"><a href="#cb8-243"></a><span class="fu">write.csv</span>(ipv, <span class="at">file =</span> <span class="st">"./datos_pulidos/indice_precio_vivienda.csv"</span>)</span>
+<span id="cb8-244"><a href="#cb8-244"></a></span>
+<span id="cb8-245"><a href="#cb8-245"></a><span class="co">#rm(list = ls())</span></span>
+<span id="cb8-246"><a href="#cb8-246"></a></span>
+<span id="cb8-247"><a href="#cb8-247"></a></span>
+<span id="cb8-248"><a href="#cb8-248"></a><span class="co">#----------------Renta por edad-------------------------------------------------</span></span>
+<span id="cb8-249"><a href="#cb8-249"></a></span>
+<span id="cb8-250"><a href="#cb8-250"></a>re <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file  =</span> <span class="st">"./docs/datos/renta_edad.csv"</span>)</span>
+<span id="cb8-251"><a href="#cb8-251"></a></span>
+<span id="cb8-252"><a href="#cb8-252"></a><span class="co">#Renombramos las columnas, seleccionamos lo que nos interesa y borramos el restante</span></span>
+<span id="cb8-253"><a href="#cb8-253"></a><span class="co">#Exportamos</span></span>
+<span id="cb8-254"><a href="#cb8-254"></a>re <span class="ot">&lt;-</span> re <span class="sc">%&gt;%</span></span>
+<span id="cb8-255"><a href="#cb8-255"></a>  <span class="fu">rename</span>(<span class="at">renta =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-256"><a href="#cb8-256"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"X"</span>))</span>
+<span id="cb8-257"><a href="#cb8-257"></a></span>
+<span id="cb8-258"><a href="#cb8-258"></a><span class="fu">write.csv</span>(re, <span class="at">file =</span> <span class="st">"./datos_pulidos/renta_por_edad.csv"</span>)</span>
+<span id="cb8-259"><a href="#cb8-259"></a></span>
+<span id="cb8-260"><a href="#cb8-260"></a></span>
+<span id="cb8-261"><a href="#cb8-261"></a></span>
+<span id="cb8-262"><a href="#cb8-262"></a></span>
+<span id="cb8-263"><a href="#cb8-263"></a><span class="co">#----------------Régimen tenencia de vivienda por edad--------------------------</span></span>
+<span id="cb8-264"><a href="#cb8-264"></a></span>
+<span id="cb8-265"><a href="#cb8-265"></a>vd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="at">file  =</span> <span class="st">"./docs/datos/vivienda_datos.csv"</span>)</span>
+<span id="cb8-266"><a href="#cb8-266"></a></span>
+<span id="cb8-267"><a href="#cb8-267"></a><span class="co">#Renombramos las columnas, seleccionamos lo que nos interesa y borramos el restante</span></span>
+<span id="cb8-268"><a href="#cb8-268"></a><span class="co">#Exportamos</span></span>
+<span id="cb8-269"><a href="#cb8-269"></a>vd<span class="ot">&lt;-</span> vd <span class="sc">%&gt;%</span></span>
+<span id="cb8-270"><a href="#cb8-270"></a>  <span class="fu">rename</span>(<span class="at">Porcentaje =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-271"><a href="#cb8-271"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"X"</span>))</span>
+<span id="cb8-272"><a href="#cb8-272"></a></span>
+<span id="cb8-273"><a href="#cb8-273"></a><span class="fu">write.csv</span>(vd, <span class="at">file =</span> <span class="st">"./datos_pulidos/tenencia_de_vivienda.csv"</span>)</span>
+<span id="cb8-274"><a href="#cb8-274"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb8-275"><a href="#cb8-275"></a></span>
+<span id="cb8-276"><a href="#cb8-276"></a><span class="co">#--------------------IMPORTAR DATOS CE / EUROSTAT-------------------------------</span></span>
+<span id="cb8-277"><a href="#cb8-277"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co">#- para quitar la notación científica</span></span>
+<span id="cb8-278"><a href="#cb8-278"></a></span>
+<span id="cb8-279"><a href="#cb8-279"></a><span class="fu">library</span>(eurostat) </span>
+<span id="cb8-280"><a href="#cb8-280"></a><span class="fu">library</span>(DT) </span>
+<span id="cb8-281"><a href="#cb8-281"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-282"><a href="#cb8-282"></a></span>
+<span id="cb8-283"><a href="#cb8-283"></a>info <span class="ot">&lt;-</span> <span class="fu">search_eurostat</span>(<span class="st">"GDP"</span>, <span class="at">type =</span> <span class="st">"all"</span>)</span>
+<span id="cb8-284"><a href="#cb8-284"></a>my_table <span class="ot">&lt;-</span><span class="st">"sdg_08_10"</span></span>
+<span id="cb8-285"><a href="#cb8-285"></a></span>
+<span id="cb8-286"><a href="#cb8-286"></a><span class="co">#Comprobamos que es el PIB pc</span></span>
+<span id="cb8-287"><a href="#cb8-287"></a><span class="fu">label_eurostat_tables</span>(my_table)</span>
+<span id="cb8-288"><a href="#cb8-288"></a></span>
+<span id="cb8-289"><a href="#cb8-289"></a>df_original <span class="ot">&lt;-</span> <span class="fu">get_eurostat</span>(my_table, <span class="at">time_format =</span> <span class="st">'raw'</span>, <span class="at">keepFlags =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-290"><a href="#cb8-290"></a>df_names <span class="ot">&lt;-</span> <span class="fu">names</span>(df_original)</span>
+<span id="cb8-291"><a href="#cb8-291"></a>df_original <span class="ot">&lt;-</span> <span class="fu">label_eurostat</span>(df_original, <span class="at">code =</span> df_names, <span class="at">fix_duplicated =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-292"><a href="#cb8-292"></a></span>
+<span id="cb8-293"><a href="#cb8-293"></a><span class="co">#Creamos otro df para trabajor con él </span></span>
+<span id="cb8-294"><a href="#cb8-294"></a></span>
+<span id="cb8-295"><a href="#cb8-295"></a>df <span class="ot">&lt;-</span> df_original</span>
+<span id="cb8-296"><a href="#cb8-296"></a></span>
+<span id="cb8-297"><a href="#cb8-297"></a><span class="co">#Ver que hay en el df</span></span>
+<span id="cb8-298"><a href="#cb8-298"></a>df_aa <span class="ot">&lt;-</span> pjpv.curso.R<span class="fl">.2022</span><span class="sc">::</span><span class="fu">pjp_dicc</span>(df)</span>
+<span id="cb8-299"><a href="#cb8-299"></a>df_bb <span class="ot">&lt;-</span> pjpv.curso.R<span class="fl">.2022</span><span class="sc">::</span><span class="fu">pjp_valores_unicos</span>(df, <span class="at">nn =</span> <span class="dv">400</span>)</span>
+<span id="cb8-300"><a href="#cb8-300"></a></span>
+<span id="cb8-301"><a href="#cb8-301"></a><span class="co">#Vamos a hacer un poco de limpieza</span></span>
+<span id="cb8-302"><a href="#cb8-302"></a>obj_buenos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"df"</span>, <span class="st">"df_original"</span>, <span class="st">"df_bb"</span>)</span>
+<span id="cb8-303"><a href="#cb8-303"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), obj_buenos))</span>
+<span id="cb8-304"><a href="#cb8-304"></a></span>
+<span id="cb8-305"><a href="#cb8-305"></a><span class="co">#Vamos a seguir arreglando el df</span></span>
+<span id="cb8-306"><a href="#cb8-306"></a></span>
+<span id="cb8-307"><a href="#cb8-307"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb8-308"><a href="#cb8-308"></a>  <span class="fu">rename</span>(<span class="at">year =</span> time_code) <span class="sc">|&gt;</span> </span>
+<span id="cb8-309"><a href="#cb8-309"></a>  <span class="fu">rename</span>(<span class="at">PIB_pc =</span> values) <span class="sc">|&gt;</span> </span>
+<span id="cb8-310"><a href="#cb8-310"></a>  <span class="fu">rename</span>(<span class="at">country =</span> geo)</span>
+<span id="cb8-311"><a href="#cb8-311"></a></span>
+<span id="cb8-312"><a href="#cb8-312"></a><span class="co">#Chain linked volumes (2010), euro per capita</span></span>
+<span id="cb8-313"><a href="#cb8-313"></a><span class="co">#Solo queremos el PIB_pc</span></span>
+<span id="cb8-314"><a href="#cb8-314"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb8-315"><a href="#cb8-315"></a>  <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Chain linked volumes (2010), euro per capita"</span>)</span>
+<span id="cb8-316"><a href="#cb8-316"></a></span>
+<span id="cb8-317"><a href="#cb8-317"></a><span class="co">#Eliminamos todo lo que nos molesta a la vista </span></span>
+<span id="cb8-318"><a href="#cb8-318"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb8-319"><a href="#cb8-319"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(unit_code, values_code, unit, time, na_item_code, na_item, flags))</span>
+<span id="cb8-320"><a href="#cb8-320"></a></span>
+<span id="cb8-321"><a href="#cb8-321"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">year =</span>  <span class="fu">as.numeric</span>(year))</span>
+<span id="cb8-322"><a href="#cb8-322"></a></span>
+<span id="cb8-323"><a href="#cb8-323"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">iso_2_code =</span>  eurostat<span class="sc">::</span><span class="fu">harmonize_country_code</span>(geo_code))</span>
+<span id="cb8-324"><a href="#cb8-324"></a></span>
+<span id="cb8-325"><a href="#cb8-325"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb8-326"><a href="#cb8-326"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(geo_code, flags_code))</span>
+<span id="cb8-327"><a href="#cb8-327"></a></span>
+<span id="cb8-328"><a href="#cb8-328"></a></span>
+<span id="cb8-329"><a href="#cb8-329"></a><span class="fu">library</span>(fs)</span>
+<span id="cb8-330"><a href="#cb8-330"></a><span class="fu">dir_create</span>(<span class="st">"datos_pulidos"</span>)</span>
+<span id="cb8-331"><a href="#cb8-331"></a></span>
+<span id="cb8-332"><a href="#cb8-332"></a><span class="co">#A continuación vamos a exportar los datos para luego importarlas más fácilmente #library(rio)</span></span>
+<span id="cb8-333"><a href="#cb8-333"></a></span>
+<span id="cb8-334"><a href="#cb8-334"></a><span class="fu">export</span>(df, <span class="st">"./datos_pulidos/PIB_pc.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb8-335"><a href="#cb8-335"></a><span class="co">#---------------DATOS SOBRE EL SALARIO POR NIVEL DE FORMACIÓN-------------------</span></span>
+<span id="cb8-336"><a href="#cb8-336"></a></span>
+<span id="cb8-337"><a href="#cb8-337"></a><span class="fu">library</span>(rio)</span>
+<span id="cb8-338"><a href="#cb8-338"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-339"><a href="#cb8-339"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/13931.csv?nocab=1"</span></span>
+<span id="cb8-340"><a href="#cb8-340"></a>df_ine <span class="ot">&lt;-</span> <span class="fu">import</span>(url)</span>
+<span id="cb8-341"><a href="#cb8-341"></a>df_ine_01 <span class="ot">&lt;-</span> df_ine <span class="sc">|&gt;</span> </span>
+<span id="cb8-342"><a href="#cb8-342"></a>  <span class="fu">filter</span>(Decil <span class="sc">%in%</span> (<span class="st">"Total decil"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-343"><a href="#cb8-343"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Tipo de jornada"</span>, <span class="st">"NIVELES DE FORMACION"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-344"><a href="#cb8-344"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span> </span>
+<span id="cb8-345"><a href="#cb8-345"></a>  <span class="fu">rename</span>(<span class="at">jornada =</span> <span class="st">'Tipo de jornada'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-346"><a href="#cb8-346"></a>  <span class="fu">rename</span>(<span class="at">formacion =</span> <span class="st">'NIVELES DE FORMACION'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-347"><a href="#cb8-347"></a>  <span class="fu">rename</span>(<span class="at">salario =</span> Total)</span>
+<span id="cb8-348"><a href="#cb8-348"></a></span>
+<span id="cb8-349"><a href="#cb8-349"></a><span class="co">#VAMOS A CONVERTIR LA VARIABLE salario A NUMERIC</span></span>
+<span id="cb8-350"><a href="#cb8-350"></a></span>
+<span id="cb8-351"><a href="#cb8-351"></a><span class="co">#R y el INE me han jodiedo la vida para pasar esto a numeric (antes no funcionaba)</span></span>
+<span id="cb8-352"><a href="#cb8-352"></a>df_ine_01 <span class="ot">&lt;-</span> df_ine_01 <span class="sc">|&gt;</span> </span>
+<span id="cb8-353"><a href="#cb8-353"></a>  <span class="fu">mutate</span>(<span class="at">salario =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, salario))))</span>
+<span id="cb8-354"><a href="#cb8-354"></a></span>
+<span id="cb8-355"><a href="#cb8-355"></a><span class="fu">export</span>(df_ine_01,<span class="st">"./datos_pulidos/salario_formacion.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb8-356"><a href="#cb8-356"></a></span>
+<span id="cb8-357"><a href="#cb8-357"></a></span>
+<span id="cb8-358"><a href="#cb8-358"></a><span class="co">#-----------------------DATOS SOBRE EL SALARIO POR EDADES-----------------------</span></span>
+<span id="cb8-359"><a href="#cb8-359"></a></span>
+<span id="cb8-360"><a href="#cb8-360"></a>url_1 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/13928.csv?nocab=1"</span></span>
+<span id="cb8-361"><a href="#cb8-361"></a>df_ine_x1 <span class="ot">&lt;-</span> <span class="fu">import</span>(url_1)</span>
+<span id="cb8-362"><a href="#cb8-362"></a></span>
+<span id="cb8-363"><a href="#cb8-363"></a>df_ine_02 <span class="ot">&lt;-</span> df_ine_x1 <span class="sc">|&gt;</span> </span>
+<span id="cb8-364"><a href="#cb8-364"></a>  <span class="fu">filter</span>(Decil <span class="sc">%in%</span> (<span class="st">"Total decil"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-365"><a href="#cb8-365"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Tipo de jornada"</span>, <span class="st">"Grupo de edad"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-366"><a href="#cb8-366"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span> </span>
+<span id="cb8-367"><a href="#cb8-367"></a>  <span class="fu">rename</span>(<span class="at">jornada =</span> <span class="st">'Tipo de jornada'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-368"><a href="#cb8-368"></a>  <span class="fu">rename</span>(<span class="at">grupo_edad =</span> <span class="st">'Grupo de edad'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-369"><a href="#cb8-369"></a>  <span class="fu">rename</span>(<span class="at">salario =</span> Total)</span>
+<span id="cb8-370"><a href="#cb8-370"></a></span>
+<span id="cb8-371"><a href="#cb8-371"></a><span class="co">#PASAMOS A NUMERIC</span></span>
+<span id="cb8-372"><a href="#cb8-372"></a>df_ine_02 <span class="ot">&lt;-</span> df_ine_02 <span class="sc">|&gt;</span> </span>
+<span id="cb8-373"><a href="#cb8-373"></a>  <span class="fu">mutate</span>(<span class="at">salario =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, salario))))</span>
+<span id="cb8-374"><a href="#cb8-374"></a></span>
+<span id="cb8-375"><a href="#cb8-375"></a><span class="fu">export</span>(df_ine_02,<span class="st">"./datos_pulidos/salario_grupo_edad.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb8-376"><a href="#cb8-376"></a><span class="co">#------------------------------DATOS SOBRE EL IPC-------------------------------</span></span>
+<span id="cb8-377"><a href="#cb8-377"></a></span>
+<span id="cb8-378"><a href="#cb8-378"></a>url_2 <span class="ot">&lt;-</span> <span class="st">"https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/50908.csv?nocab=1"</span></span>
+<span id="cb8-379"><a href="#cb8-379"></a>df_ipc <span class="ot">&lt;-</span> <span class="fu">import</span>(url_2)</span>
+<span id="cb8-380"><a href="#cb8-380"></a></span>
+<span id="cb8-381"><a href="#cb8-381"></a>df_ipc_01 <span class="ot">&lt;-</span> df_ipc <span class="sc">|&gt;</span> </span>
+<span id="cb8-382"><a href="#cb8-382"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Grupos ECOICOP</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Índice general"</span>, <span class="st">"04 Vivienda, agua, electricidad, gas y otros combustibles"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-383"><a href="#cb8-383"></a>  <span class="fu">select</span>(<span class="st">"Periodo"</span>, <span class="st">"Grupos ECOICOP"</span>, <span class="st">"Tipo de dato"</span>, <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-384"><a href="#cb8-384"></a>  <span class="fu">rename</span>(<span class="at">year =</span> Periodo) <span class="sc">|&gt;</span></span>
+<span id="cb8-385"><a href="#cb8-385"></a>  <span class="fu">rename</span>(<span class="at">grupo =</span> <span class="st">'Grupos ECOICOP'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-386"><a href="#cb8-386"></a>  <span class="fu">rename</span>(<span class="at">tipo_dato =</span> <span class="st">`</span><span class="at">Tipo de dato</span><span class="st">`</span> ) </span>
+<span id="cb8-387"><a href="#cb8-387"></a></span>
+<span id="cb8-388"><a href="#cb8-388"></a><span class="co">#PASAMOS A NUMERIC</span></span>
+<span id="cb8-389"><a href="#cb8-389"></a>df_ipc_01 <span class="ot">&lt;-</span> df_ipc_01 <span class="sc">|&gt;</span> </span>
+<span id="cb8-390"><a href="#cb8-390"></a>  <span class="fu">mutate</span>(<span class="at">Total =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, Total))))</span>
+<span id="cb8-391"><a href="#cb8-391"></a></span>
+<span id="cb8-392"><a href="#cb8-392"></a><span class="co">#PARA SEPARAR EN LA VARIABLE YEAR LOS DATOS POR AÑOS Y MESES</span></span>
+<span id="cb8-393"><a href="#cb8-393"></a><span class="co">#df_sep &lt;- df_ipc_01 |&gt; </span></span>
+<span id="cb8-394"><a href="#cb8-394"></a><span class="co">#  separate(col = year, into = c("year", "month"), sep = "M")</span></span>
+<span id="cb8-395"><a href="#cb8-395"></a></span>
+<span id="cb8-396"><a href="#cb8-396"></a><span class="co">#df_sep &lt;- df_sep |&gt; </span></span>
+<span id="cb8-397"><a href="#cb8-397"></a><span class="co">#  mutate(month = paste0("M", month))</span></span>
+<span id="cb8-398"><a href="#cb8-398"></a></span>
+<span id="cb8-399"><a href="#cb8-399"></a><span class="fu">export</span>(df_ipc_01, <span class="st">"./datos_pulidos/IPC_mas_vivienda.csv"</span>, <span class="at">type =</span> <span class="st">"csv"</span>)</span>
+<span id="cb8-400"><a href="#cb8-400"></a></span>
+<span id="cb8-401"><a href="#cb8-401"></a><span class="in">```</span></span>
+<span id="cb8-402"><a href="#cb8-402"></a>---</span>
+<span id="cb8-403"><a href="#cb8-403"></a></span>
+<span id="cb8-404"><a href="#cb8-404"></a><span class="fu">## Evolución de la renta neta por edad</span></span>
+<span id="cb8-405"><a href="#cb8-405"></a></span>
+<span id="cb8-406"><a href="#cb8-406"></a>Iniciaremos analizando los datos de renta según la edad (como pueden imaginar, los jóvenes constituyen el grupo poblacional que dispone de menos renta), para, a continuación, adentrarnos en datos que muestran la evolución de los precios de la vivienda.</span>
+<span id="cb8-407"><a href="#cb8-407"></a></span>
+<span id="cb8-408"><a href="#cb8-408"></a></span>
+<span id="cb8-411"><a href="#cb8-411"></a><span class="in">```{r}</span></span>
+<span id="cb8-412"><a href="#cb8-412"></a><span class="co">#| echo: false</span></span>
+<span id="cb8-413"><a href="#cb8-413"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143"</span></span>
+<span id="cb8-414"><a href="#cb8-414"></a><span class="in">```</span></span>
+<span id="cb8-415"><a href="#cb8-415"></a></span>
+<span id="cb8-416"><a href="#cb8-416"></a></span>
+<span id="cb8-417"><a href="#cb8-417"></a><span class="al">![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)</span></span>
+<span id="cb8-418"><a href="#cb8-418"></a></span>
+<span id="cb8-419"><a href="#cb8-419"></a>---</span>
+<span id="cb8-420"><a href="#cb8-420"></a></span>
+<span id="cb8-421"><a href="#cb8-421"></a>Sí, lo pingüinos molan, así que vamos a poner otra foto de pingüinos que tenemos en nuestro PC pero la vamos a poner en el margen:</span>
+<span id="cb8-422"><a href="#cb8-422"></a></span>
+<span id="cb8-423"><a href="#cb8-423"></a>::: {.column-margin}</span>
+<span id="cb8-424"><a href="#cb8-424"></a></span>
+<span id="cb8-425"><a href="#cb8-425"></a><span class="al">![](./imagenes/imagen_01.png)</span>{fig-align="center"}</span>
+<span id="cb8-426"><a href="#cb8-426"></a></span>
+<span id="cb8-427"><a href="#cb8-427"></a>:::</span>
+<span id="cb8-428"><a href="#cb8-428"></a></span>
+<span id="cb8-429"><a href="#cb8-429"></a>---</span>
+<span id="cb8-430"><a href="#cb8-430"></a></span>
+<span id="cb8-431"><a href="#cb8-431"></a><span class="fu">## Algunos gráficos</span></span>
+<span id="cb8-432"><a href="#cb8-432"></a></span>
+<span id="cb8-433"><a href="#cb8-433"></a></span>
+<span id="cb8-434"><a href="#cb8-434"></a>Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes</span>
+<span id="cb8-435"><a href="#cb8-435"></a></span>
+<span id="cb8-438"><a href="#cb8-438"></a><span class="in">```{r}</span></span>
+<span id="cb8-439"><a href="#cb8-439"></a><span class="co">#| eval: true</span></span>
+<span id="cb8-440"><a href="#cb8-440"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-441"><a href="#cb8-441"></a><span class="in">```</span></span>
+<span id="cb8-442"><a href="#cb8-442"></a></span>
+<span id="cb8-443"><a href="#cb8-443"></a></span>
+<span id="cb8-444"><a href="#cb8-444"></a>Arreglo los datos</span>
+<span id="cb8-445"><a href="#cb8-445"></a></span>
+<span id="cb8-448"><a href="#cb8-448"></a><span class="in">```{r}</span></span>
+<span id="cb8-449"><a href="#cb8-449"></a><span class="co">#- cojos datos de pingüinos y arreglo un poco </span></span>
+<span id="cb8-450"><a href="#cb8-450"></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb8-451"><a href="#cb8-451"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, bill_depth_mm, body_mass_g) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-452"><a href="#cb8-452"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
+<span id="cb8-453"><a href="#cb8-453"></a><span class="in">```</span></span>
+<span id="cb8-454"><a href="#cb8-454"></a></span>
+<span id="cb8-455"><a href="#cb8-455"></a>---</span>
+<span id="cb8-456"><a href="#cb8-456"></a></span>
+<span id="cb8-457"><a href="#cb8-457"></a><span class="fu">### Primer gráfico</span></span>
+<span id="cb8-458"><a href="#cb8-458"></a></span>
+<span id="cb8-459"><a href="#cb8-459"></a></span>
+<span id="cb8-462"><a href="#cb8-462"></a><span class="in">```{r}</span></span>
+<span id="cb8-463"><a href="#cb8-463"></a><span class="co">#- primer gráfico</span></span>
+<span id="cb8-464"><a href="#cb8-464"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
+<span id="cb8-465"><a href="#cb8-465"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-466"><a href="#cb8-466"></a>     <span class="fu">geom_point</span>()</span>
+<span id="cb8-467"><a href="#cb8-467"></a>p</span>
+<span id="cb8-468"><a href="#cb8-468"></a><span class="in">```</span></span>
+<span id="cb8-469"><a href="#cb8-469"></a></span>
+<span id="cb8-470"><a href="#cb8-470"></a>---</span>
+<span id="cb8-471"><a href="#cb8-471"></a></span>
+<span id="cb8-472"><a href="#cb8-472"></a><span class="fu">### Segundo</span></span>
+<span id="cb8-473"><a href="#cb8-473"></a></span>
+<span id="cb8-476"><a href="#cb8-476"></a><span class="in">```{r}</span></span>
+<span id="cb8-477"><a href="#cb8-477"></a><span class="co">#- segundo gráfico</span></span>
+<span id="cb8-478"><a href="#cb8-478"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb8-479"><a href="#cb8-479"></a></span>
+<span id="cb8-480"><a href="#cb8-480"></a>p</span>
+<span id="cb8-481"><a href="#cb8-481"></a><span class="in">```</span></span>
+<span id="cb8-482"><a href="#cb8-482"></a></span>
+<span id="cb8-483"><a href="#cb8-483"></a>---</span>
+<span id="cb8-484"><a href="#cb8-484"></a></span>
+<span id="cb8-485"><a href="#cb8-485"></a><span class="fu">### El último</span></span>
+<span id="cb8-486"><a href="#cb8-486"></a></span>
+<span id="cb8-489"><a href="#cb8-489"></a><span class="in">```{r}</span></span>
+<span id="cb8-490"><a href="#cb8-490"></a><span class="co">#- tercer gráfico</span></span>
+<span id="cb8-491"><a href="#cb8-491"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb8-492"><a href="#cb8-492"></a><span class="in">```</span></span>
+<span id="cb8-493"><a href="#cb8-493"></a></span>
+<span id="cb8-494"><a href="#cb8-494"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb8-495"><a href="#cb8-495"></a></span>
+<span id="cb8-496"><a href="#cb8-496"></a>Con esto acabo mi trabajo para BigData!!</span>
+<span id="cb8-497"><a href="#cb8-497"></a></span>
+<span id="cb8-498"><a href="#cb8-498"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb8-499"><a href="#cb8-499"></a></span>
+<span id="cb8-500"><a href="#cb8-500"></a>----------------------</span>
+<span id="cb8-501"><a href="#cb8-501"></a></span>
+<span id="cb8-502"><a href="#cb8-502"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb8-503"><a href="#cb8-503"></a></span>
+<span id="cb8-504"><a href="#cb8-504"></a><span class="fu">### Información sobre la sesión</span></span>
+<span id="cb8-505"><a href="#cb8-505"></a></span>
+<span id="cb8-506"><a href="#cb8-506"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
+<span id="cb8-507"><a href="#cb8-507"></a></span>
+<span id="cb8-510"><a href="#cb8-510"></a><span class="in">```{r}</span></span>
+<span id="cb8-511"><a href="#cb8-511"></a><span class="co">#| echo: false</span></span>
+<span id="cb8-512"><a href="#cb8-512"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-513"><a href="#cb8-513"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
+<span id="cb8-514"><a href="#cb8-514"></a><span class="in">```</span></span>
+<span id="cb8-515"><a href="#cb8-515"></a></span>
+<span id="cb8-516"><a href="#cb8-516"></a></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
