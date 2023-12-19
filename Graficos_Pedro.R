@@ -92,22 +92,25 @@ library(pxR)
 library(dplyr)
 library(ggthemes)
 library(ggExtra) 
-#-
-df <- read.csv("./datos_pulidos/indice_precio_vivienda.csv")
+library(data.table)
+library(fs)
+library(sf)
+library(patchwork)
+library(plotly)
 
+devtools::install_github("r-lib/conflicted")
+
+#Empezamos creado el dataframe
+
+url <- "https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"
+aa <- read.px(url)
+write.csv(aa, file = "./datos_pulidos/data.csv")
+df <- read.csv("./datos_pulidos/data.csv")
+
+#Empezamos con el manejo de datos/ limpieza
 df1 <- df %>% dplyr::rename(ámbito = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) %>% filter (tipo == "General", Índices.y.tasas == "Índice", ámbito == "Nacional")
 
-#GRÁFICO INDICE DE PRECIOS DE LA VIVIENDA A NIVEL NACIONAL
-#p1 <- ggplot(df1, aes(x = Periodo, y = Valor)) + labs(title = "Índice precios de la vivienda a nivel nacional", subtitle = "Base 100 = 2015", y = "Valor", x = "Periodo",) + geom_point() + theme_economist() + rotateTextX()
-
-#p1
-
-#plotly::ggplotly(p1)
-
-#-
-
-df1.1  <- df %>% 
-  dplyr::rename(Territorio = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) 
+df1.1  <- df %>% rename(Territorio = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) 
 
 df1.2 <- df1.1 %>% mutate(Territorio = case_when(
   Territorio == "01 Andalucía" ~ "Andalucía",
@@ -131,43 +134,68 @@ df1.2 <- df1.1 %>% mutate(Territorio = case_when(
 
 df3 <- df1.2 %>% filter (tipo == "General", Índices.y.tasas == "Índice", !(Territorio %in% c("Nacional", "18 Ceuta", "19 Melilla")))
 
-df4 <- df3 %>% filter(Periodo == "2023T3")
-
 prov <- pjpv.curso.R.2022::LAU2_prov_2020_canarias
-plot(prov, max.plot = 1)
-
-library(dplyr)
-ccaa <- prov %>%
-  select(ine_ccaa.n, geometry, X1, Y1)
 
 ccaa <- prov %>% 
   group_by(ine_ccaa, ine_ccaa.n, ine_ccaa.n.pjp) %>% 
-  summarise(.groups = "drop") 
+  summarise() %>% ungroup()
 
-ccaa <- prov %>% 
-  group_by(ine_ccaa, ine_ccaa.n, ine_ccaa.n.pjp) %>% 
-  summarise(across(everything(), ~first(.), .names = "first_{.col}")) %>% 
-  ungroup()
+ccaa <- ccaa %>% rename(Territorio = ine_ccaa.n)
 
-ccaa <- prov %>% 
-  group_by(ine_ccaa, ine_ccaa.n, ine_ccaa.n.pjp) %>% 
-  slice(1)
-
-ccaa <- prov %>% 
-  group_by(ine_ccaa.n) |> 
-  count(ine_ccaa.n)
-
-ccaa <- ccaa %>% 
-  dplyr::rename(Territorio = ine_ccaa.n)
+df4 <- df3 %>% filter(Periodo == "2023T3")
 
 df5 <- full_join(ccaa, df4, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
 
-p4 <- ggplot(df5,  aes(fill = as.factor(Valor))) + 
-  geom_sf(aes(fill = as.factor(Valor))) + geom_sf_label(aes(label = Valor), size = 3, color = "black") +
-  scale_fill_viridis_d(guide = "none") +
-  labs(title = "Nivel de precios de la vivienda CCAA (100 = 2015)") + theme_void()
+df6 <- df3 %>% 
+  filter(Periodo == "2018T3")
 
-p4
+df7 <- full_join(ccaa, df6, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+df8 <- df3 %>% filter(Periodo == "2015T3")
+
+df9 <- full_join(ccaa, df8, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+df10 <- df3 %>% filter(Periodo == "2011T3")
+
+df11 <- full_join(ccaa, df10, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+#Empezamos a dibujar mapas
+
+escala_limites <- c(100, 170)
+
+p4 <- ggplot(df5, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda CCAA 2023T3 (100 = 2015)") + 
+  theme_void()
+
+p5 <- ggplot(df7, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend", limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda CCAA 2018T3 (100 = 2015)") + 
+  theme_void()
+
+p6 <- ggplot(df9, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda CCAA 2015T3 (100 = 2015)") + 
+  theme_void()
+
+p7 <- ggplot(df11, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda CCAA 2011T3 (100 = 2015)") + 
+  theme_void()
+
+#Combinar todos los gráficos
+
+p9 <-p7 + p6 +p5 +p4
+
+p9
 
 #------------------------------------------------------------ GRÁFICO INTERACTIVO FIJO
 library(plotly)

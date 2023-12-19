@@ -474,6 +474,7 @@ La mayor divergencia se da con el grupo de los mayores de 65 años. De una difer
 Como podemos observar, no sólo es que los jóvenes tengan una renta disponible menor, si no que cada vez se queda más atrás.
 Una vez comprobado que los jóvenes son cada vez relativamente más pobres, vamos ahora a comprobar si al menos los jóvenes ganan poder adquisitivo a lo largo del tiempo, pues los anteriores datos eran nominales. Para ello, vamos a contrastar la anterior evolución de los salarios de los jóvenes con la inflación.
 
+---
 
 # Variación del Indice de Precios de la Vivienda
 
@@ -507,95 +508,134 @@ ggplot(df_media_anual, aes(x=year, y=media_salario)) +
   ylab("Índice del Precio de la Vivienda")
 ```
 
-
-
-
-![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)
-
 ---
 
-Sí, lo pingüinos molan, así que vamos a poner otra foto de pingüinos que tenemos en nuestro PC pero la vamos a poner en el margen:
+#Mapa de coropletas: Vivienda por CCAA
 
-::: {.column-margin}
+texto texto texto
 
-![](./imagenes/imagen_01.png){fig-align="center"}
+```{R}
 
-:::
+#Cargamos librerías
 
----
-
-## Algunos gráficos
-
-
-Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes
-
-```{r}
-#| eval: true
 library(tidyverse)
+library(rio)
+library(mapSpain)
+library(pxR)
+library(dplyr)
+library(ggthemes)
+library(ggExtra) 
+library(data.table)
+library(fs)
+library(sf)
+library(patchwork)
+library(plotly)
+
+devtools::install_github("r-lib/conflicted")
+
+#Empezamos creado el dataframe
+
+url <- "https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"
+aa <- read.px(url)
+write.csv(aa, file = "./datos_pulidos/data.csv")
+df <- read.csv("./datos_pulidos/data.csv")
+
+#Empezamos con el manejo de datos/ limpieza
+df1 <- df %>% dplyr::rename(ámbito = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) %>% filter (tipo == "General", Índices.y.tasas == "Índice", ámbito == "Nacional")
+
+df1.1  <- df %>% rename(Territorio = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) 
+
+df1.2 <- df1.1 %>% mutate(Territorio = case_when(
+  Territorio == "01 Andalucía" ~ "Andalucía",
+  Territorio == "02 Aragón" ~ "Aragón",
+  Territorio == "03 Asturias, Principado de" ~ "Asturias, Principado de",
+  Territorio == "04 Balears, Illes" ~ "Balears, Illes",
+  Territorio == "05 Canarias" ~ "Canarias",
+  Territorio == "06 Cantabria" ~ "Cantabria",
+  Territorio == "07 Castilla y León" ~ "Castilla y León",
+  Territorio == "08 Castilla - La Mancha" ~ "Castilla-La Mancha",
+  Territorio == "09 Cataluña" ~ "Cataluña",
+  Territorio == "10 Comunitat Valenciana" ~ "Comunitat Valenciana",
+  Territorio == "11 Extremadura" ~ "Extremadura",
+  Territorio == "12 Galicia" ~ "Galicia",
+  Territorio == "13 Madrid, Comunidad de" ~ "Madrid, Comunidad de",
+  Territorio == "14 Murcia, Región de" ~ "Murcia, Región de",
+  Territorio == "15 Navarra, Comunidad Foral de" ~ "Navarra, Comunidad Foral de",
+  Territorio == "16 País Vasco" ~ "País Vasco",
+  Territorio == "17 Rioja, La" ~ "Rioja, La",
+  TRUE ~ Territorio))
+
+df3 <- df1.2 %>% filter (tipo == "General", Índices.y.tasas == "Índice", !(Territorio %in% c("Nacional", "18 Ceuta", "19 Melilla")))
+
+prov <- pjpv.curso.R.2022::LAU2_prov_2020_canarias
+
+ccaa <- prov %>% 
+  group_by(ine_ccaa, ine_ccaa.n, ine_ccaa.n.pjp) %>% 
+  summarise() %>% ungroup()
+
+ccaa <- ccaa %>% rename(Territorio = ine_ccaa.n)
+
+df4 <- df3 %>% filter(Periodo == "2023T3")
+
+df5 <- full_join(ccaa, df4, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+df6 <- df3 %>% 
+  filter(Periodo == "2018T3")
+
+df7 <- full_join(ccaa, df6, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+df8 <- df3 %>% filter(Periodo == "2015T3")
+
+df9 <- full_join(ccaa, df8, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+df10 <- df3 %>% filter(Periodo == "2011T3")
+
+df11 <- full_join(ccaa, df10, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+#Empezamos a dibujar mapas
+
+escala_limites <- c(100, 170)
+
+p4 <- ggplot(df5, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda 2023") + 
+  theme_void()
+
+p5 <- ggplot(df7, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend", limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda 2018") + 
+  theme_void()
+
+p6 <- ggplot(df9, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda 2015") + 
+  theme_void()
+
+p7 <- ggplot(df11, aes(fill = Valor)) + 
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Nivel de precios de la vivienda 2011") + 
+  theme_void()
+
+#Combinar todos los gráficos
+
+p9 <-p7 + p6 +p5 +p4
+
+p9
+
 ```
 
+#Mas información sobre el tema
 
-Arreglo los datos
+un video de blablabla
 
-```{r}
-#- cojos datos de pingüinos y arreglo un poco 
-df <- palmerpenguins::penguins %>% 
-  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
-  tidyr::drop_na()
-```
-
----
-
-### Primer gráfico
-
-
-```{r}
-#- primer gráfico
-p <- ggplot(data = df, 
-       mapping = aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
-     geom_point()
-p
-```
-
----
-
-### Segundo
-
-```{r}
-#- segundo gráfico
-p <- p + geom_smooth(method = "lm", se = FALSE) 
-
-p
-```
-
----
-
-### El último
-
-```{r}
-#- tercer gráfico
-p + geom_smooth(method = "lm", se = FALSE, color = "black") 
-```
-
-<br>
-
-Con esto acabo mi trabajo para BigData!!
-
-<br>
-
-----------------------
-
-<br>
-
-### Información sobre la sesión
-
-Abajo muestro mi entorno de trabajo y paquetes utilizados
-
-```{r}
-#| echo: false
-sessioninfo::session_info() %>% 
-  details::details(summary = 'current session info') 
-```
-
+<center><iframe width="560" height="315" src="https://www.youtube.com/live/EtIErMd1EYM?si=-LNzHLRcepGHZ-r5"></iframe></center>
 
 
