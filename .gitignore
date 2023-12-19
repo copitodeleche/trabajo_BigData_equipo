@@ -4,4 +4,5 @@
 .Ruserdata
 
 /.quarto/
-.site_libs
+site_libs/
+site_libs/revealjs/dist/reveal.js
