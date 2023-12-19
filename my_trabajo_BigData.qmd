@@ -23,21 +23,21 @@ code-tools: true
 code-link: true
 ---
 
-
 # Introducción 
 
 El objetivo de este trabajo es analizar la situación en la que se encuentran los jóvenes a la hora de acceder al mercado laboral. Para ello analizaremos diferentes métricas entre las que se encuentran: Evolución de los niveles de precios de la vivienda a nivel nacional y autonómico, comparación de esta con la de los salarios reales…
 
 De esta manera constataremos las dificultades a alas que se enfrentan los jóvenes españoles para emanciparse. También extraeremos conclusiones sobre si es así en todo el país o si por el contrario hay diferencias según el área geográfica. 
 
-#Datos del trabajo
+# Datos del trabajo
 
-##Datos
+::: {.panel-tabset}
+
+# Datos
 
 Vamos a utilizar datos de los paquetes `pxR` <i>(ine)</I>, `eurostat` además de proveedores de datos externos.
 
-
-###CÓDIGOS
+# Código
 
 ```{R}
 #Paquetes Preliminares
@@ -403,14 +403,17 @@ export(df_ipc_01, "./datos_pulidos/IPC_mas_vivienda.csv", type = "csv")
 
 ```
 
+:::
+
 ---
 
 # Evolución de la renta neta por edad
 
 Iniciaremos analizando los datos de renta según la edad (como pueden imaginar, los jóvenes constituyen el grupo poblacional que dispone de menos renta), para, a continuación, adentrarnos en datos que muestran la evolución de los precios de la vivienda.
 
+::: {.panel-tabset}
 
-#Gráfico en movimiento
+# Gráfico en movimiento
 
 ```{R}
 #Cargamos datos
@@ -421,10 +424,10 @@ library(ggthemes)
 library(hrbrthemes)
 
 #-
+
 renta_edad <- read.csv("./datos_pulidos/renta_por_edad.csv")
 
 dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo) %>% filter(tipo == "Renta neta media por persona", Sexo == "Ambos sexos", !(Edad %in% c("De 18 a 64 años", "Menos de 18 años", "Total")))
-
 
 p <- ggplot(dff, aes(x = Periodo, y = renta, color = Edad)) +
   geom_line(size = 1) +
@@ -446,7 +449,7 @@ animate(p_animated, nframes = 200, fps = 20)
 
 ```
 
-#Gráfico fijo interactivo
+# Gráfico fijo interactivo
 
 ```{R}
 library(rio)
@@ -465,20 +468,55 @@ p6 <- ggplot(data=dff) +
 plotly::ggplotly(p6)
 ```
 
+:::
+
+Tenemos este primer gráfico dinámico, que básicamente lo hemos hecho para demostrar que lo podemos hacer. Sabemos que no es especialmente útil, pero sí vistoso, por eso hemos hecho esta presión interactiva pero estática del mismo gráfico
+
 En este gráfico, cuyos datos están extraídos del INE podemos observar, como ya anticipábamos, que los jóvenes (16-29 años de edad) son el rango de edad que dispone de menos renta. Más notorio es, claro está, con los menores de 16 años. Los jóvenes de 16 a 29 años contaban con una renta media neta o disponible (después de impuestos) de 11.660€.
- 
-La diferencia en 2022 con el grupo con la renta media es de un 21% con el grupo de mayor renta neta media (los mayores de 65).Esto es especialmente llamativo, ya que la diferencia con el grupo de mayor renta neta media en 2008 era de un 16’86%. También llama la atención cómo la renta de los jóvenes no sólo queda muy lejos de la del resto de grupos de edad, sino que además esta diferencia no disminuye a lo largo del tiempo: 
-La diferencia con el grupo de 30 a 44 años ha pasado de un 6’38% en 2008 a 10’13% en 2022. Un incremento de un 58’78%.
-Con el grupo de 45 a 64 años del 16’86% mencionado arriba a un 18’03%. Un incremento de un 6’94%.
-La mayor divergencia se da con el grupo de los mayores de 65 años. De una diferencia del 6’03% en 2008 a una del 21% en 2022. Un espectacular incremento del 248’23%.
-Como podemos observar, no sólo es que los jóvenes tengan una renta disponible menor, si no que cada vez se queda más atrás.
-Una vez comprobado que los jóvenes son cada vez relativamente más pobres, vamos ahora a comprobar si al menos los jóvenes ganan poder adquisitivo a lo largo del tiempo, pues los anteriores datos eran nominales. Para ello, vamos a contrastar la anterior evolución de los salarios de los jóvenes con la inflación.
+
+- La diferencia con el grupo de 30 a 44 años ha pasado de un 6’38% en 2008 a 10’13% en 2022. Un incremento de un 58’78%.
+
+- Con el grupo de 45 a 64 años del 16’86% mencionado arriba a un 18’03%. Un incremento de un 6’94%.
+
+- La mayor divergencia se da con el grupo de los mayores de 65 años. De una diferencia del 6’03% en 2008 a una del 21% en 2022. Un espectacular incremento del 248’23%.
+
+Por tanto, la renta de lo jóvenes de entre 16 y 29 años es la que menos ha crecido: tan solo un 12’97% en 14 años.
+
+Como podemos observar, no sólo es que los jóvenes tengan una renta disponible menor, si no que cada vez se queda más atrás respecto al resto. Los jóvenes, en términos de renta, son cada vez relativamente más tarde.
+
+---
+
+# Índice del nivel de Precios de la vivienda a nivel nacional
+
+Ahora vamos a analizar cómo se han comportado los precios de la vivienda en general. Primero lo vamos a hacer observando el comportamiento de los precios de forma general a nivel nacional. Luego veremos cómo se ha comportado en términos de tasas de variación, y más tarde, el nivel de precios por comunidades autónomas y en diferentes momentos del tiempo.
+
+```{R}
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(ggExtra)
+library(pxR)
+
+url <- "https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"
+aa <- read.px(url)
+write.csv(aa, file = "./datos_pulidos/data.csv")
+
+df <- read.csv("./datos_pulidos/data.csv")
+
+df1 <- df %>% dplyr::rename(ámbito = Comunidades.y.Ciudades.Autónomas, tipo = General..vivienda.nueva.y.de.segunda.mano, Valor = value) %>% filter (tipo == "General", Índices.y.tasas == "Índice", ámbito == "Nacional")
+
+p1 <- ggplot(df1, aes(x = Periodo, y = Valor)) + labs(title = "Índice nivel de precios de la vivienda a nivel nacional", subtitle = "Base 100 = 2015", y = "Valor", x = "Periodo",) + geom_point() + geom_line() + theme_light() + rotateTextX()
+
+p1
+
+```
+
+En este gráfico podemos observar cómo el nivel de precios general en españa tiene una forma de “uve”. Los precios caen de forma abrupta desde 2008 hasta 2013 (donde encontramos los valores más bajos) y luego vuelven a crecer más lentamente. Actualmente (2023T3) nos encontramos en niveles de precios similares a los de la burbuja, lo cual es negativo, pues ya era muy difícil acceder a la vivienda en la burbuja (sin endeudarse masivamente). Ahora, con el poco crecimiento de la renta con estos niveles de precios, también lo es. 
 
 ---
 
 # Variación del Indice de Precios de la Vivienda
-
-Vamos a analizar la variación del IPV
 
 ```{r}
 df_IPV <- import("./datos_pulidos/indice_precio_vivienda.csv")
@@ -508,11 +546,13 @@ ggplot(df_media_anual, aes(x=year, y=media_salario)) +
   ylab("Índice del Precio de la Vivienda")
 ```
 
+En este gráfico podemos observar las tasas de variación, de los niveles de precios por año. En este caso los datos son anuales. Sencillamente hemos sacado la media de los 4 trimestres para cada año. Aquí se puede ver claramente en qué años las tasas de variación fueron más negativas tras la explosión de la burbuja. Al contrario de lo que se suele pensar, las tasas más negativas fueron 2011, 2012 y 2013, no 2008. A partir de ahí se encadenan tasas positivas durante 10 años. Eso explica los altos niveles actuales.
+
 ---
 
-#Mapa de coropletas: Vivienda por CCAA
+# Mapa de coropletas: Vivienda por CCAA
 
-texto texto texto
+A continuación comprobamos cómo ha evolucionado el precio de la vivienda por toda la geografía Española durante los últimos años. Para ello vamos a analizar los siguientes mapas de coropletas en los que, utilizamos un número índice con base 100 en 2015. 
 
 ```{R}
 
@@ -612,7 +652,7 @@ p5 <- ggplot(df7, aes(fill = Valor)) +
 
 p6 <- ggplot(df9, aes(fill = Valor)) + 
   geom_sf() +
-  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "white") +
   scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
   labs(title = "Nivel de precios de la vivienda 2015") + 
   theme_void()
@@ -632,7 +672,149 @@ p9
 
 ```
 
-#Mas información sobre el tema
+Estos mapas de coropletas reflejan los niveles de precios de la vivienda en 6 momentos diferentes del tiempo. El primero es del tercer trimestre del año 2007. En ese momento los precios, como podemos observar, son los más altos. Este es el punto más elevado de la burbuja. Los años siguientes reflejan el pinchazo de la burbuja, con un descenso continuado de los precios hasta 2013. Que es el punto más bajo. Hemos decidido poner el año 2015 por ser el año de la base 100. A partir de ahí, vemos cómo en los años posteriores los precios son ya más elevados que en 2015, y particularmente en 2023, ligeramente por debajo, pero sin haber una burbuja. O, al menos, no parece haberla. 
+
+Al ser mapas de coropletas podemos sacar conclusiones acerca de en qué comunidades han aumentado más los precios y por tanto, dónde es más difícil acceder a la vivienda, ceteris paribus. En el último gráfico destacan claramente la Comunidad de Madrid, Cataluña y Baleares. Esto no nos sorprende, tanto la Comunidad de Madrid, como Cataluña son regiones muy dinámicas donde, además, se encuentran las principales ciudades de España. Baleares, por su parte, es una de las regiones más turísticas, donde la oferta de inmuebles tampoco es demasiado elevada. Destacan también en segunda fila País Vasco (región muy dinámica), Andalucía y Canarias (regiones muy turísticas).
+
+Tal vez os habéis fijado en que estos mapas no concuerdan exactamente con lo que hemos visto hace dos gráficos (se veía que el nivel general de precios de la vivienda es ahora igual al del punto más alto de la burbuja y, sin embargo, en los mapas parece que en 2007T3 los precios son mucho más elevados que en la actualidad).
+
+Esto se debe a que hay más viviendas allá donde más está subiendo el precio como se observa en el gráfico (que hay que insertar). La explicación de la afirmación anterior que parece a priori contradictoria, es que aunque hay más vivienda en esta zona (oferta elevada), la demanda es todavía más elevada que la oferta.
+
+Este continuo encarecimiento de las viviendas se traduce en que los jóvenes cambian su régimen de tenencia de vivienda:P$OE
+
+---
+ 
+# Régimen de viviendas de 16 a 29 años
+
+```{R}
+#Hogares por regimen de tenencia edad
+#Cargamos liberías
+library(ggplot2)
+library(hrbrthemes)
+library(tidyverse)
+library(pxR)
+
+url4 <- "https://www.ine.es/jaxiT3/files/t/es/px/9994.px?nocab=1"
+ac <- read.px(url4)
+write.csv(ac, file = "./datos_pulidos/data_1.csv", sep = ",")
+vivienda_edad <- read.csv("./datos_pulidos/data_1.csv")
+
+dd <- vivienda_edad %>%
+  dplyr::rename(regimen = Régimen.de.tenencia.de.la.vivienda.principal, edad = Edad.de.la.persona.de.referencia, sexo = Sexo.de.la.persona.de.referencia) %>%
+  filter(edad == "De 16 a 29 años", sexo == "Ambos sexos")
+
+p30 <- dd %>%
+  ggplot(aes(x = Periodo, y = value, fill = regimen)) +
+  geom_bar(stat = "identity", position = "stack") +
+  theme_ipsum() +
+  labs(x = "Año", y = "% según régimen de tenencia", 
+       title = "Régimen de vivienda de 16 a 29 años",
+       subtitle = "Datos porcentuales",
+       caption = "Elaboración propia a partir de datos del INE") +
+  scale_fill_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3"), 
+                    labels = c("Alquiler a precios de mercado", "Alquiler inferior al precio de mercado", "Cesión", "Propiedad")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.caption = element_text(hjust = 0.5),
+        plot.title = element_text(hjust = 0.5, color = "black", size = 18, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, size = 14))
+
+p30
+```
+
+En este gráfico podemos observar cómo el régimen de vivienda entre los jóvenes ha ido variando a lo largo del tiempo. La mayor sustitución ha sido de régimen de propiedad al de alquiler a precios de mercado. También ha aumentado ligeramente el régimen de cesión, es decir; los jóvenes se han trasladado a opciones más asequibles. Aunque los alquileres también suben en las grandes ciudades, siguen siendo opciones más asumibles que pagar la entrada de la hipoteca y su mensualidad, por no hablar de fórmulas utilizadas como el compartir piso.
+
+---
+
+# Otros gráficos bonitos pero poco útiles sobre el salario
+
+::: {.panel-tabset}
+
+# Rigeline por grupo de edad
+
+```{R}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
+
+p1<- ggplot(df_edad, aes(x = salario, y = grupo_edad, fill = grupo_edad)) +
+  geom_density_ridges() +
+  theme_ridges() + 
+  theme(legend.position = "none")
+
+p1
+```
+
+# Rigeline por formación
+
+```{R}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_formacion <- import("./datos_pulidos/salario_formacion.csv")
+
+p4<- ggplot(df_formacion, aes(x = salario, y = formacion, fill = formacion)) +
+  geom_density_ridges() +
+  theme_ridges() + 
+  theme(legend.position = "none")
+
+p4
+```
+
+# Barras agrupadas por edad
+
+```{R}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
+
+df_edad_01 <- df_edad |> 
+  filter(grupo_edad != "Total") |> 
+  filter()
+
+df_edad_01$year <- factor(df_edad_01$year)
+
+p2 <- ggplot(df_edad_01, aes(fill = grupo_edad, y = salario, x = year))+
+  geom_bar(position = "dodge", stat = "identity")+
+  labs(title = "Salario por grupo de edad")
+
+p2
+```
+
+# Barras agrupadas por formación
+
+```{R}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_formacion <- import("./datos_pulidos/salario_formacion.csv")
+
+df_form_01 <- df_formacion |> 
+  filter(formacion != "Total")
+
+df_form_01$year <- factor(df_form_01$year)
+
+p5 <- ggplot(df_form_01, aes(fill = formacion, y = salario, x = year))+
+  geom_bar(position = "dodge", stat = "identity")+
+  labs(title = "Salario por formación")
+
+p5
+```
+
+:::
+
+--- 
+
+# Mas información sobre el tema
 
 un video de blablabla
 
