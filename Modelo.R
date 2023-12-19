@@ -268,11 +268,9 @@ head(act_parad)
 
 porcentaje_parados <- act_parad %>%
   group_by(Año) %>%
-  mutate(Activos_totales = sum(num_activos)) %>%
-  ungroup(Año) %>%
   group_by(Año, grupo_edad) %>%
-  mutate(Ocupados_edad = (num_ocupados / Activos_totales) * 100,
-         Parados_edad = (num_parados / Activos_totales) * 100) %>%
+  mutate(Ocupados_edad = (num_ocupados / num_activos) * 100,
+         Parados_edad = (num_parados / num_activos) * 100) %>%
   rename(Periodo = Año)
 
 rm(list = ls()[!ls() %in% c("salario","contrato", "porcentaje_parados", "vivienda")])
@@ -295,4 +293,20 @@ ggplot(vivienda, aes(x = Periodo, y = Propiedad, group = grupo_edad, color = gru
   geom_point( color="grey", size=2) +
   theme_solarized()
 
+ggplot(porcentaje_parados, aes(x = Periodo, y = Parados_edad, group = grupo_edad, color = grupo_edad)) +
+  geom_line() +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_point( color="grey", size=2) +
+  theme_solarized()
 
+ggplot(contrato, aes(x = Periodo, y = jornada_completa, group = grupo_edad, color = grupo_edad)) +
+  geom_line() +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_point( color="grey", size=2) +
+  theme_solarized()
+
+ggplot(salario, aes(x = Periodo, y = salario_completa, group = grupo_edad, color = grupo_edad)) +
+  geom_line() +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_point( color="grey", size=2) +
+  theme_solarized()
