@@ -1,0 +1,1441 @@
+"","X","Periodo","Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo","Edad","Sexo","value"
+"1",1,2022,"Renta neta media por persona","Total","Ambos sexos",13008
+"2",2,2021,"Renta neta media por persona","Total","Ambos sexos",12269
+"3",3,2020,"Renta neta media por persona","Total","Ambos sexos",12292
+"4",4,2019,"Renta neta media por persona","Total","Ambos sexos",11680
+"5",5,2018,"Renta neta media por persona","Total","Ambos sexos",11412
+"6",6,2017,"Renta neta media por persona","Total","Ambos sexos",11074
+"7",7,2016,"Renta neta media por persona","Total","Ambos sexos",10708
+"8",8,2015,"Renta neta media por persona","Total","Ambos sexos",10419
+"9",9,2014,"Renta neta media por persona","Total","Ambos sexos",10391
+"10",10,2013,"Renta neta media por persona","Total","Ambos sexos",10531
+"11",11,2012,"Renta neta media por persona","Total","Ambos sexos",10795
+"12",12,2011,"Renta neta media por persona","Total","Ambos sexos",10858
+"13",13,2010,"Renta neta media por persona","Total","Ambos sexos",11284
+"14",14,2009,"Renta neta media por persona","Total","Ambos sexos",11318
+"15",15,2008,"Renta neta media por persona","Total","Ambos sexos",10737
+"16",16,2022,"Renta media por unidad de consumo","Total","Ambos sexos",19160
+"17",17,2021,"Renta media por unidad de consumo","Total","Ambos sexos",18103
+"18",18,2020,"Renta media por unidad de consumo","Total","Ambos sexos",18116
+"19",19,2019,"Renta media por unidad de consumo","Total","Ambos sexos",17287
+"20",20,2018,"Renta media por unidad de consumo","Total","Ambos sexos",16937
+"21",21,2017,"Renta media por unidad de consumo","Total","Ambos sexos",16390
+"22",22,2016,"Renta media por unidad de consumo","Total","Ambos sexos",15842
+"23",23,2015,"Renta media por unidad de consumo","Total","Ambos sexos",15408
+"24",24,2014,"Renta media por unidad de consumo","Total","Ambos sexos",15405
+"25",25,2013,"Renta media por unidad de consumo","Total","Ambos sexos",15635
+"26",26,2012,"Renta media por unidad de consumo","Total","Ambos sexos",16119
+"27",27,2011,"Renta media por unidad de consumo","Total","Ambos sexos",16280
+"28",28,2010,"Renta media por unidad de consumo","Total","Ambos sexos",16922
+"29",29,2009,"Renta media por unidad de consumo","Total","Ambos sexos",17042
+"30",30,2008,"Renta media por unidad de consumo","Total","Ambos sexos",16190
+"31",31,2022,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",15086
+"32",32,2021,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",14255
+"33",33,2020,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",14212
+"34",34,2019,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",13549
+"35",35,2018,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",13223
+"36",36,2017,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12841
+"37",37,2016,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12347
+"38",38,2015,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",11992
+"39",39,2014,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12021
+"40",40,2013,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",11997
+"41",41,2012,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12327
+"42",42,2011,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12483
+"43",43,2010,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12933
+"44",44,2009,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12790
+"45",45,2008,"Renta media por persona (con alquiler imputado)","Total","Ambos sexos",12237
+"46",46,2022,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",22054
+"47",47,2021,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",20874
+"48",48,2020,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",20800
+"49",49,2019,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",19903
+"50",50,2018,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",19479
+"51",51,2017,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",18863
+"52",52,2016,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",18137
+"53",53,2015,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",17612
+"54",54,2014,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",17684
+"55",55,2013,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",17694
+"56",56,2012,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",18268
+"57",57,2011,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",18584
+"58",58,2010,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",19252
+"59",59,2009,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",19124
+"60",60,2008,"Renta media por unidad de consumo (con alquiler imputado)","Total","Ambos sexos",18322
+"61",61,2022,"Renta neta media por persona","Menores de 16 años","Ambos sexos",9605
+"62",62,2021,"Renta neta media por persona","Menores de 16 años","Ambos sexos",9036
+"63",63,2020,"Renta neta media por persona","Menores de 16 años","Ambos sexos",9025
+"64",64,2019,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8899
+"65",65,2018,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8919
+"66",66,2017,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8354
+"67",67,2016,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8078
+"68",68,2015,"Renta neta media por persona","Menores de 16 años","Ambos sexos",7841
+"69",69,2014,"Renta neta media por persona","Menores de 16 años","Ambos sexos",7726
+"70",70,2013,"Renta neta media por persona","Menores de 16 años","Ambos sexos",7741
+"71",71,2012,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8151
+"72",72,2011,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8259
+"73",73,2010,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8355
+"74",74,2009,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8444
+"75",75,2008,"Renta neta media por persona","Menores de 16 años","Ambos sexos",8005
+"76",76,2022,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",17489
+"77",77,2021,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",16423
+"78",78,2020,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",16340
+"79",79,2019,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",16094
+"80",80,2018,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",16142
+"81",81,2017,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",15100
+"82",82,2016,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",14635
+"83",83,2015,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",14166
+"84",84,2014,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",13970
+"85",85,2013,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",13993
+"86",86,2012,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",14806
+"87",87,2011,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",14957
+"88",88,2010,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",15120
+"89",89,2009,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",15323
+"90",90,2008,"Renta media por unidad de consumo","Menores de 16 años","Ambos sexos",14476
+"91",91,2022,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",10830
+"92",92,2021,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",10203
+"93",93,2020,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",10175
+"94",94,2019,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",10036
+"95",95,2018,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",10039
+"96",96,2017,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9410
+"97",97,2016,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9042
+"98",98,2015,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",8764
+"99",99,2014,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",8649
+"100",100,2013,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",8596
+"101",101,2012,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9019
+"102",102,2011,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9248
+"103",103,2010,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9318
+"104",104,2009,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",9272
+"105",105,2008,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Ambos sexos",8871
+"106",106,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",19701
+"107",107,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",18527
+"108",108,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",18409
+"109",109,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",18136
+"110",110,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",18147
+"111",111,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16989
+"112",112,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16363
+"113",113,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",15817
+"114",114,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",15620
+"115",115,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",15525
+"116",116,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16367
+"117",117,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16733
+"118",118,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16851
+"119",119,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16809
+"120",120,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Ambos sexos",16030
+"121",121,2022,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",11660
+"122",122,2021,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10903
+"123",123,2020,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",11031
+"124",124,2019,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10345
+"125",125,2018,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10156
+"126",126,2017,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",9815
+"127",127,2016,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",9373
+"128",128,2015,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",8935
+"129",129,2014,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",9004
+"130",130,2013,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",9438
+"131",131,2012,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",9727
+"132",132,2011,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10032
+"133",133,2010,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10651
+"134",134,2009,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10797
+"135",135,2008,"Renta neta media por persona","De 16 a 29 años","Ambos sexos",10321
+"136",136,2022,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",18019
+"137",137,2021,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",16828
+"138",138,2020,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",16967
+"139",139,2019,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",15907
+"140",140,2018,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",15514
+"141",141,2017,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",15043
+"142",142,2016,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",14413
+"143",143,2015,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",13782
+"144",144,2014,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",13829
+"145",145,2013,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",14438
+"146",146,2012,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",14896
+"147",147,2011,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",15418
+"148",148,2010,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",16306
+"149",149,2009,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",16625
+"150",150,2008,"Renta media por unidad de consumo","De 16 a 29 años","Ambos sexos",15918
+"151",151,2022,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",13156
+"152",152,2021,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",12353
+"153",153,2020,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",12435
+"154",154,2019,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11666
+"155",155,2018,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11487
+"156",156,2017,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11129
+"157",157,2016,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",10583
+"158",158,2015,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",10091
+"159",159,2014,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",10159
+"160",160,2013,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",10512
+"161",161,2012,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",10843
+"162",162,2011,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11256
+"163",163,2010,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11878
+"164",164,2009,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11873
+"165",165,2008,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Ambos sexos",11390
+"166",166,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",20294
+"167",167,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",19020
+"168",168,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",19090
+"169",169,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",17897
+"170",170,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",17519
+"171",171,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",17023
+"172",172,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",16256
+"173",173,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",15545
+"174",174,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",15584
+"175",175,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",16051
+"176",176,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",16561
+"177",177,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",17246
+"178",178,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",18140
+"179",179,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",18248
+"180",180,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Ambos sexos",17548
+"181",181,2022,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",12974
+"182",182,2021,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",12012
+"183",183,2020,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",12053
+"184",184,2019,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11422
+"185",185,2018,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11397
+"186",186,2017,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11040
+"187",187,2016,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",10536
+"188",188,2015,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",10353
+"189",189,2014,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",10348
+"190",190,2013,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",10543
+"191",191,2012,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",10912
+"192",192,2011,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11106
+"193",193,2010,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11480
+"194",194,2009,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11687
+"195",195,2008,"Renta neta media por persona","De 30 a 44 años","Ambos sexos",11024
+"196",196,2022,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",19343
+"197",197,2021,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",17994
+"198",198,2020,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",18080
+"199",199,2019,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",17268
+"200",200,2018,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",17334
+"201",201,2017,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",16697
+"202",202,2016,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",15886
+"203",203,2015,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",15534
+"204",204,2014,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",15641
+"205",205,2013,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",15873
+"206",206,2012,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",16468
+"207",207,2011,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",16795
+"208",208,2010,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",17352
+"209",209,2009,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",17690
+"210",210,2008,"Renta media por unidad de consumo","De 30 a 44 años","Ambos sexos",16673
+"211",211,2022,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",14732
+"212",212,2021,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",13691
+"213",213,2020,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",13702
+"214",214,2019,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12985
+"215",215,2018,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12890
+"216",216,2017,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12507
+"217",217,2016,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",11873
+"218",218,2015,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",11663
+"219",219,2014,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",11644
+"220",220,2013,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",11747
+"221",221,2012,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12178
+"222",222,2011,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12498
+"223",223,2010,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12888
+"224",224,2009,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12866
+"225",225,2008,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Ambos sexos",12250
+"226",226,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",21873
+"227",227,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",20416
+"228",228,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",20462
+"229",229,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",19550
+"230",230,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",19533
+"231",231,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",18831
+"232",232,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",17838
+"233",233,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",17435
+"234",234,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",17537
+"235",235,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",17630
+"236",236,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",18298
+"237",237,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",18838
+"238",238,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",19407
+"239",239,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",19431
+"240",240,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Ambos sexos",18493
+"241",241,2022,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",14225
+"242",242,2021,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",13373
+"243",243,2020,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",13626
+"244",244,2019,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12988
+"245",245,2018,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12550
+"246",246,2017,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12311
+"247",247,2016,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",11931
+"248",248,2015,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",11591
+"249",249,2014,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",11626
+"250",250,2013,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",11921
+"251",251,2012,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12270
+"252",252,2011,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12374
+"253",253,2010,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",13047
+"254",254,2009,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12906
+"255",255,2008,"Renta neta media por persona","De 45 a 64 años","Ambos sexos",12413
+"256",256,2022,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",20502
+"257",257,2021,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",19272
+"258",258,2020,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",19522
+"259",259,2019,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",18668
+"260",260,2018,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",18040
+"261",261,2017,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",17659
+"262",262,2016,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",17090
+"263",263,2015,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",16623
+"264",264,2014,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",16659
+"265",265,2013,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",17133
+"266",266,2012,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",17699
+"267",267,2011,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",17943
+"268",268,2010,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",18934
+"269",269,2009,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",18847
+"270",270,2008,"Renta media por unidad de consumo","De 45 a 64 años","Ambos sexos",18186
+"271",271,2022,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",16439
+"272",272,2021,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",15522
+"273",273,2020,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",15727
+"274",274,2019,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",15006
+"275",275,2018,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14547
+"276",276,2017,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14244
+"277",277,2016,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",13752
+"278",278,2015,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",13327
+"279",279,2014,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",13459
+"280",280,2013,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",13610
+"281",281,2012,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14028
+"282",282,2011,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14228
+"283",283,2010,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14938
+"284",284,2009,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14644
+"285",285,2008,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Ambos sexos",14171
+"286",286,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",23548
+"287",287,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",22224
+"288",288,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",22399
+"289",289,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",21446
+"290",290,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",20791
+"291",291,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",20319
+"292",292,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",19585
+"293",293,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",19009
+"294",294,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",19168
+"295",295,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",19455
+"296",296,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",20120
+"297",297,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",20510
+"298",298,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",21547
+"299",299,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",21260
+"300",300,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Ambos sexos",20643
+"301",301,2022,"Renta neta media por persona","65 y más años","Ambos sexos",14762
+"302",302,2021,"Renta neta media por persona","65 y más años","Ambos sexos",14426
+"303",303,2020,"Renta neta media por persona","65 y más años","Ambos sexos",14132
+"304",304,2019,"Renta neta media por persona","65 y más años","Ambos sexos",13315
+"305",305,2018,"Renta neta media por persona","65 y más años","Ambos sexos",12758
+"306",306,2017,"Renta neta media por persona","65 y más años","Ambos sexos",12528
+"307",307,2016,"Renta neta media por persona","65 y más años","Ambos sexos",12416
+"308",308,2015,"Renta neta media por persona","65 y más años","Ambos sexos",12206
+"309",309,2014,"Renta neta media por persona","65 y más años","Ambos sexos",12183
+"310",310,2013,"Renta neta media por persona","65 y más años","Ambos sexos",11960
+"311",311,2012,"Renta neta media por persona","65 y más años","Ambos sexos",11867
+"312",312,2011,"Renta neta media por persona","65 y más años","Ambos sexos",11463
+"313",313,2010,"Renta neta media por persona","65 y más años","Ambos sexos",11783
+"314",314,2009,"Renta neta media por persona","65 y más años","Ambos sexos",11685
+"315",315,2008,"Renta neta media por persona","65 y más años","Ambos sexos",10893
+"316",316,2022,"Renta media por unidad de consumo","65 y más años","Ambos sexos",19009
+"317",317,2021,"Renta media por unidad de consumo","65 y más años","Ambos sexos",18685
+"318",318,2020,"Renta media por unidad de consumo","65 y más años","Ambos sexos",18304
+"319",319,2019,"Renta media por unidad de consumo","65 y más años","Ambos sexos",17233
+"320",320,2018,"Renta media por unidad de consumo","65 y más años","Ambos sexos",16516
+"321",321,2017,"Renta media por unidad de consumo","65 y más años","Ambos sexos",16197
+"322",322,2016,"Renta media por unidad de consumo","65 y más años","Ambos sexos",16041
+"323",323,2015,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15774
+"324",324,2014,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15809
+"325",325,2013,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15574
+"326",326,2012,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15549
+"327",327,2011,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15053
+"328",328,2010,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15566
+"329",329,2009,"Renta media por unidad de consumo","65 y más años","Ambos sexos",15390
+"330",330,2008,"Renta media por unidad de consumo","65 y más años","Ambos sexos",14387
+"331",331,2022,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",18046
+"332",332,2021,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",17544
+"333",333,2020,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",17099
+"334",334,2019,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",16339
+"335",335,2018,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",15619
+"336",336,2017,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",15370
+"337",337,2016,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",15098
+"338",338,2015,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14798
+"339",339,2014,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",15012
+"340",340,2013,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14378
+"341",341,2012,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14470
+"342",342,2011,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14098
+"343",343,2010,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14539
+"344",344,2009,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",14280
+"345",345,2008,"Renta media por persona (con alquiler imputado)","65 y más años","Ambos sexos",13546
+"346",346,2022,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",23023
+"347",347,2021,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",22518
+"348",348,2020,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",21961
+"349",349,2019,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",20941
+"350",350,2018,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",20012
+"351",351,2017,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",19677
+"352",352,2016,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",19322
+"353",353,2015,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18952
+"354",354,2014,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",19278
+"355",355,2013,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18556
+"356",356,2012,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18764
+"357",357,2011,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18325
+"358",358,2010,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18980
+"359",359,2009,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",18591
+"360",360,2008,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Ambos sexos",17657
+"361",361,2022,"Renta neta media por persona","Menos de 18 años","Ambos sexos",9666
+"362",362,2021,"Renta neta media por persona","Menos de 18 años","Ambos sexos",9120
+"363",363,2020,"Renta neta media por persona","Menos de 18 años","Ambos sexos",9110
+"364",364,2019,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8944
+"365",365,2018,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8909
+"366",366,2017,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8479
+"367",367,2016,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8153
+"368",368,2015,"Renta neta media por persona","Menos de 18 años","Ambos sexos",7824
+"369",369,2014,"Renta neta media por persona","Menos de 18 años","Ambos sexos",7702
+"370",370,2013,"Renta neta media por persona","Menos de 18 años","Ambos sexos",7710
+"371",371,2012,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8155
+"372",372,2011,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8259
+"373",373,2010,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8354
+"374",374,2009,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8468
+"375",375,2008,"Renta neta media por persona","Menos de 18 años","Ambos sexos",8024
+"376",376,2022,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",17350
+"377",377,2021,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",16356
+"378",378,2020,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",16299
+"379",379,2019,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",15997
+"380",380,2018,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",15948
+"381",381,2017,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",15112
+"382",382,2016,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",14572
+"383",383,2015,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",13991
+"384",384,2014,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",13791
+"385",385,2013,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",13798
+"386",386,2012,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",14647
+"387",387,2011,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",14807
+"388",388,2010,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",14959
+"389",389,2009,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",15200
+"390",390,2008,"Renta media por unidad de consumo","Menos de 18 años","Ambos sexos",14358
+"391",391,2022,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",10909
+"392",392,2021,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",10304
+"393",393,2020,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",10284
+"394",394,2019,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",10092
+"395",395,2018,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",10037
+"396",396,2017,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9552
+"397",397,2016,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9134
+"398",398,2015,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",8763
+"399",399,2014,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",8641
+"400",400,2013,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",8581
+"401",401,2012,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9034
+"402",402,2011,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9258
+"403",403,2010,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9327
+"404",404,2009,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",9307
+"405",405,2008,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Ambos sexos",8899
+"406",406,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",19561
+"407",407,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",18458
+"408",408,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",18384
+"409",409,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",18033
+"410",410,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",17945
+"411",411,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",17006
+"412",412,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",16308
+"413",413,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",15652
+"414",414,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",15451
+"415",415,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",15339
+"416",416,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",16209
+"417",417,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",16580
+"418",418,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",16687
+"419",419,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",16690
+"420",420,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Ambos sexos",15911
+"421",421,2022,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",13377
+"422",422,2021,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",12487
+"423",423,2020,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",12624
+"424",424,2019,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11961
+"425",425,2018,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11727
+"426",426,2017,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11390
+"427",427,2016,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",10948
+"428",428,2015,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",10650
+"429",429,2014,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",10660
+"430",430,2013,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",10942
+"431",431,2012,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11252
+"432",432,2011,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11415
+"433",433,2010,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11964
+"434",434,2009,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",12002
+"435",435,2008,"Renta neta media por persona","De 18 a 64 años","Ambos sexos",11428
+"436",436,2022,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",19703
+"437",437,2021,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",18411
+"438",438,2020,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",18565
+"439",439,2019,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",17666
+"440",440,2018,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",17344
+"441",441,2017,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",16814
+"442",442,2016,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",16149
+"443",443,2015,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",15706
+"444",444,2014,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",15752
+"445",445,2013,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",16167
+"446",446,2012,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",16678
+"447",447,2011,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",16997
+"448",448,2010,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",17802
+"449",449,2009,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",17949
+"450",450,2008,"Renta media por unidad de consumo","De 18 a 64 años","Ambos sexos",17120
+"451",451,2022,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",15308
+"452",452,2021,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",14350
+"453",453,2020,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",14436
+"454",454,2019,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",13689
+"455",455,2018,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",13422
+"456",456,2017,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",13041
+"457",457,2016,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12475
+"458",458,2015,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12115
+"459",459,2014,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12155
+"460",460,2013,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12321
+"461",461,2012,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12687
+"462",462,2011,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12955
+"463",463,2010,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",13522
+"464",464,2009,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",13370
+"465",465,2008,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Ambos sexos",12815
+"466",466,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",22435
+"467",467,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",21044
+"468",468,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",21124
+"469",469,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",20120
+"470",470,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",19759
+"471",471,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",19156
+"472",472,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",18319
+"473",473,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",17789
+"474",474,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",17877
+"475",475,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",18125
+"476",476,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",18712
+"477",477,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",19199
+"478",478,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",20025
+"479",479,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",19916
+"480",480,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Ambos sexos",19131
+"481",481,2022,"Renta neta media por persona","Total","Hombres",13180
+"482",482,2021,"Renta neta media por persona","Total","Hombres",12358
+"483",483,2020,"Renta neta media por persona","Total","Hombres",12433
+"484",484,2019,"Renta neta media por persona","Total","Hombres",11768
+"485",485,2018,"Renta neta media por persona","Total","Hombres",11549
+"486",486,2017,"Renta neta media por persona","Total","Hombres",11153
+"487",487,2016,"Renta neta media por persona","Total","Hombres",10766
+"488",488,2015,"Renta neta media por persona","Total","Hombres",10479
+"489",489,2014,"Renta neta media por persona","Total","Hombres",10469
+"490",490,2013,"Renta neta media por persona","Total","Hombres",10576
+"491",491,2012,"Renta neta media por persona","Total","Hombres",10879
+"492",492,2011,"Renta neta media por persona","Total","Hombres",10957
+"493",493,2010,"Renta neta media por persona","Total","Hombres",11374
+"494",494,2009,"Renta neta media por persona","Total","Hombres",11561
+"495",495,2008,"Renta neta media por persona","Total","Hombres",10910
+"496",496,2022,"Renta media por unidad de consumo","Total","Hombres",19440
+"497",497,2021,"Renta media por unidad de consumo","Total","Hombres",18275
+"498",498,2020,"Renta media por unidad de consumo","Total","Hombres",18339
+"499",499,2019,"Renta media por unidad de consumo","Total","Hombres",17449
+"500",500,2018,"Renta media por unidad de consumo","Total","Hombres",17187
+"501",501,2017,"Renta media por unidad de consumo","Total","Hombres",16537
+"502",502,2016,"Renta media por unidad de consumo","Total","Hombres",15969
+"503",503,2015,"Renta media por unidad de consumo","Total","Hombres",15491
+"504",504,2014,"Renta media por unidad de consumo","Total","Hombres",15536
+"505",505,2013,"Renta media por unidad de consumo","Total","Hombres",15722
+"506",506,2012,"Renta media por unidad de consumo","Total","Hombres",16278
+"507",507,2011,"Renta media por unidad de consumo","Total","Hombres",16494
+"508",508,2010,"Renta media por unidad de consumo","Total","Hombres",17128
+"509",509,2009,"Renta media por unidad de consumo","Total","Hombres",17408
+"510",510,2008,"Renta media por unidad de consumo","Total","Hombres",16471
+"511",511,2022,"Renta media por persona (con alquiler imputado)","Total","Hombres",15202
+"512",512,2021,"Renta media por persona (con alquiler imputado)","Total","Hombres",14291
+"513",513,2020,"Renta media por persona (con alquiler imputado)","Total","Hombres",14307
+"514",514,2019,"Renta media por persona (con alquiler imputado)","Total","Hombres",13580
+"515",515,2018,"Renta media por persona (con alquiler imputado)","Total","Hombres",13311
+"516",516,2017,"Renta media por persona (con alquiler imputado)","Total","Hombres",12874
+"517",517,2016,"Renta media por persona (con alquiler imputado)","Total","Hombres",12352
+"518",518,2015,"Renta media por persona (con alquiler imputado)","Total","Hombres",12010
+"519",519,2014,"Renta media por persona (con alquiler imputado)","Total","Hombres",12048
+"520",520,2013,"Renta media por persona (con alquiler imputado)","Total","Hombres",11999
+"521",521,2012,"Renta media por persona (con alquiler imputado)","Total","Hombres",12353
+"522",522,2011,"Renta media por persona (con alquiler imputado)","Total","Hombres",12510
+"523",523,2010,"Renta media por persona (con alquiler imputado)","Total","Hombres",12955
+"524",524,2009,"Renta media por persona (con alquiler imputado)","Total","Hombres",12971
+"525",525,2008,"Renta media por persona (con alquiler imputado)","Total","Hombres",12336
+"526",526,2022,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",22284
+"527",527,2021,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",20997
+"528",528,2020,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",20984
+"529",529,2019,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",20015
+"530",530,2018,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",19688
+"531",531,2017,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",18967
+"532",532,2016,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",18215
+"533",533,2015,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",17656
+"534",534,2014,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",17763
+"535",535,2013,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",17738
+"536",536,2012,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",18364
+"537",537,2011,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",18726
+"538",538,2010,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",19393
+"539",539,2009,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",19429
+"540",540,2008,"Renta media por unidad de consumo (con alquiler imputado)","Total","Hombres",18530
+"541",541,2022,"Renta neta media por persona","Menores de 16 años","Hombres",9446
+"542",542,2021,"Renta neta media por persona","Menores de 16 años","Hombres",8932
+"543",543,2020,"Renta neta media por persona","Menores de 16 años","Hombres",8888
+"544",544,2019,"Renta neta media por persona","Menores de 16 años","Hombres",8938
+"545",545,2018,"Renta neta media por persona","Menores de 16 años","Hombres",8940
+"546",546,2017,"Renta neta media por persona","Menores de 16 años","Hombres",8358
+"547",547,2016,"Renta neta media por persona","Menores de 16 años","Hombres",8100
+"548",548,2015,"Renta neta media por persona","Menores de 16 años","Hombres",7713
+"549",549,2014,"Renta neta media por persona","Menores de 16 años","Hombres",7643
+"550",550,2013,"Renta neta media por persona","Menores de 16 años","Hombres",7593
+"551",551,2012,"Renta neta media por persona","Menores de 16 años","Hombres",8146
+"552",552,2011,"Renta neta media por persona","Menores de 16 años","Hombres",8325
+"553",553,2010,"Renta neta media por persona","Menores de 16 años","Hombres",8478
+"554",554,2009,"Renta neta media por persona","Menores de 16 años","Hombres",8574
+"555",555,2008,"Renta neta media por persona","Menores de 16 años","Hombres",8044
+"556",556,2022,"Renta media por unidad de consumo","Menores de 16 años","Hombres",17233
+"557",557,2021,"Renta media por unidad de consumo","Menores de 16 años","Hombres",16260
+"558",558,2020,"Renta media por unidad de consumo","Menores de 16 años","Hombres",16131
+"559",559,2019,"Renta media por unidad de consumo","Menores de 16 años","Hombres",16171
+"560",560,2018,"Renta media por unidad de consumo","Menores de 16 años","Hombres",16205
+"561",561,2017,"Renta media por unidad de consumo","Menores de 16 años","Hombres",15096
+"562",562,2016,"Renta media por unidad de consumo","Menores de 16 años","Hombres",14687
+"563",563,2015,"Renta media por unidad de consumo","Menores de 16 años","Hombres",13956
+"564",564,2014,"Renta media por unidad de consumo","Menores de 16 años","Hombres",13864
+"565",565,2013,"Renta media por unidad de consumo","Menores de 16 años","Hombres",13774
+"566",566,2012,"Renta media por unidad de consumo","Menores de 16 años","Hombres",14828
+"567",567,2011,"Renta media por unidad de consumo","Menores de 16 años","Hombres",15120
+"568",568,2010,"Renta media por unidad de consumo","Menores de 16 años","Hombres",15397
+"569",569,2009,"Renta media por unidad de consumo","Menores de 16 años","Hombres",15578
+"570",570,2008,"Renta media por unidad de consumo","Menores de 16 años","Hombres",14583
+"571",571,2022,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",10655
+"572",572,2021,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",10081
+"573",573,2020,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",10060
+"574",574,2019,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",10107
+"575",575,2018,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",10075
+"576",576,2017,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9419
+"577",577,2016,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9064
+"578",578,2015,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",8626
+"579",579,2014,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",8549
+"580",580,2013,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",8442
+"581",581,2012,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9002
+"582",582,2011,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9295
+"583",583,2010,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9435
+"584",584,2009,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",9409
+"585",585,2008,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Hombres",8928
+"586",586,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",19420
+"587",587,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",18336
+"588",588,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",18245
+"589",589,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",18277
+"590",590,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",18242
+"591",591,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",16996
+"592",592,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",16416
+"593",593,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",15594
+"594",594,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",15488
+"595",595,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",15297
+"596",596,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",16367
+"597",597,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",16865
+"598",598,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",17121
+"599",599,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",17076
+"600",600,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Hombres",16172
+"601",601,2022,"Renta neta media por persona","De 16 a 29 años","Hombres",11825
+"602",602,2021,"Renta neta media por persona","De 16 a 29 años","Hombres",10967
+"603",603,2020,"Renta neta media por persona","De 16 a 29 años","Hombres",10897
+"604",604,2019,"Renta neta media por persona","De 16 a 29 años","Hombres",10267
+"605",605,2018,"Renta neta media por persona","De 16 a 29 años","Hombres",10510
+"606",606,2017,"Renta neta media por persona","De 16 a 29 años","Hombres",9813
+"607",607,2016,"Renta neta media por persona","De 16 a 29 años","Hombres",9341
+"608",608,2015,"Renta neta media por persona","De 16 a 29 años","Hombres",8908
+"609",609,2014,"Renta neta media por persona","De 16 a 29 años","Hombres",8971
+"610",610,2013,"Renta neta media por persona","De 16 a 29 años","Hombres",9472
+"611",611,2012,"Renta neta media por persona","De 16 a 29 años","Hombres",9916
+"612",612,2011,"Renta neta media por persona","De 16 a 29 años","Hombres",10333
+"613",613,2010,"Renta neta media por persona","De 16 a 29 años","Hombres",10972
+"614",614,2009,"Renta neta media por persona","De 16 a 29 años","Hombres",11181
+"615",615,2008,"Renta neta media por persona","De 16 a 29 años","Hombres",10534
+"616",616,2022,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",18281
+"617",617,2021,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",16925
+"618",618,2020,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",16792
+"619",619,2019,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",15722
+"620",620,2018,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",16061
+"621",621,2017,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",14974
+"622",622,2016,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",14391
+"623",623,2015,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",13672
+"624",624,2014,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",13806
+"625",625,2013,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",14448
+"626",626,2012,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",15087
+"627",627,2011,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",15844
+"628",628,2010,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",16720
+"629",629,2009,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",17151
+"630",630,2008,"Renta media por unidad de consumo","De 16 a 29 años","Hombres",16198
+"631",631,2022,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",13336
+"632",632,2021,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",12395
+"633",633,2020,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",12288
+"634",634,2019,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11629
+"635",635,2018,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11881
+"636",636,2017,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11159
+"637",637,2016,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",10543
+"638",638,2015,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",10090
+"639",639,2014,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",10154
+"640",640,2013,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",10610
+"641",641,2012,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11055
+"642",642,2011,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11577
+"643",643,2010,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",12227
+"644",644,2009,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",12285
+"645",645,2008,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Hombres",11611
+"646",646,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",20574
+"647",647,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",19090
+"648",648,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",18884
+"649",649,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",17745
+"650",650,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",18108
+"651",651,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",16979
+"652",652,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",16230
+"653",653,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",15465
+"654",654,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",15597
+"655",655,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",16133
+"656",656,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",16773
+"657",657,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",17690
+"658",658,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",18584
+"659",659,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",18815
+"660",660,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Hombres",17827
+"661",661,2022,"Renta neta media por persona","De 30 a 44 años","Hombres",13538
+"662",662,2021,"Renta neta media por persona","De 30 a 44 años","Hombres",12333
+"663",663,2020,"Renta neta media por persona","De 30 a 44 años","Hombres",12726
+"664",664,2019,"Renta neta media por persona","De 30 a 44 años","Hombres",11908
+"665",665,2018,"Renta neta media por persona","De 30 a 44 años","Hombres",11833
+"666",666,2017,"Renta neta media por persona","De 30 a 44 años","Hombres",11327
+"667",667,2016,"Renta neta media por persona","De 30 a 44 años","Hombres",10868
+"668",668,2015,"Renta neta media por persona","De 30 a 44 años","Hombres",10658
+"669",669,2014,"Renta neta media por persona","De 30 a 44 años","Hombres",10662
+"670",670,2013,"Renta neta media por persona","De 30 a 44 años","Hombres",10810
+"671",671,2012,"Renta neta media por persona","De 30 a 44 años","Hombres",11276
+"672",672,2011,"Renta neta media por persona","De 30 a 44 años","Hombres",11370
+"673",673,2010,"Renta neta media por persona","De 30 a 44 años","Hombres",11691
+"674",674,2009,"Renta neta media por persona","De 30 a 44 años","Hombres",12141
+"675",675,2008,"Renta neta media por persona","De 30 a 44 años","Hombres",11489
+"676",676,2022,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",19697
+"677",677,2021,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",18136
+"678",678,2020,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",18664
+"679",679,2019,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",17601
+"680",680,2018,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",17612
+"681",681,2017,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",16832
+"682",682,2016,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",16039
+"683",683,2015,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",15681
+"684",684,2014,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",15779
+"685",685,2013,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",15982
+"686",686,2012,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",16696
+"687",687,2011,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",16916
+"688",688,2010,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",17417
+"689",689,2009,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",18006
+"690",690,2008,"Renta media por unidad de consumo","De 30 a 44 años","Hombres",17003
+"691",691,2022,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",15380
+"692",692,2021,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",14088
+"693",693,2020,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",14477
+"694",694,2019,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",13548
+"695",695,2018,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",13420
+"696",696,2017,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12885
+"697",697,2016,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12274
+"698",698,2015,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12033
+"699",699,2014,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12038
+"700",700,2013,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12032
+"701",701,2012,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12588
+"702",702,2011,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12786
+"703",703,2010,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",13149
+"704",704,2009,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",13374
+"705",705,2008,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Hombres",12736
+"706",706,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",22285
+"707",707,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",20610
+"708",708,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",21125
+"709",709,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",19935
+"710",710,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",19881
+"711",711,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",19033
+"712",712,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",18035
+"713",713,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",17630
+"714",714,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",17730
+"715",715,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",17723
+"716",716,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",18538
+"717",717,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",18953
+"718",718,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",19498
+"719",719,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",19777
+"720",720,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Hombres",18818
+"721",721,2022,"Renta neta media por persona","De 45 a 64 años","Hombres",14414
+"722",722,2021,"Renta neta media por persona","De 45 a 64 años","Hombres",13417
+"723",723,2020,"Renta neta media por persona","De 45 a 64 años","Hombres",13769
+"724",724,2019,"Renta neta media por persona","De 45 a 64 años","Hombres",12989
+"725",725,2018,"Renta neta media por persona","De 45 a 64 años","Hombres",12449
+"726",726,2017,"Renta neta media por persona","De 45 a 64 años","Hombres",12310
+"727",727,2016,"Renta neta media por persona","De 45 a 64 años","Hombres",11850
+"728",728,2015,"Renta neta media por persona","De 45 a 64 años","Hombres",11566
+"729",729,2014,"Renta neta media por persona","De 45 a 64 años","Hombres",11653
+"730",730,2013,"Renta neta media por persona","De 45 a 64 años","Hombres",11899
+"731",731,2012,"Renta neta media por persona","De 45 a 64 años","Hombres",12080
+"732",732,2011,"Renta neta media por persona","De 45 a 64 años","Hombres",12140
+"733",733,2010,"Renta neta media por persona","De 45 a 64 años","Hombres",12857
+"734",734,2009,"Renta neta media por persona","De 45 a 64 años","Hombres",12959
+"735",735,2008,"Renta neta media por persona","De 45 a 64 años","Hombres",12299
+"736",736,2022,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",20693
+"737",737,2021,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",19296
+"738",738,2020,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",19651
+"739",739,2019,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",18676
+"740",740,2018,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",17932
+"741",741,2017,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",17669
+"742",742,2016,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",16984
+"743",743,2015,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",16534
+"744",744,2014,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",16642
+"745",745,2013,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",17098
+"746",746,2012,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",17497
+"747",747,2011,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",17714
+"748",748,2010,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",18773
+"749",749,2009,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",18928
+"750",750,2008,"Renta media por unidad de consumo","De 45 a 64 años","Hombres",18122
+"751",751,2022,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",16645
+"752",752,2021,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",15581
+"753",753,2020,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",15879
+"754",754,2019,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",14954
+"755",755,2018,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",14390
+"756",756,2017,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",14210
+"757",757,2016,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13642
+"758",758,2015,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13275
+"759",759,2014,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13456
+"760",760,2013,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13576
+"761",761,2012,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13780
+"762",762,2011,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13914
+"763",763,2010,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",14677
+"764",764,2009,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",14627
+"765",765,2008,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Hombres",13990
+"766",766,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",23737
+"767",767,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",22247
+"768",768,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",22522
+"769",769,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",21388
+"770",770,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",20613
+"771",771,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",20284
+"772",772,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",19441
+"773",773,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",18876
+"774",774,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",19102
+"775",775,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",19397
+"776",776,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",19849
+"777",777,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",20197
+"778",778,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",21305
+"779",779,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",21252
+"780",780,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Hombres",20498
+"781",781,2022,"Renta neta media por persona","65 y más años","Hombres",15118
+"782",782,2021,"Renta neta media por persona","65 y más años","Hombres",14928
+"783",783,2020,"Renta neta media por persona","65 y más años","Hombres",14484
+"784",784,2019,"Renta neta media por persona","65 y más años","Hombres",13575
+"785",785,2018,"Renta neta media por persona","65 y más años","Hombres",13134
+"786",786,2017,"Renta neta media por persona","65 y más años","Hombres",12928
+"787",787,2016,"Renta neta media por persona","65 y más años","Hombres",12788
+"788",788,2015,"Renta neta media por persona","65 y más años","Hombres",12689
+"789",789,2014,"Renta neta media por persona","65 y más años","Hombres",12631
+"790",790,2013,"Renta neta media por persona","65 y más años","Hombres",12315
+"791",791,2012,"Renta neta media por persona","65 y más años","Hombres",12231
+"792",792,2011,"Renta neta media por persona","65 y más años","Hombres",11877
+"793",793,2010,"Renta neta media por persona","65 y más años","Hombres",12032
+"794",794,2009,"Renta neta media por persona","65 y más años","Hombres",11990
+"795",795,2008,"Renta neta media por persona","65 y más años","Hombres",11269
+"796",796,2022,"Renta media por unidad de consumo","65 y más años","Hombres",19924
+"797",797,2021,"Renta media por unidad de consumo","65 y más años","Hombres",19697
+"798",798,2020,"Renta media por unidad de consumo","65 y más años","Hombres",19114
+"799",799,2019,"Renta media por unidad de consumo","65 y más años","Hombres",17893
+"800",800,2018,"Renta media por unidad de consumo","65 y más años","Hombres",17292
+"801",801,2017,"Renta media por unidad de consumo","65 y más años","Hombres",16993
+"802",802,2016,"Renta media por unidad de consumo","65 y más años","Hombres",16843
+"803",803,2015,"Renta media por unidad de consumo","65 y más años","Hombres",16670
+"804",804,2014,"Renta media por unidad de consumo","65 y más años","Hombres",16715
+"805",805,2013,"Renta media por unidad de consumo","65 y más años","Hombres",16333
+"806",806,2012,"Renta media por unidad de consumo","65 y más años","Hombres",16345
+"807",807,2011,"Renta media por unidad de consumo","65 y más años","Hombres",15914
+"808",808,2010,"Renta media por unidad de consumo","65 y más años","Hombres",16205
+"809",809,2009,"Renta media por unidad de consumo","65 y más años","Hombres",16072
+"810",810,2008,"Renta media por unidad de consumo","65 y más años","Hombres",15171
+"811",811,2022,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",18156
+"812",812,2021,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",17840
+"813",813,2020,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",17203
+"814",814,2019,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",16375
+"815",815,2018,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",15800
+"816",816,2017,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",15576
+"817",817,2016,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",15282
+"818",818,2015,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",15136
+"819",819,2014,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",15262
+"820",820,2013,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",14568
+"821",821,2012,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",14659
+"822",822,2011,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",14313
+"823",823,2010,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",14548
+"824",824,2009,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",14362
+"825",825,2008,"Renta media por persona (con alquiler imputado)","65 y más años","Hombres",13692
+"826",826,2022,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",23782
+"827",827,2021,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",23406
+"828",828,2020,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",22592
+"829",829,2019,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",21440
+"830",830,2018,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",20660
+"831",831,2017,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",20341
+"832",832,2016,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",20002
+"833",833,2015,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19765
+"834",834,2014,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",20056
+"835",835,2013,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19215
+"836",836,2012,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19453
+"837",837,2011,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19065
+"838",838,2010,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19460
+"839",839,2009,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",19118
+"840",840,2008,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Hombres",18286
+"841",841,2022,"Renta neta media por persona","Menos de 18 años","Hombres",9541
+"842",842,2021,"Renta neta media por persona","Menos de 18 años","Hombres",9047
+"843",843,2020,"Renta neta media por persona","Menos de 18 años","Hombres",8988
+"844",844,2019,"Renta neta media por persona","Menos de 18 años","Hombres",8970
+"845",845,2018,"Renta neta media por persona","Menos de 18 años","Hombres",8983
+"846",846,2017,"Renta neta media por persona","Menos de 18 años","Hombres",8517
+"847",847,2016,"Renta neta media por persona","Menos de 18 años","Hombres",8168
+"848",848,2015,"Renta neta media por persona","Menos de 18 años","Hombres",7695
+"849",849,2014,"Renta neta media por persona","Menos de 18 años","Hombres",7600
+"850",850,2013,"Renta neta media por persona","Menos de 18 años","Hombres",7580
+"851",851,2012,"Renta neta media por persona","Menos de 18 años","Hombres",8145
+"852",852,2011,"Renta neta media por persona","Menos de 18 años","Hombres",8327
+"853",853,2010,"Renta neta media por persona","Menos de 18 años","Hombres",8438
+"854",854,2009,"Renta neta media por persona","Menos de 18 años","Hombres",8587
+"855",855,2008,"Renta neta media por persona","Menos de 18 años","Hombres",8070
+"856",856,2022,"Renta media por unidad de consumo","Menos de 18 años","Hombres",17157
+"857",857,2021,"Renta media por unidad de consumo","Menos de 18 años","Hombres",16254
+"858",858,2020,"Renta media por unidad de consumo","Menos de 18 años","Hombres",16118
+"859",859,2019,"Renta media por unidad de consumo","Menos de 18 años","Hombres",16060
+"860",860,2018,"Renta media por unidad de consumo","Menos de 18 años","Hombres",16103
+"861",861,2017,"Renta media por unidad de consumo","Menos de 18 años","Hombres",15153
+"862",862,2016,"Renta media por unidad de consumo","Menos de 18 años","Hombres",14603
+"863",863,2015,"Renta media por unidad de consumo","Menos de 18 años","Hombres",13772
+"864",864,2014,"Renta media por unidad de consumo","Menos de 18 años","Hombres",13644
+"865",865,2013,"Renta media por unidad de consumo","Menos de 18 años","Hombres",13608
+"866",866,2012,"Renta media por unidad de consumo","Menos de 18 años","Hombres",14670
+"867",867,2011,"Renta media por unidad de consumo","Menos de 18 años","Hombres",14949
+"868",868,2010,"Renta media por unidad de consumo","Menos de 18 años","Hombres",15176
+"869",869,2009,"Renta media por unidad de consumo","Menos de 18 años","Hombres",15435
+"870",870,2008,"Renta media por unidad de consumo","Menos de 18 años","Hombres",14468
+"871",871,2022,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",10768
+"872",872,2021,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",10218
+"873",873,2020,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",10181
+"874",874,2019,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",10145
+"875",875,2018,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",10128
+"876",876,2017,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9594
+"877",877,2016,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9148
+"878",878,2015,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",8629
+"879",879,2014,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",8522
+"880",880,2013,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",8448
+"881",881,2012,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9010
+"882",882,2011,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9304
+"883",883,2010,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9405
+"884",884,2009,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",9438
+"885",885,2008,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Hombres",8956
+"886",886,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",19344
+"887",887,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",18337
+"888",888,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",18241
+"889",889,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",18151
+"890",890,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",18135
+"891",891,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",17056
+"892",892,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16337
+"893",893,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",15424
+"894",894,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",15279
+"895",895,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",15148
+"896",896,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16210
+"897",897,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16686
+"898",898,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16895
+"899",899,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16943
+"900",900,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Hombres",16046
+"901",901,2022,"Renta neta media por persona","De 18 a 64 años","Hombres",13677
+"902",902,2021,"Renta neta media por persona","De 18 a 64 años","Hombres",12612
+"903",903,2020,"Renta neta media por persona","De 18 a 64 años","Hombres",12873
+"904",904,2019,"Renta neta media por persona","De 18 a 64 años","Hombres",12104
+"905",905,2018,"Renta neta media por persona","De 18 a 64 años","Hombres",11893
+"906",906,2017,"Renta neta media por persona","De 18 a 64 años","Hombres",11475
+"907",907,2016,"Renta neta media por persona","De 18 a 64 años","Hombres",11024
+"908",908,2015,"Renta neta media por persona","De 18 a 64 años","Hombres",10751
+"909",909,2014,"Renta neta media por persona","De 18 a 64 años","Hombres",10791
+"910",910,2013,"Renta neta media por persona","De 18 a 64 años","Hombres",11036
+"911",911,2012,"Renta neta media por persona","De 18 a 64 años","Hombres",11353
+"912",912,2011,"Renta neta media por persona","De 18 a 64 años","Hombres",11498
+"913",913,2010,"Renta neta media por persona","De 18 a 64 años","Hombres",12056
+"914",914,2009,"Renta neta media por persona","De 18 a 64 años","Hombres",12291
+"915",915,2008,"Renta neta media por persona","De 18 a 64 años","Hombres",11613
+"916",916,2022,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",19954
+"917",917,2021,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",18470
+"918",918,2020,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",18768
+"919",919,2019,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",17735
+"920",920,2018,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",17480
+"921",921,2017,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",16829
+"922",922,2016,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",16153
+"923",923,2015,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",15705
+"924",924,2014,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",15808
+"925",925,2013,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",16187
+"926",926,2012,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",16719
+"927",927,2011,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",17057
+"928",928,2010,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",17871
+"929",929,2009,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",18230
+"930",930,2008,"Renta media por unidad de consumo","De 18 a 64 años","Hombres",17285
+"931",931,2022,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",15646
+"932",932,2021,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",14499
+"933",933,2020,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",14718
+"934",934,2019,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13841
+"935",935,2018,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13602
+"936",936,2017,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13149
+"937",937,2016,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12561
+"938",938,2015,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12233
+"939",939,2014,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12309
+"940",940,2013,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12427
+"941",941,2012,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12786
+"942",942,2011,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13019
+"943",943,2010,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13610
+"944",944,2009,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",13656
+"945",945,2008,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Hombres",12982
+"946",946,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",22706
+"947",947,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",21109
+"948",948,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",21341
+"949",949,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",20181
+"950",950,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",19893
+"951",951,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",19178
+"952",952,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",18321
+"953",953,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",17791
+"954",954,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",17940
+"955",955,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",18141
+"956",956,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",18732
+"957",957,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",19227
+"958",958,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",20078
+"959",959,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",20179
+"960",960,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Hombres",19259
+"961",961,2022,"Renta neta media por persona","Total","Mujeres",12843
+"962",962,2021,"Renta neta media por persona","Total","Mujeres",12184
+"963",963,2020,"Renta neta media por persona","Total","Mujeres",12156
+"964",964,2019,"Renta neta media por persona","Total","Mujeres",11595
+"965",965,2018,"Renta neta media por persona","Total","Mujeres",11279
+"966",966,2017,"Renta neta media por persona","Total","Mujeres",10998
+"967",967,2016,"Renta neta media por persona","Total","Mujeres",10651
+"968",968,2015,"Renta neta media por persona","Total","Mujeres",10361
+"969",969,2014,"Renta neta media por persona","Total","Mujeres",10315
+"970",970,2013,"Renta neta media por persona","Total","Mujeres",10488
+"971",971,2012,"Renta neta media por persona","Total","Mujeres",10713
+"972",972,2011,"Renta neta media por persona","Total","Mujeres",10760
+"973",973,2010,"Renta neta media por persona","Total","Mujeres",11195
+"974",974,2009,"Renta neta media por persona","Total","Mujeres",11080
+"975",975,2008,"Renta neta media por persona","Total","Mujeres",10568
+"976",976,2022,"Renta media por unidad de consumo","Total","Mujeres",18891
+"977",977,2021,"Renta media por unidad de consumo","Total","Mujeres",17937
+"978",978,2020,"Renta media por unidad de consumo","Total","Mujeres",17900
+"979",979,2019,"Renta media por unidad de consumo","Total","Mujeres",17131
+"980",980,2018,"Renta media por unidad de consumo","Total","Mujeres",16695
+"981",981,2017,"Renta media por unidad de consumo","Total","Mujeres",16249
+"982",982,2016,"Renta media por unidad de consumo","Total","Mujeres",15719
+"983",983,2015,"Renta media por unidad de consumo","Total","Mujeres",15328
+"984",984,2014,"Renta media por unidad de consumo","Total","Mujeres",15278
+"985",985,2013,"Renta media por unidad de consumo","Total","Mujeres",15551
+"986",986,2012,"Renta media por unidad de consumo","Total","Mujeres",15964
+"987",987,2011,"Renta media por unidad de consumo","Total","Mujeres",16070
+"988",988,2010,"Renta media por unidad de consumo","Total","Mujeres",16721
+"989",989,2009,"Renta media por unidad de consumo","Total","Mujeres",16684
+"990",990,2008,"Renta media por unidad de consumo","Total","Mujeres",15915
+"991",991,2022,"Renta media por persona (con alquiler imputado)","Total","Mujeres",14975
+"992",992,2021,"Renta media por persona (con alquiler imputado)","Total","Mujeres",14221
+"993",993,2020,"Renta media por persona (con alquiler imputado)","Total","Mujeres",14121
+"994",994,2019,"Renta media por persona (con alquiler imputado)","Total","Mujeres",13519
+"995",995,2018,"Renta media por persona (con alquiler imputado)","Total","Mujeres",13139
+"996",996,2017,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12809
+"997",997,2016,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12342
+"998",998,2015,"Renta media por persona (con alquiler imputado)","Total","Mujeres",11974
+"999",999,2014,"Renta media por persona (con alquiler imputado)","Total","Mujeres",11995
+"1000",1000,2013,"Renta media por persona (con alquiler imputado)","Total","Mujeres",11995
+"1001",1001,2012,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12303
+"1002",1002,2011,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12457
+"1003",1003,2010,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12910
+"1004",1004,2009,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12612
+"1005",1005,2008,"Renta media por persona (con alquiler imputado)","Total","Mujeres",12140
+"1006",1006,2022,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",21833
+"1007",1007,2021,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",20756
+"1008",1008,2020,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",20624
+"1009",1009,2019,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",19795
+"1010",1010,2018,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",19277
+"1011",1011,2017,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18762
+"1012",1012,2016,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18060
+"1013",1013,2015,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",17570
+"1014",1014,2014,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",17607
+"1015",1015,2013,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",17652
+"1016",1016,2012,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18174
+"1017",1017,2011,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18444
+"1018",1018,2010,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",19114
+"1019",1019,2009,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18825
+"1020",1020,2008,"Renta media por unidad de consumo (con alquiler imputado)","Total","Mujeres",18118
+"1021",1021,2022,"Renta neta media por persona","Menores de 16 años","Mujeres",9774
+"1022",1022,2021,"Renta neta media por persona","Menores de 16 años","Mujeres",9146
+"1023",1023,2020,"Renta neta media por persona","Menores de 16 años","Mujeres",9171
+"1024",1024,2019,"Renta neta media por persona","Menores de 16 años","Mujeres",8858
+"1025",1025,2018,"Renta neta media por persona","Menores de 16 años","Mujeres",8897
+"1026",1026,2017,"Renta neta media por persona","Menores de 16 años","Mujeres",8349
+"1027",1027,2016,"Renta neta media por persona","Menores de 16 años","Mujeres",8055
+"1028",1028,2015,"Renta neta media por persona","Menores de 16 años","Mujeres",7977
+"1029",1029,2014,"Renta neta media por persona","Menores de 16 años","Mujeres",7813
+"1030",1030,2013,"Renta neta media por persona","Menores de 16 años","Mujeres",7898
+"1031",1031,2012,"Renta neta media por persona","Menores de 16 años","Mujeres",8156
+"1032",1032,2011,"Renta neta media por persona","Menores de 16 años","Mujeres",8188
+"1033",1033,2010,"Renta neta media por persona","Menores de 16 años","Mujeres",8224
+"1034",1034,2009,"Renta neta media por persona","Menores de 16 años","Mujeres",8306
+"1035",1035,2008,"Renta neta media por persona","Menores de 16 años","Mujeres",7963
+"1036",1036,2022,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",17761
+"1037",1037,2021,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",16596
+"1038",1038,2020,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",16561
+"1039",1039,2019,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",16012
+"1040",1040,2018,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",16075
+"1041",1041,2017,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",15104
+"1042",1042,2016,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14579
+"1043",1043,2015,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14388
+"1044",1044,2014,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14083
+"1045",1045,2013,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14227
+"1046",1046,2012,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14782
+"1047",1047,2011,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14784
+"1048",1048,2010,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14825
+"1049",1049,2009,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",15052
+"1050",1050,2008,"Renta media por unidad de consumo","Menores de 16 años","Mujeres",14363
+"1051",1051,2022,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",11016
+"1052",1052,2021,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",10332
+"1053",1053,2020,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",10298
+"1054",1054,2019,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9961
+"1055",1055,2018,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",10000
+"1056",1056,2017,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9400
+"1057",1057,2016,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9019
+"1058",1058,2015,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",8910
+"1059",1059,2014,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",8755
+"1060",1060,2013,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",8761
+"1061",1061,2012,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9039
+"1062",1062,2011,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9198
+"1063",1063,2010,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9195
+"1064",1064,2009,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",9126
+"1065",1065,2008,"Renta media por persona (con alquiler imputado)","Menores de 16 años","Mujeres",8811
+"1066",1066,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",20000
+"1067",1067,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",18731
+"1068",1068,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",18583
+"1069",1069,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",17986
+"1070",1070,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",18047
+"1071",1071,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16981
+"1072",1072,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16306
+"1073",1073,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16054
+"1074",1074,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",15761
+"1075",1075,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",15767
+"1076",1076,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16367
+"1077",1077,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16592
+"1078",1078,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16565
+"1079",1079,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",16527
+"1080",1080,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menores de 16 años","Mujeres",15881
+"1081",1081,2022,"Renta neta media por persona","De 16 a 29 años","Mujeres",11487
+"1082",1082,2021,"Renta neta media por persona","De 16 a 29 años","Mujeres",10836
+"1083",1083,2020,"Renta neta media por persona","De 16 a 29 años","Mujeres",11170
+"1084",1084,2019,"Renta neta media por persona","De 16 a 29 años","Mujeres",10426
+"1085",1085,2018,"Renta neta media por persona","De 16 a 29 años","Mujeres",9785
+"1086",1086,2017,"Renta neta media por persona","De 16 a 29 años","Mujeres",9818
+"1087",1087,2016,"Renta neta media por persona","De 16 a 29 años","Mujeres",9406
+"1088",1088,2015,"Renta neta media por persona","De 16 a 29 años","Mujeres",8963
+"1089",1089,2014,"Renta neta media por persona","De 16 a 29 años","Mujeres",9037
+"1090",1090,2013,"Renta neta media por persona","De 16 a 29 años","Mujeres",9403
+"1091",1091,2012,"Renta neta media por persona","De 16 a 29 años","Mujeres",9528
+"1092",1092,2011,"Renta neta media por persona","De 16 a 29 años","Mujeres",9715
+"1093",1093,2010,"Renta neta media por persona","De 16 a 29 años","Mujeres",10322
+"1094",1094,2009,"Renta neta media por persona","De 16 a 29 años","Mujeres",10394
+"1095",1095,2008,"Renta neta media por persona","De 16 a 29 años","Mujeres",10090
+"1096",1096,2022,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",17744
+"1097",1097,2021,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",16728
+"1098",1098,2020,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",17150
+"1099",1099,2019,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",16097
+"1100",1100,2018,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",14940
+"1101",1101,2017,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",15114
+"1102",1102,2016,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",14437
+"1103",1103,2015,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",13895
+"1104",1104,2014,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",13853
+"1105",1105,2013,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",14428
+"1106",1106,2012,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",14695
+"1107",1107,2011,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",14972
+"1108",1108,2010,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",15881
+"1109",1109,2009,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",16071
+"1110",1110,2008,"Renta media por unidad de consumo","De 16 a 29 años","Mujeres",15614
+"1111",1111,2022,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",12968
+"1112",1112,2021,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",12309
+"1113",1113,2020,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",12587
+"1114",1114,2019,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11705
+"1115",1115,2018,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11074
+"1116",1116,2017,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11097
+"1117",1117,2016,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10623
+"1118",1118,2015,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10093
+"1119",1119,2014,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10164
+"1120",1120,2013,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10412
+"1121",1121,2012,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10619
+"1122",1122,2011,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",10919
+"1123",1123,2010,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11520
+"1124",1124,2009,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11441
+"1125",1125,2008,"Renta media por persona (con alquiler imputado)","De 16 a 29 años","Mujeres",11152
+"1126",1126,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",20001
+"1127",1127,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",18947
+"1128",1128,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",19305
+"1129",1129,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",18054
+"1130",1130,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",16901
+"1131",1131,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",17070
+"1132",1132,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",16282
+"1133",1133,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",15627
+"1134",1134,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",15570
+"1135",1135,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",15966
+"1136",1136,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",16338
+"1137",1137,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",16780
+"1138",1138,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",17684
+"1139",1139,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",17652
+"1140",1140,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 16 a 29 años","Mujeres",17245
+"1141",1141,2022,"Renta neta media por persona","De 30 a 44 años","Mujeres",12416
+"1142",1142,2021,"Renta neta media por persona","De 30 a 44 años","Mujeres",11692
+"1143",1143,2020,"Renta neta media por persona","De 30 a 44 años","Mujeres",11381
+"1144",1144,2019,"Renta neta media por persona","De 30 a 44 años","Mujeres",10935
+"1145",1145,2018,"Renta neta media por persona","De 30 a 44 años","Mujeres",10963
+"1146",1146,2017,"Renta neta media por persona","De 30 a 44 años","Mujeres",10753
+"1147",1147,2016,"Renta neta media por persona","De 30 a 44 años","Mujeres",10199
+"1148",1148,2015,"Renta neta media por persona","De 30 a 44 años","Mujeres",10042
+"1149",1149,2014,"Renta neta media por persona","De 30 a 44 años","Mujeres",10022
+"1150",1150,2013,"Renta neta media por persona","De 30 a 44 años","Mujeres",10267
+"1151",1151,2012,"Renta neta media por persona","De 30 a 44 años","Mujeres",10538
+"1152",1152,2011,"Renta neta media por persona","De 30 a 44 años","Mujeres",10832
+"1153",1153,2010,"Renta neta media por persona","De 30 a 44 años","Mujeres",11255
+"1154",1154,2009,"Renta neta media por persona","De 30 a 44 años","Mujeres",11207
+"1155",1155,2008,"Renta neta media por persona","De 30 a 44 años","Mujeres",10543
+"1156",1156,2022,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",18992
+"1157",1157,2021,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",17852
+"1158",1158,2020,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",17497
+"1159",1159,2019,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",16934
+"1160",1160,2018,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",17058
+"1161",1161,2017,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",16562
+"1162",1162,2016,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",15730
+"1163",1163,2015,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",15384
+"1164",1164,2014,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",15497
+"1165",1165,2013,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",15761
+"1166",1166,2012,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",16234
+"1167",1167,2011,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",16669
+"1168",1168,2010,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",17282
+"1169",1169,2009,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",17357
+"1170",1170,2008,"Renta media por unidad de consumo","De 30 a 44 años","Mujeres",16332
+"1171",1171,2022,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",14091
+"1172",1172,2021,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",13294
+"1173",1173,2020,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12929
+"1174",1174,2019,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12419
+"1175",1175,2018,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12364
+"1176",1176,2017,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12130
+"1177",1177,2016,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11467
+"1178",1178,2015,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11286
+"1179",1179,2014,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11235
+"1180",1180,2013,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11452
+"1181",1181,2012,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11757
+"1182",1182,2011,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12198
+"1183",1183,2010,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12611
+"1184",1184,2009,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",12330
+"1185",1185,2008,"Renta media por persona (con alquiler imputado)","De 30 a 44 años","Mujeres",11746
+"1186",1186,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",21466
+"1187",1187,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",20222
+"1188",1188,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",19801
+"1189",1189,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",19165
+"1190",1190,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",19188
+"1191",1191,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",18629
+"1192",1192,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",17637
+"1193",1193,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",17237
+"1194",1194,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",17337
+"1195",1195,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",17534
+"1196",1196,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",18052
+"1197",1197,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",18719
+"1198",1198,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",19311
+"1199",1199,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",19066
+"1200",1200,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 30 a 44 años","Mujeres",18156
+"1201",1201,2022,"Renta neta media por persona","De 45 a 64 años","Mujeres",14040
+"1202",1202,2021,"Renta neta media por persona","De 45 a 64 años","Mujeres",13331
+"1203",1203,2020,"Renta neta media por persona","De 45 a 64 años","Mujeres",13486
+"1204",1204,2019,"Renta neta media por persona","De 45 a 64 años","Mujeres",12988
+"1205",1205,2018,"Renta neta media por persona","De 45 a 64 años","Mujeres",12649
+"1206",1206,2017,"Renta neta media por persona","De 45 a 64 años","Mujeres",12312
+"1207",1207,2016,"Renta neta media por persona","De 45 a 64 años","Mujeres",12011
+"1208",1208,2015,"Renta neta media por persona","De 45 a 64 años","Mujeres",11616
+"1209",1209,2014,"Renta neta media por persona","De 45 a 64 años","Mujeres",11600
+"1210",1210,2013,"Renta neta media por persona","De 45 a 64 años","Mujeres",11943
+"1211",1211,2012,"Renta neta media por persona","De 45 a 64 años","Mujeres",12456
+"1212",1212,2011,"Renta neta media por persona","De 45 a 64 años","Mujeres",12603
+"1213",1213,2010,"Renta neta media por persona","De 45 a 64 años","Mujeres",13233
+"1214",1214,2009,"Renta neta media por persona","De 45 a 64 años","Mujeres",12855
+"1215",1215,2008,"Renta neta media por persona","De 45 a 64 años","Mujeres",12524
+"1216",1216,2022,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",20316
+"1217",1217,2021,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",19249
+"1218",1218,2020,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",19396
+"1219",1219,2019,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",18659
+"1220",1220,2018,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",18147
+"1221",1221,2017,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",17649
+"1222",1222,2016,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",17193
+"1223",1223,2015,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",16709
+"1224",1224,2014,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",16676
+"1225",1225,2013,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",17167
+"1226",1226,2012,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",17897
+"1227",1227,2011,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",18167
+"1228",1228,2010,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",19091
+"1229",1229,2009,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",18768
+"1230",1230,2008,"Renta media por unidad de consumo","De 45 a 64 años","Mujeres",18248
+"1231",1231,2022,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",16237
+"1232",1232,2021,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",15465
+"1233",1233,2020,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",15578
+"1234",1234,2019,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",15057
+"1235",1235,2018,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14701
+"1236",1236,2017,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14277
+"1237",1237,2016,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",13859
+"1238",1238,2015,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",13377
+"1239",1239,2014,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",13461
+"1240",1240,2013,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",13644
+"1241",1241,2012,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14270
+"1242",1242,2011,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14536
+"1243",1243,2010,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",15194
+"1244",1244,2009,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14661
+"1245",1245,2008,"Renta media por persona (con alquiler imputado)","De 45 a 64 años","Mujeres",14347
+"1246",1246,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",23362
+"1247",1247,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",22202
+"1248",1248,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",22279
+"1249",1249,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",21503
+"1250",1250,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",20966
+"1251",1251,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",20354
+"1252",1252,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",19727
+"1253",1253,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",19139
+"1254",1254,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",19233
+"1255",1255,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",19511
+"1256",1256,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",20386
+"1257",1257,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",20818
+"1258",1258,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",21785
+"1259",1259,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",21269
+"1260",1260,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 45 a 64 años","Mujeres",20785
+"1261",1261,2022,"Renta neta media por persona","65 y más años","Mujeres",14481
+"1262",1262,2021,"Renta neta media por persona","65 y más años","Mujeres",14031
+"1263",1263,2020,"Renta neta media por persona","65 y más años","Mujeres",13856
+"1264",1264,2019,"Renta neta media por persona","65 y más años","Mujeres",13112
+"1265",1265,2018,"Renta neta media por persona","65 y más años","Mujeres",12464
+"1266",1266,2017,"Renta neta media por persona","65 y más años","Mujeres",12217
+"1267",1267,2016,"Renta neta media por persona","65 y más años","Mujeres",12127
+"1268",1268,2015,"Renta neta media por persona","65 y más años","Mujeres",11833
+"1269",1269,2014,"Renta neta media por persona","65 y más años","Mujeres",11839
+"1270",1270,2013,"Renta neta media por persona","65 y más años","Mujeres",11688
+"1271",1271,2012,"Renta neta media por persona","65 y más años","Mujeres",11589
+"1272",1272,2011,"Renta neta media por persona","65 y más años","Mujeres",11150
+"1273",1273,2010,"Renta neta media por persona","65 y más años","Mujeres",11596
+"1274",1274,2009,"Renta neta media por persona","65 y más años","Mujeres",11455
+"1275",1275,2008,"Renta neta media por persona","65 y más años","Mujeres",10611
+"1276",1276,2022,"Renta media por unidad de consumo","65 y más años","Mujeres",18289
+"1277",1277,2021,"Renta media por unidad de consumo","65 y más años","Mujeres",17889
+"1278",1278,2020,"Renta media por unidad de consumo","65 y más años","Mujeres",17668
+"1279",1279,2019,"Renta media por unidad de consumo","65 y más años","Mujeres",16717
+"1280",1280,2018,"Renta media por unidad de consumo","65 y más años","Mujeres",15911
+"1281",1281,2017,"Renta media por unidad de consumo","65 y más años","Mujeres",15578
+"1282",1282,2016,"Renta media por unidad de consumo","65 y más años","Mujeres",15420
+"1283",1283,2015,"Renta media por unidad de consumo","65 y más años","Mujeres",15083
+"1284",1284,2014,"Renta media por unidad de consumo","65 y más años","Mujeres",15113
+"1285",1285,2013,"Renta media por unidad de consumo","65 y más años","Mujeres",14994
+"1286",1286,2012,"Renta media por unidad de consumo","65 y más años","Mujeres",14943
+"1287",1287,2011,"Renta media por unidad de consumo","65 y más años","Mujeres",14401
+"1288",1288,2010,"Renta media por unidad de consumo","65 y más años","Mujeres",15083
+"1289",1289,2009,"Renta media por unidad de consumo","65 y más años","Mujeres",14877
+"1290",1290,2008,"Renta media por unidad de consumo","65 y más años","Mujeres",13801
+"1291",1291,2022,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",17959
+"1292",1292,2021,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",17312
+"1293",1293,2020,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",17017
+"1294",1294,2019,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",16311
+"1295",1295,2018,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",15477
+"1296",1296,2017,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",15211
+"1297",1297,2016,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14956
+"1298",1298,2015,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14537
+"1299",1299,2014,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14819
+"1300",1300,2013,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14233
+"1301",1301,2012,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14327
+"1302",1302,2011,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",13936
+"1303",1303,2010,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14533
+"1304",1304,2009,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",14219
+"1305",1305,2008,"Renta media por persona (con alquiler imputado)","65 y más años","Mujeres",13437
+"1306",1306,2022,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",22425
+"1307",1307,2021,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",21821
+"1308",1308,2020,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",21466
+"1309",1309,2019,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",20550
+"1310",1310,2018,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",19506
+"1311",1311,2017,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",19161
+"1312",1312,2016,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18795
+"1313",1313,2015,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18326
+"1314",1314,2014,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18680
+"1315",1315,2013,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18053
+"1316",1316,2012,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18239
+"1317",1317,2011,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",17764
+"1318",1318,2010,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18618
+"1319",1319,2009,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",18194
+"1320",1320,2008,"Renta media por unidad de consumo (con alquiler imputado)","65 y más años","Mujeres",17187
+"1321",1321,2022,"Renta neta media por persona","Menos de 18 años","Mujeres",9799
+"1322",1322,2021,"Renta neta media por persona","Menos de 18 años","Mujeres",9197
+"1323",1323,2020,"Renta neta media por persona","Menos de 18 años","Mujeres",9238
+"1324",1324,2019,"Renta neta media por persona","Menos de 18 años","Mujeres",8917
+"1325",1325,2018,"Renta neta media por persona","Menos de 18 años","Mujeres",8830
+"1326",1326,2017,"Renta neta media por persona","Menos de 18 años","Mujeres",8439
+"1327",1327,2016,"Renta neta media por persona","Menos de 18 años","Mujeres",8136
+"1328",1328,2015,"Renta neta media por persona","Menos de 18 años","Mujeres",7962
+"1329",1329,2014,"Renta neta media por persona","Menos de 18 años","Mujeres",7811
+"1330",1330,2013,"Renta neta media por persona","Menos de 18 años","Mujeres",7847
+"1331",1331,2012,"Renta neta media por persona","Menos de 18 años","Mujeres",8165
+"1332",1332,2011,"Renta neta media por persona","Menos de 18 años","Mujeres",8187
+"1333",1333,2010,"Renta neta media por persona","Menos de 18 años","Mujeres",8264
+"1334",1334,2009,"Renta neta media por persona","Menos de 18 años","Mujeres",8341
+"1335",1335,2008,"Renta neta media por persona","Menos de 18 años","Mujeres",7976
+"1336",1336,2022,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",17557
+"1337",1337,2021,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",16463
+"1338",1338,2020,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",16489
+"1339",1339,2019,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",15932
+"1340",1340,2018,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",15784
+"1341",1341,2017,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",15069
+"1342",1342,2016,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14539
+"1343",1343,2015,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14225
+"1344",1344,2014,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",13949
+"1345",1345,2013,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",13998
+"1346",1346,2012,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14623
+"1347",1347,2011,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14653
+"1348",1348,2010,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14730
+"1349",1349,2009,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14952
+"1350",1350,2008,"Renta media por unidad de consumo","Menos de 18 años","Mujeres",14240
+"1351",1351,2022,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",11059
+"1352",1352,2021,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",10394
+"1353",1353,2020,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",10393
+"1354",1354,2019,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",10036
+"1355",1355,2018,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9940
+"1356",1356,2017,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9506
+"1357",1357,2016,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9119
+"1358",1358,2015,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",8907
+"1359",1359,2014,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",8767
+"1360",1360,2013,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",8720
+"1361",1361,2012,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9059
+"1362",1362,2011,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9209
+"1363",1363,2010,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9244
+"1364",1364,2009,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",9168
+"1365",1365,2008,"Renta media por persona (con alquiler imputado)","Menos de 18 años","Mujeres",8838
+"1366",1366,2022,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",19794
+"1367",1367,2021,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",18587
+"1368",1368,2020,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",18533
+"1369",1369,2019,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",17909
+"1370",1370,2018,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",17743
+"1371",1371,2017,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16952
+"1372",1372,2016,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16276
+"1373",1373,2015,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",15896
+"1374",1374,2014,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",15635
+"1375",1375,2013,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",15541
+"1376",1376,2012,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16207
+"1377",1377,2011,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16465
+"1378",1378,2010,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16467
+"1379",1379,2009,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",16423
+"1380",1380,2008,"Renta media por unidad de consumo (con alquiler imputado)","Menos de 18 años","Mujeres",15766
+"1381",1381,2022,"Renta neta media por persona","De 18 a 64 años","Mujeres",13078
+"1382",1382,2021,"Renta neta media por persona","De 18 a 64 años","Mujeres",12361
+"1383",1383,2020,"Renta neta media por persona","De 18 a 64 años","Mujeres",12374
+"1384",1384,2019,"Renta neta media por persona","De 18 a 64 años","Mujeres",11819
+"1385",1385,2018,"Renta neta media por persona","De 18 a 64 años","Mujeres",11561
+"1386",1386,2017,"Renta neta media por persona","De 18 a 64 años","Mujeres",11305
+"1387",1387,2016,"Renta neta media por persona","De 18 a 64 años","Mujeres",10871
+"1388",1388,2015,"Renta neta media por persona","De 18 a 64 años","Mujeres",10549
+"1389",1389,2014,"Renta neta media por persona","De 18 a 64 años","Mujeres",10528
+"1390",1390,2013,"Renta neta media por persona","De 18 a 64 años","Mujeres",10848
+"1391",1391,2012,"Renta neta media por persona","De 18 a 64 años","Mujeres",11148
+"1392",1392,2011,"Renta neta media por persona","De 18 a 64 años","Mujeres",11332
+"1393",1393,2010,"Renta neta media por persona","De 18 a 64 años","Mujeres",11870
+"1394",1394,2009,"Renta neta media por persona","De 18 a 64 años","Mujeres",11705
+"1395",1395,2008,"Renta neta media por persona","De 18 a 64 años","Mujeres",11239
+"1396",1396,2022,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",19453
+"1397",1397,2021,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",18353
+"1398",1398,2020,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",18362
+"1399",1399,2019,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",17598
+"1400",1400,2018,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",17208
+"1401",1401,2017,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16798
+"1402",1402,2016,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16144
+"1403",1403,2015,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",15707
+"1404",1404,2014,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",15696
+"1405",1405,2013,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16147
+"1406",1406,2012,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16636
+"1407",1407,2011,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16936
+"1408",1408,2010,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",17731
+"1409",1409,2009,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",17660
+"1410",1410,2008,"Renta media por unidad de consumo","De 18 a 64 años","Mujeres",16951
+"1411",1411,2022,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",14972
+"1412",1412,2021,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",14200
+"1413",1413,2020,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",14155
+"1414",1414,2019,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",13536
+"1415",1415,2018,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",13243
+"1416",1416,2017,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12932
+"1417",1417,2016,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12389
+"1418",1418,2015,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",11997
+"1419",1419,2014,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12000
+"1420",1420,2013,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12213
+"1421",1421,2012,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12586
+"1422",1422,2011,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12889
+"1423",1423,2010,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",13431
+"1424",1424,2009,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",13077
+"1425",1425,2008,"Renta media por persona (con alquiler imputado)","De 18 a 64 años","Mujeres",12644
+"1426",1426,2022,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",22165
+"1427",1427,2021,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",20979
+"1428",1428,2020,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",20907
+"1429",1429,2019,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",20058
+"1430",1430,2018,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",19625
+"1431",1431,2017,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",19134
+"1432",1432,2016,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",18318
+"1433",1433,2015,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",17787
+"1434",1434,2014,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",17814
+"1435",1435,2013,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",18109
+"1436",1436,2012,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",18692
+"1437",1437,2011,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",19170
+"1438",1438,2010,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",19971
+"1439",1439,2009,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",19647
+"1440",1440,2008,"Renta media por unidad de consumo (con alquiler imputado)","De 18 a 64 años","Mujeres",18999
