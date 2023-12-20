@@ -1,4 +1,8 @@
 #Paquetes Preliminares
+
+#install.packages("downloader")
+#install.packages("readxl")
+#install.packages("pxR")
 library(pxR)
 library(tidyverse)
 library(data.table)
@@ -378,3 +382,38 @@ df_ipc_01 <- df_ipc_01 |>
 
 export(df_ipc_01, "./datos_pulidos/IPC_mas_vivienda.csv", type = "csv")
 
+
+#Saúl
+#-------------------------Por tipo de jornada-----------------------------------
+
+df_temporal <- import("https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/10894.csv?nocab=1")
+df_contrato <- import("https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/4854.csv?nocab=1")
+
+df_contrato <- df_contrato %>%
+  filter(Sexo %in% "Ambos sexos")
+
+
+
+write.csv(df_temporal, file= "./datos_pulidos/temporalidad_edad.csv")
+write.csv(df_contrato, file = "./datos_pulidos/contrato_edad.csv")
+
+#Saúl
+#-------------------------Paro-----------------------------------
+
+
+df_activos <- import("https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/4049.csv?nocab=1")
+df_parados <- import("https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/4084.csv?nocab=1")
+
+
+df_activos <- df_activos %>%
+  filter(Sexo %in% "Ambos sexos") %>%
+  filter(Unidad %in% "Valor absoluto")
+
+
+df_parados <- df_parados %>%
+  filter(Sexo %in% "Ambos sexos") %>%
+  filter(Unidad %in% "Valor absoluto")
+
+
+export(df_activos, file = "./datos_pulidos/activos.csv", format="csv")
+export(df_parados, file = "./datos_pulidos/parados.csv", format="csv")
