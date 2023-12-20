@@ -25,21 +25,21 @@ website:
       - icon: github
         href: https://github.com/<tu-usuario-github>    #- pon tu usuario Github
       - icon: envelope
-        url: "mailto:<tu-mail@alumni.uv.es>"            #- pon tu e-mail
+        url: "mailto:<josefar@alumni.uv.es>"            #- pon tu e-mail
   page-footer:
     border: true
-    background: "#e66b63"         #--
-    left: "© 2022 Pedro Navaja"   #--
+    background: "#363636"         #--
+    left: "© 2023 Joel y su equipo de devolopers (Saúl & Pedro)"   #--
     center: "Hecho con [Quarto](https://quarto.org)"
     right:
       - icon: github
         href: https://github.com/<tu-usuario-github>     #- pon tu usuario Github
       - icon: envelope
-        url: "mailto:<tu-mail>@alumni.uv.es"            #- pon tu e-mail
+        url: "mailto:josefar@alumni.uv.es"            #- pon tu e-mail
     
 format:
   html:
-    theme: flatly           #- https://quarto.org/docs/output-formats/html-themes.html
+    theme: sandstone           #- https://quarto.org/docs/output-formats/html-themes.html
     mainfont: Lato
     highlight-style: a11y   #-
     css: my_styles.css      #- si queréis añadir cosas

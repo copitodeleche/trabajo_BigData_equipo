@@ -795,7 +795,7 @@ year,country,PIB_pc,iso_2_code
 2019,United Kingdom,32910,GB
 2020,Albania,3810,AL
 2020,Austria,35390,AT
-2020,Belgium,34050,BE
+2020,Belgium,34060,BE
 2020,Bulgaria,6400,BG
 2020,Switzerland,60190,CH
 2020,Cyprus,24360,CY
@@ -832,7 +832,7 @@ year,country,PIB_pc,iso_2_code
 2020,Slovakia,15400,SK
 2020,Türkiye,11600,TR
 2021,Austria,36740,AT
-2021,Belgium,36230,BE
+2021,Belgium,36250,BE
 2021,Bulgaria,6950,BG
 2021,Switzerland,62950,CH
 2021,Cyprus,26530,CY
