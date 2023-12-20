@@ -483,7 +483,7 @@ dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.un
 p <- ggplot(dff, aes(x = Periodo, y = renta, color = Edad)) +
   geom_line(size = 1) +
   labs(title = "Evolución de la renta neta media por edad", subtitle = "(Euros corrientes)",
-       x = "Año", y = "Renta neta") +
+       x = "Año", y = "Renta neta", caption = "Elaboración propia a partir de datos de INE") +
   theme_ipsum() + 
   theme(legend.position = "bottom",
         panel.grid.major = element_line(colour = "gray87", linetype = "dashed"),
@@ -703,10 +703,7 @@ geom_line() +
 scale_color_manual(values = c("blue", "red")) +
 geom_point( color="black", size=2) +
 theme_economist() +labs(title = "Porcentaje de parados según la edad", x = "Periodo", y =
-"Porcentaje") +
-labs(title = "Evolución del IPC por tramos de edad",
-x = "Año", y = "Variación anual IPC", caption = "Elaboración propia a partir de datos
-extraídos de INE")
+"Porcentaje", caption = "Elaboración propia a partir de datos de INE")
 
 plotly::ggplotly(P2)
 
@@ -724,10 +721,7 @@ p3 <- ggplot(contrato, aes(x = Periodo, y = jornada_completa, fill = grupo_edad)
   geom_col(position = "dodge") +
   scale_fill_manual(values = c("blue3", "red3"), name = NULL) +
   theme_economist() +
-  labs(title = "Contratos de jornada completa según la edad", x = "Periodo", y = "Porcentaje") +
-  labs(title = "Evolución del IPC por país",
-       x = "Año", y = "Variación anual IPC", caption = "Elaboración propia a partir de datos extraídos de INE")
-
+  labs(title = "Contratos de jornada completa según la edad", x = "Periodo", y = "Porcentaje", caption = "Elaboración propia a partir de datos de INE") 
 plotly::ggplotly(p3)
 ```
 
@@ -834,28 +828,22 @@ p4 <- ggplot(df5, aes(fill = Valor)) +
   geom_sf() +
   geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
   scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
-  labs(title = "Precios vivienda CCAA 2023T3 (100 = 2015)") +
-  theme_void() +
-  labs(title = "Nivel de precios de la vivienda 2023", 
-       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+  labs(title = "Precios vivienda CCAA 2023T3 (100 = 2015)",caption = "Elaboración propia a partir de datos extraídos de INE") +
+  theme_void() 
 
 p7 <- ggplot(df13, aes(fill = Valor)) +
   geom_sf() +
   geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "white") +
   scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
-  labs(title = "Precios vivienda CCAA 2013T3 (100 = 2015)") +
-  theme_void() +
-  labs(title = "Nivel de precios de la vivienda 2013", 
-       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+  labs(title = "Precios vivienda CCAA 2013T3 (100 = 2015)",caption = "Elaboración propia a partir de datos extraídos de INE") +
+  theme_void() 
 
 p9 <- ggplot(df15, aes(fill = Valor)) +
   geom_sf() +
   geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
   scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
-  labs(title = "Precios vivienda CCAA 20071T3 (100 = 2015)") +
-  theme_void() +
-  labs(title = "Nivel de precios de la vivienda 2017", 
-       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+  labs(title = "Precios vivienda CCAA 20071T3 (100 = 2015)",caption = "Elaboración propia a partir de datos extraídos de INE") +
+  theme_void() 
 # Combinar los dos gráficos
 p9
 
@@ -909,9 +897,8 @@ p30 <- dd %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1), 
         plot.caption = element_text(hjust = 0.5),
         plot.title = element_text(hjust = 0.5, color = "black", size = 18, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5, size = 14))+
-  labs(title = "Régimen de vivienda de 16 a 29 años", 
-  caption = "Elaboración propia a partir de datos extraídos de INE")
+        plot.subtitle = element_text(hjust = 0.5, size = 14))
+  
 
 p30
 ```

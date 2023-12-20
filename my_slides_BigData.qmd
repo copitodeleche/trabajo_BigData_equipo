@@ -1,6 +1,6 @@
 ---
-title: "Los pingüinos molan"  #- título
-date: 2022-11-24              #- ISO8601 YYYY-MM-DD format 
+title: "La vivienda, un bien inalcanzable"  #- título
+date: 2023-12-20              #- ISO8601 YYYY-MM-DD format 
 date-format: short
 format: 
   revealjs:
@@ -11,7 +11,7 @@ format:
     toc: false
     center-title-slide: true
     title-slide-attributes: #- atributos para la slide de titulo
-      data-background-color: "#562457"   #- color de R-ladies
+      data-background-color: "#2FBFCD"   #- color de R-ladies
     preview-links: auto  #- true: abre un iframe en lugar de abrir ventana
     link-external-newwindow: true
     transition: fade
@@ -28,89 +28,483 @@ footer: |
 
 
 
-## Intro 
-
-Vamos a utilizar datos del paquete `palmerpenguins`. El repo del paquete en CRAN está [aquí](https://cran.r-project.org/web/packages/palmerpenguins/index.html), el repo de Github está [aquí](https://github.com/allisonhorst/palmerpenguins) y la página web del paquete está [aquí](https://allisonhorst.github.io/palmerpenguins/).
-
-Los datos se pueden cargar en la memoria de de R/RStudio de esta forma:
-
-```{r}
-# install.packages("palmerpenguins")
-library(palmerpenguins)
-df <- palmerpenguins::penguins
+## La vivienda, un bien inalcanzable.
+```{r, echo=FALSE}
+my_url <-
+"https://www.tuabogadodefensor.com/wp-content/uploads/2017/09/cual-precio-vivienda.jpg"
 ```
-
-
-El dataset contiene observaciones sobre un conjunto de `r nrow(df)` pingüinos de 3 especies. Hay  `r ncol(df)` variables.
+![](https://www.tuabogadodefensor.com/wp-content/uploads/2017/09/cual-precio-vivienda.jpg)
 
 ---
 
-## Los pingüinos molan
+# Renta neta media por persona
 
-Vamos a ver una foto de un pingüinos
-
-```{r}
-#| echo: false
-my_url <- "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143"
-```
-
-
-![Un pingüino chulo](https://upload.wikimedia.org/wikipedia/commons/a/a9/Ping%C3%BCinos.JPG?20090406212143)
-
-
-
----
-
-## Algunos gráficos
-
-
-Bueno pues vamos a hacer algún gráfico, pero claro antes he de cargar los paquetes
-
-```{r}
-#| eval: true
+```{R, echo=FALSE}
+#Cargamos datos
+library(rio)
 library(tidyverse)
-```
+library(gganimate)
+library(ggthemes)
+library(hrbrthemes)
 
+#-
 
-Arreglo los datos
+renta_edad <- read.csv("./datos_pulidos/renta_por_edad.csv")
 
-```{r}
-#- cojos datos de pingüinos y arreglo un poco 
-df <- palmerpenguins::penguins %>% 
-  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
-  tidyr::drop_na()
-```
+dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo) %>% filter(tipo == "Renta neta media por persona", Sexo == "Ambos sexos", !(Edad %in% c("De 18 a 64 años", "Menos de 18 años", "Total")))
 
----
+p <- ggplot(dff, aes(x = Periodo, y = renta, color = Edad)) +
+  geom_line(size = 1) +
+  labs(title = "Evolución de la renta neta media por edad", subtitle = "(Euros corrientes)",
+       x = "Año", y = "Renta neta") +
+  theme_ipsum() + 
+  theme(legend.position = "bottom",
+        panel.grid.major = element_line(colour = "gray87", linetype = "dashed"),
+        panel.background = element_rect(fill = "aliceblue"),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(family = "serif", size = 9, colour = "gray17")) + scale_color_manual(values = c("green4", "black", "blue", "red", "orange")) +
+  geom_text(aes(label = Edad), nudge_x = 0.5, nudge_y = 0.5, hjust = 0)
 
-### Primer gráfico
+p_animated <- p + transition_reveal(Periodo) +
+  enter_fade() + 
+  exit_fade()
 
+animate(p_animated, nframes = 200, fps = 20)
 
-```{r}
-#- primer gráfico
-p <- ggplot(data = df, 
-       mapping = aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
-     geom_point()
-p
-```
-
----
-
-### Segundo
-
-```{r}
-#- segundo gráfico
-p <- p + geom_smooth(method = "lm", se = FALSE) 
-
-p
 ```
 
 ---
 
-### El último
+## Renta neta media por persona
 
-```{r}
-#- tercer gráfico
-p + geom_smooth(method = "lm", se = FALSE, color = "black") 
+```{r, echo=FALSE}
+library(rio)
+library(tidyverse)
+library(gganimate)
+library(ggthemes)
+library(hrbrthemes)
+
+renta_edad <- read.csv("./datos_pulidos/renta_por_edad.csv")
+
+dff  <- renta_edad %>% rename(tipo = Renta.anual.neta.media.por.persona.y.por.unidad.de.consumo) %>% filter(tipo == "Renta neta media por persona", Sexo == "Ambos sexos", !(Edad %in% c("De 18 a 64 años", "Menos de 18 años", "Total")))
+
+p6 <- ggplot(data=dff) +
+  geom_line(aes(x = Periodo, y = renta, color = Edad, group = Edad)) +labs (title = "Evolución de la renta neta media por edad", subtitle = "(En euros corrientes)", y = "Renta", x = "Año") + theme_ipsum()
+
+plotly::ggplotly(p6)
+
+
 ```
 
+---
+
+## Porcentaje de parados según la edad
+
+```{R, echo=FALSE}
+
+#Paquetes
+library(reshape2)
+library(tidyverse)
+library(car) # regression analysis
+library(plotly)
+library(ggplot2)
+library(gganimate)
+library(xts)
+library(dygraphs)
+library(gifski)
+library(ggthemes)
+#rm(list = ls())
+#Df`s
+#---------------------Tipo de contrato------------------------------------------
+df_contrato <- read.csv("./datos_pulidos/contrato_edad.csv")
+#----------------------Arreglamos-----------------------------------------------
+head(df_contrato)
+df_contrato <- df_contrato %>%
+mutate(Total = gsub("\\.", "", Total))
+df_contrato <- df_contrato %>%
+mutate(Total = as.numeric(gsub(",", ".", Total)))
+head(df_contrato)
+df_contrato <- df_contrato %>%
+filter(Tipo.de.jornada %in% c("Jornada a tiempo completo", "Jornada a tiempo parcial")) %>%
+filter(Tipo.de.dato %in% "Porcentaje")
+df_contrato_pivot <- df_contrato %>%
+pivot_wider(names_from = "Tipo.de.jornada", values_from = "Total")
+df_contrato_pivot <- df_contrato_pivot[,-(1:2)]
+de16a34 <- df_contrato_pivot %>%
+filter(Edad %in% c("De 25 a 29 años", "De 16 a 19 años", "De 20 a 24 años", "De 30 a 34
+años"))
+columna <- rep("De 16 a 34 años", times = 17)
+de16a34 <- de16a34 %>%
+mutate_all(~replace(., is.na(.), 0))
+##
+de16a34 <- de16a34 %>%
+group_by(Periodo) %>%
+summarise(tiempo_completo = sum(`Jornada a tiempo completo`)/4,
+tiempo_parcial = sum(`Jornada a tiempo parcial`)/4) %>%
+mutate(Edad = columna)
+mas35 <- df_contrato_pivot %>%
+filter(Edad %in% c("70 y más años", "De 35 a 39 años", "De 40 a 44 años", "De 45 a 49
+años", "De 50 a 54 años", "De 55 a 59 años", "De 60 a 64 años", "De 65 a 69 años"))
+columna <- rep("Mayores de 35", times = 17)
+mas35 <- mas35 %>%
+mutate_all(~replace(., is.na(.), 0))
+mas35 <- mas35 %>%
+group_by(Periodo) %>%
+summarise(tiempo_completo = sum(`Jornada a tiempo completo`)/8,
+tiempo_parcial = sum(`Jornada a tiempo parcial`)/8) %>%
+mutate(Edad = columna)
+contrato <- rbind(mas35, de16a34)
+rm(list = ls()[!ls() %in% c("salario","contrato")])
+##-------------------------Póblación Activa----------------------------------------------
+df_activos <- read.csv("./datos_pulidos/activos.csv")
+##-------------------------Arreglamos-----------------------------------------------------
+head(df_activos)
+df_activos <- df_activos %>%
+mutate(Total = gsub("\\.", "", Total))
+df_activos <- df_activos %>%
+mutate(Total = as.numeric(gsub(",", ".", Total)))
+head(df_activos)
+menos35 <- df_activos %>%
+filter(Edad %in% c("De 25 a 29 años", "De 16 a 19 años", "De 20 a 24 años", "De 30 a 34
+años"))
+head(menos35)
+menos35 <- menos35 %>%
+mutate(Año = substr(Periodo, 1, 4)) %>%
+group_by(Edad, Sexo, Unidad, Año) %>%
+summarise(Total = sum(Total)/4)
+menos35 <- menos35[,-(2:3)]
+columna <- rep("De 16 a 34 años", times = 22)
+menos35 <- menos35 %>%
+group_by(Año) %>%
+summarise(total = sum(Total)) %>%
+mutate(grupo_edad = columna) %>%
+filter(!Año %in% c("2023")) %>%
+rename(num_activos = "total")
+mas35 <- df_activos %>%
+filter(Edad %in% c("70 y más años", "De 35 a 39 años", "De 40 a 44 años", "De 45 a 49
+años", "De 50 a 54 años", "De 55 a 59 años", "De 60 a 64 años", "De 65 a 69 años"))
+mas35 <- mas35 %>%
+mutate(Año = substr(Periodo, 1, 4)) %>%
+group_by(Edad, Sexo, Unidad, Año) %>%
+summarise(Total = sum(Total)/4)
+mas35 <- mas35[,-(2:3)]
+columna <- rep("Mayores de 35", times = 22)
+mas35 <- mas35 %>%
+group_by(Año) %>%
+summarise(total = sum(Total)) %>%
+mutate(grupo_edad = columna) %>%
+filter(!Año %in% c("2023")) %>%
+rename(num_activos = "total")
+activos <- rbind(mas35, menos35)
+rm(list = ls()[!ls() %in% c("salario","contrato", "activos")])
+##-----------------------------Póblación parada---------------------------------
+df_parados <- read.csv("./datos_pulidos/parados.csv")
+##-----------------------------Arreglamos y sacamos la población ocupada--------
+head(df_parados)
+df_parados <- df_parados %>%
+mutate(Total = gsub("\\.", "", Total))
+df_parados <- df_parados %>%
+mutate(Total = as.numeric(gsub(",", ".", Total)))
+head(df_parados)
+menos35 <- df_parados %>%
+filter(Edad %in% c("De 25 a 29 años", "De 16 a 19 años", "De 20 a 24 años", "De 30 a 34
+años"))
+head(menos35)
+menos35 <- menos35 %>%
+mutate(Año = substr(Periodo, 1, 4)) %>%
+group_by(Edad, Sexo, Unidad, Año) %>%
+summarise(Total = sum(Total)/4)
+menos35 <- menos35[,-(2:3)]
+columna <- rep("De 16 a 34 años", times = 22)
+menos35 <- menos35 %>%
+group_by(Año) %>%
+summarise(total = sum(Total)) %>%
+mutate(grupo_edad = columna) %>%
+filter(!Año %in% c("2023")) %>%
+rename(num_parados = "total")
+mas35 <- df_parados %>%
+filter(Edad %in% c("70 y más años", "De 35 a 39 años", "De 40 a 44 años", "De 45 a 49
+años", "De 50 a 54 años", "De 55 a 59 años", "De 60 a 64 años", "De 65 a 69 años"))
+mas35 <- mas35 %>%
+mutate(Año = substr(Periodo, 1, 4)) %>%
+group_by(Edad, Sexo, Unidad, Año) %>%
+summarise(Total = sum(Total)/4) %>%
+mutate_all(~replace(., is.na(.), 0))
+mas35 <- mas35[,-(2:3)]
+columna <- rep("Mayores de 35", times = 22)
+mas35 <- mas35 %>%
+group_by(Año) %>%
+summarise(total = sum(Total)) %>%
+mutate(grupo_edad = columna) %>%
+filter(!Año %in% c("2023")) %>%
+rename(num_parados = "total")
+parados <- rbind(mas35, menos35)
+rm(list = ls()[!ls() %in% c("salario","contrato", "activos", "parados")])
+act_parad <- merge(parados, activos, by = c("Año", "grupo_edad"))
+act_parad <- act_parad %>%
+mutate(num_ocupados = num_activos - num_parados)
+rm(list = ls()[!ls() %in% c("salario","contrato", "act_parad")])
+##------------------------------Gráficos----------------------------------------
+head(act_parad)
+porcentaje_parados <- act_parad %>%
+group_by(Año) %>%
+group_by(Año, grupo_edad) %>%
+mutate(Ocupados_edad = (num_ocupados / num_activos) * 100,
+Parados_edad = (num_parados / num_activos) * 100) %>%
+rename(Periodo = Año)
+rm(list = ls()[!ls() %in% c("salario","contrato", "porcentaje_parados", "vivienda",
+"act_parad")])
+contrato <- contrato %>%
+rename(jornada_completa = tiempo_completo,
+jornada_parcial = tiempo_parcial,
+grupo_edad = Edad)
+P2 <- ggplot(porcentaje_parados, aes(x = Periodo, y = Parados_edad, group = grupo_edad,
+color = grupo_edad)) +
+geom_line() +
+scale_color_manual(values = c("blue", "red")) +
+geom_point(color = "black", size = 2) +
+theme_economist() +
+labs(title = "Porcentaje de parados según la edad", x = "Periodo", y = "Porcentaje") +
+theme(legend.position = "bottom") +  # Mueve la leyenda a la parte inferior
+theme(plot.caption = element_text(size = 8, hjust = 0.5)) +  # Ajusta el tamaño del texto y lo centra
+labs(
+  title = "Porcentaje de parados según la edad",
+  x = "Año",
+  y = "Porcentaje de parados",
+  caption = "Elaboración propia a partir de datos extraídos de INE"
+)
+
+
+plotly::ggplotly(P2)
+
+```
+
+---
+
+## Porcentaje de contratos de Jornada completa por edad
+
+```{R, echo=FALSE}
+p3 <- ggplot(contrato, aes(x = Periodo, y = jornada_completa, fill = grupo_edad)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("blue3", "red3"), name = NULL) +
+  theme_economist() +
+  labs(title = "Contratos de jornada completa según la edad", x = "Periodo", y = "Porcentaje") +
+  labs(title = "Contratos de jornada completa según la edad",
+       x = "Año", y = "% Contratos de jornada completa", caption = "Elaboración propia a partir de datos extraídos de INE")
+
+plotly::ggplotly(p3)
+```
+
+---
+
+# Índice del nivel de Precios de la vivienda a nivel nacional
+
+```{R, echo=FALSE}
+#Paquetes preliminares
+#install.packages("mapSpain")
+library(mapSpain)
+#install.packages("pxR")
+library(pxR)
+#install.packages("tidyverse")
+library(tidyverse)
+library(data.table)
+library(rlist)
+library(fs)
+library(curl)
+library(rio)
+library(sf)
+library(readxl)
+library(downloader)
+library(writexl)
+#install.packages("rlist")
+# install.packages("devtools")
+#devtools::install_github("r-lib/conflicted")
+#Creamos una carpeta para guardar los datos
+#Descargamos los datos en formato PX desde el Ine
+#Índice de Precios de Vivienda por CCAA: general, vivienda nueva y de segunda mano
+#Como la URL es: "https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"
+url <- "https://www.ine.es/jaxiT3/files/t/es/px/25171.px?nocab=1"
+aa <- read.px(url)
+#Lo convertimos a CSV para simplificar y creamos un dataframe
+write.csv(aa, file = "./datos_pulidos/data.csv", sep = ",")
+#Lo convertimos a CSV para simplificar y creamos un dataframe
+write.csv(aa, file = "./datos_pulidos/data.csv")
+df <- read.csv("./datos_pulidos/data.csv")
+#Ahora nos ponemos a curra un poquito:
+library(ggthemes)
+#install.packages("plotly")
+library(plotly)
+#install.packages("ggExtra")
+library(ggExtra)
+library(patchwork)
+#Os voy a matar con este código y esta sintaxis que me hacéis arreglar cada vez
+
+#rm (list = ls())Territorio
+df1.1 <- dplyr::rename(df, Territorio = Comunidades.y.Ciudades.Autónomas,
+                       tipo = General..vivienda.nueva.y.de.segunda.mano, 
+                       Valor = value)
+
+df1.2 <- df1.1 %>% dplyr::mutate(`Territorio` = dplyr::case_when( 
+  Territorio == "01 Andalucía" ~ "Andalucía",
+  Territorio == "02 Aragón" ~ "Aragón",
+  Territorio == "03 Asturias, Principado de" ~ "Asturias, Principado de",
+  Territorio == "04 Balears, Illes" ~ "Balears, Illes",
+  Territorio == "05 Canarias" ~ "Canarias",
+  Territorio == "06 Cantabria" ~ "Cantabria",
+  Territorio == "07 Castilla y León" ~ "Castilla y León",
+  Territorio == "08 Castilla - La Mancha" ~ "Castilla-La Mancha",
+  Territorio == "09 Cataluña" ~ "Cataluña",
+  Territorio == "10 Comunitat Valenciana" ~ "Comunitat Valenciana",
+  Territorio == "11 Extremadura" ~ "Extremadura",
+  Territorio == "12 Galicia" ~ "Galicia",
+  Territorio == "13 Madrid, Comunidad de" ~ "Madrid, Comunidad de",
+  Territorio == "14 Murcia, Región de" ~ "Murcia, Región de",
+  Territorio == "15 Navarra, Comunidad Foral de" ~ "Navarra, Comunidad Foral de",
+  Territorio == "16 País Vasco" ~ "País Vasco",
+  Territorio == "17 Rioja, La" ~ "Rioja, La", 
+  TRUE ~ Territorio))
+
+df3 <- df1.2 %>% filter (tipo == "General", Índices.y.tasas == "Índice", !(Territorio %in% c("Nacional", "18 Ceuta", "19 Melilla")))
+prov <- pjpv.curso.R.2022::LAU2_prov_2020_canarias
+ccaa <- prov %>%
+  group_by(ine_ccaa, ine_ccaa.n, ine_ccaa.n.pjp) %>%
+  dplyr::summarise() %>% dplyr::ungroup()
+
+ccaa <- ccaa %>% dplyr::rename(Territorio = ine_ccaa.n)
+df4 <- df3 %>% filter(Periodo == "2023T3")
+df5 <- full_join(ccaa, df4, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+df6 <- df3 %>% 
+  filter(Periodo == "2018T3")
+df7 <- full_join(ccaa, df6, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+df8 <- df3 %>% filter(Periodo == "2015T3")
+df9 <- full_join(ccaa, df8, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+df10 <- df3 %>% filter(Periodo == "2011T3")
+df11 <- full_join(ccaa, df10, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+df12 <- df3 %>% filter(Periodo == "2013T3")
+df13 <- full_join(ccaa, df12, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+df14 <- df3 %>% filter(Periodo == "2007T3")
+df15 <- full_join(ccaa, df14, by = "Territorio") %>% filter( !(Territorio %in% c("Ceuta", "Melilla")))
+
+library(patchwork)
+escala_limites <- c(90, 190)
+
+p4 <- ggplot(df5, aes(fill = Valor)) +
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Precios vivienda CCAA 2023T3 (100 = 2015)") +
+  theme_void() +
+  labs(title = "Nivel de precios de la vivienda 2023", 
+       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+
+p7 <- ggplot(df13, aes(fill = Valor)) +
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "white") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Precios vivienda CCAA 2013T3 (100 = 2015)") +
+  theme_void() +
+  labs(title = "Nivel de precios de la vivienda 2013", 
+       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+
+p9 <- ggplot(df15, aes(fill = Valor)) +
+  geom_sf() +
+  geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
+  scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
+  labs(title = "Precios vivienda CCAA 20071T3 (100 = 2015)") +
+  theme_void() +
+  labs(title = "Nivel de precios de la vivienda 2007", 
+       x = "Año", caption = "Elaboración propia a partir de datos extraídos de INE")
+# Combinar los dos gráficos
+p9
+
+p7
+
+p4
+
+```
+
+---
+ 
+# Régimen de viviendas de 16 a 29 años
+
+```{R, echo=FALSE}
+#Hogares por regimen de tenencia edad
+#Cargamos liberías
+library(ggplot2)
+library(hrbrthemes)
+library(tidyverse)
+library(pxR)
+
+url4 <- "https://www.ine.es/jaxiT3/files/t/es/px/9994.px?nocab=1"
+ac <- read.px(url4)
+write.csv(ac, file = "./datos_pulidos/data_1.csv", sep = ",")
+vivienda_edad <- read.csv("./datos_pulidos/data_1.csv")
+
+dd <- vivienda_edad %>%
+  dplyr::rename(regimen = Régimen.de.tenencia.de.la.vivienda.principal, edad = Edad.de.la.persona.de.referencia, sexo = Sexo.de.la.persona.de.referencia) %>%
+  filter(edad == "De 16 a 29 años", sexo == "Ambos sexos")
+
+p30 <- dd %>%
+  ggplot(aes(x = Periodo, y = value, fill = regimen)) +
+  geom_bar(stat = "identity", position = "stack") +
+  theme_ipsum() +
+  labs(x = "Año", y = "% según régimen de tenencia", 
+       title = "Régimen de vivienda de 16 a 29 años",
+       subtitle = "Datos porcentuales",
+       caption = "Elaboración propia a partir de datos del INE") +
+  scale_fill_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3"), 
+                    labels = c("Alquiler a precios de mercado", "Alquiler inferior al precio de mercado", "Cesión", "Propiedad")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.caption = element_text(hjust = 0.5),
+        plot.title = element_text(hjust = 0.5, color = "black", size = 18, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, size = 14))+
+  labs(title = "Régimen de vivienda de 16 a 29 años", 
+  caption = "Elaboración propia a partir de datos extraídos de INE")
+
+p30
+```
+
+---
+
+# Otros gráficos bonitos pero poco útiles sobre el salario
+
+# Rigeline por grupo de edad
+
+```{R, echo=FALSE}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
+
+p1<- ggplot(df_edad, aes(x = salario, y = grupo_edad, fill = grupo_edad)) +
+  geom_density_ridges() +
+  theme_ridges() + 
+  theme(legend.position = "none")
+
+p1
+```
+
+# Barras agrupadas por edad
+
+```{R, echo=FALSE}
+library(tidyverse)
+library(rio)
+library(ggplot2)
+library(ggridges)
+
+df_edad <- import("./datos_pulidos/salario_grupo_edad.csv")
+
+df_edad_01 <- df_edad |> 
+  filter(grupo_edad != "Total") |> 
+  filter()
+
+df_edad_01$year <- factor(df_edad_01$year)
+
+p2 <- ggplot(df_edad_01, aes(fill = grupo_edad, y = salario, x = year))+
+  geom_bar(position = "dodge", stat = "identity")+
+  labs(title = "Salario por grupo de edad", caption = "Elaboración propia a partir de datos extraídos de INE")
+
+p2
+```
