@@ -18,7 +18,8 @@ p1
 
 #GRÁFICO DE BARRAS AGRUPADAS DEL SALARIO POR GRUPO DE EDAD
 df_edad_01 <- df_edad |> 
-  filter(grupo_edad != "Total")
+  filter(grupo_edad != "Total") |> 
+  filter()
 
 df_edad_01$year <- factor(df_edad_01$year)
 
@@ -91,5 +92,3 @@ ggplot(df_media_anual, aes(x=year, y=media_salario)) +
   ) +
   xlab("") +
   ylab("Índice del Precio de la Vivienda")
-
-

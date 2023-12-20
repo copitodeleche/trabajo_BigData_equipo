@@ -7,7 +7,7 @@ p, ul, ol {
   
   
 .rojo {
-  color: red;
+  color: black;
 }
 
 .pink-background {
@@ -15,6 +15,6 @@ p, ul, ol {
 }
 
 .importante {
-  color: red;
+  color: black;
   background-color: yellow;
 }

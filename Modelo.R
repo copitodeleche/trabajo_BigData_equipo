@@ -310,3 +310,5 @@ ggplot(salario, aes(x = Periodo, y = salario_completa, group = grupo_edad, color
   scale_color_manual(values = c("blue", "red")) +
   geom_point( color="grey", size=2) +
   theme_solarized()
+
+remotes::install_github("perezp44/pjpv.curso.R.2022", force = TRUE)
