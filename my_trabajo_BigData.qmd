@@ -552,6 +552,7 @@ library(xts)
 library(dygraphs)
 library(gifski)
 library(ggthemes)
+library(ggExtra)
 #rm(list = ls())
 #Df`s
 #---------------------Tipo de contrato------------------------------------------
@@ -703,7 +704,7 @@ geom_line() +
 scale_color_manual(values = c("blue", "red")) +
 geom_point( color="black", size=2) +
 theme_economist() +labs(title = "Porcentaje de parados según la edad", x = "Periodo", y =
-"Porcentaje", caption = "Elaboración propia a partir de datos de INE")
+"Porcentaje", caption = "Elaboración propia a partir de datos de INE") + rotateTextX()
 
 plotly::ggplotly(P2)
 
@@ -842,7 +843,7 @@ p9 <- ggplot(df15, aes(fill = Valor)) +
   geom_sf() +
   geom_sf_label(aes(label = as.character(Valor)), size = 3, color = "black") +
   scale_fill_viridis_c(guide = "legend",limits = escala_limites) +
-  labs(title = "Precios vivienda CCAA 20071T3 (100 = 2015)",caption = "Elaboración propia a partir de datos extraídos de INE") +
+  labs(title = "Precios vivienda CCAA 2007T3 (100 = 2015)",caption = "Elaboración propia a partir de datos extraídos de INE") +
   theme_void() 
 # Combinar los dos gráficos
 p9
@@ -963,8 +964,7 @@ Si bien no hemos ahondado en las causas de esta situación ni en posibles soluci
 
 Además este tema está de actualidad en la academia por el lanzamiento del libro “La juventud atracada” de Ignacio Conde-Ruiz. En él se repasa lo visto en este trabajo además de la problemática con las pensiones y ahonda más en causas, consecuencias y soluciones. El propio Ignacio dio una charla en la UV hace unas semanas. Os adjuntamos una entrevista que hizo con el también economista Juan Ramón Rallo, en la que habla extensamente de su libro y su contenido.
 
-# Mas información sobre el tema
 
-<center><iframe width="560" height="315" src="https://www.youtube.com/live/EtIErMd1EYM?si=-LNzHLRcepGHZ-r5"></iframe></center>
+
 
 

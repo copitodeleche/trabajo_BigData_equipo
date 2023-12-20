@@ -9,7 +9,15 @@ asignatura puede verse aquí:
 La versión final del trabajo puede visualizarse en:
 <https://copitodeleche.github.io/trabajo_BigData_equipo/>.
 
-El título del trabajo es: La vivienda, un bien inalcanzable. En el
+El título del trabajo es:Hola Pedro,
+soy Nerea Pérez Mártinez capitana del equipo compuesto por mi y Alex Abril Santana y Luis Goméz Saldaña.
+
+El título del trabajo es: Una aproximación empírica a los problemas económicos más tochos
+
+Mi usuario de Github es: nereaPM_99
+
+Por lo tanto, el párrafo que has de poner en la web de la asignatura para que puedas poner el enlace a nuestro trabajo es exactamente este:
+. En el
 trabajo analizamos la situación en la que se encuentran los jóvenes a la
 hora de acceder al mercado laboral. Para ello analizaremos diferentes
 métricas entre las que se encuentran: Evolución de los niveles de
